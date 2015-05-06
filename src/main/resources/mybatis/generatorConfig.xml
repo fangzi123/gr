@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <!--  
+  <classPathEntry location="E:/maven_repository/repository/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar"/>-->
+  <!-- mysql -->
+  <classPathEntry location="C:/Users/wangfangfang_yy/.m2/repository/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+  
+  <context id="context1" >
+  	<commentGenerator>
+  		<property name="suppressAllComments" value="true"/><!-- 取消生成的注释信息 -->
+  	</commentGenerator>
+  	<!-- oracle.jdbc.driver.OracleDriver  jdbc:oracle:thin:@112.124.69.93:1521:xe -->
+    <jdbcConnection 
+        driverClass="com.mysql.jdbc.Driver" 
+        connectionURL="jdbc:mysql://localhost:3306/gr" 
+        userId="root" password="123456" />
+   	<!-- 测试用 -->
+   	<!-- 
+   	<jdbcConnection 
+   	driverClass="com.mysql.jdbc.Driver" 
+   	connectionURL="jdbc:mysql://123.57.12.88:3306/rental_weixin" 
+   	userId="rental" password="rental" />
+   	-->
+    <javaModelGenerator targetPackage="com.cyou.gr.entity" targetProject="gr/src/main/java" />
+    <sqlMapGenerator targetPackage="mybatis.mysql" targetProject="gr/src/main/resources" />
+ 	<!--生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现  context id="DB2Tables" 修改targetRuntime="MyBatis3"  -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.cyou.gr.dao"  targetProject="gr/src/main/java">
+        <property name="enableSubPackages" value="false" />
+    </javaClientGenerator>
+    <table schema="" tableName="checkbill" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="checkbill_template" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="document" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="fee" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="fee_template" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="manpower" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="manpower_template" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="pro_node" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="process" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="process_node" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="project" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="quota" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="task_book" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="task_book_template" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="user2project" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table schema="" tableName="user" 
+    	enableCountByExample="false" enableUpdateByExample="false" 
+    	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+  </context>
+</generatorConfiguration>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cyou.gr.dao.User2projectMapper" >
+  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.User2project" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="is_view" property="isView" jdbcType="BIT" />
+    <result column="is_edit" property="isEdit" jdbcType="BIT" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, project_id, is_view, is_edit, user_type, flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user2project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user2project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cyou.gr.entity.User2project" >
+    insert into user2project (id, user_id, project_id, 
+      is_view, is_edit, user_type, flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{isView,jdbcType=BIT}, #{isEdit,jdbcType=BIT}, #{userType,jdbcType=VARCHAR}, #{flag,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.User2project" >
+    insert into user2project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="isView != null" >
+        is_view,
+      </if>
+      <if test="isEdit != null" >
+        is_edit,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="isView != null" >
+        #{isView,jdbcType=BIT},
+      </if>
+      <if test="isEdit != null" >
+        #{isEdit,jdbcType=BIT},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.User2project" >
+    update user2project
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="isView != null" >
+        is_view = #{isView,jdbcType=BIT},
+      </if>
+      <if test="isEdit != null" >
+        is_edit = #{isEdit,jdbcType=BIT},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.User2project" >
+    update user2project
+    set user_id = #{userId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER},
+      is_view = #{isView,jdbcType=BIT},
+      is_edit = #{isEdit,jdbcType=BIT},
+      user_type = #{userType,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

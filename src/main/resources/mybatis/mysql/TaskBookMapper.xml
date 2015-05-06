@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cyou.gr.dao.TaskBookMapper" >
+  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.TaskBook" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
+    <result column="task_book_template_id" property="taskBookTemplateId" jdbcType="INTEGER" />
+    <result column="quota_num" property="quotaNum" jdbcType="DECIMAL" />
+    <result column="quota_num_real" property="quotaNumReal" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pro_node_id, task_book_template_id, quota_num, quota_num_real
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from task_book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from task_book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cyou.gr.entity.TaskBook" >
+    insert into task_book (id, pro_node_id, task_book_template_id, 
+      quota_num, quota_num_real)
+    values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{taskBookTemplateId,jdbcType=INTEGER}, 
+      #{quotaNum,jdbcType=DECIMAL}, #{quotaNumReal,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.TaskBook" >
+    insert into task_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="proNodeId != null" >
+        pro_node_id,
+      </if>
+      <if test="taskBookTemplateId != null" >
+        task_book_template_id,
+      </if>
+      <if test="quotaNum != null" >
+        quota_num,
+      </if>
+      <if test="quotaNumReal != null" >
+        quota_num_real,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proNodeId != null" >
+        #{proNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="taskBookTemplateId != null" >
+        #{taskBookTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="quotaNum != null" >
+        #{quotaNum,jdbcType=DECIMAL},
+      </if>
+      <if test="quotaNumReal != null" >
+        #{quotaNumReal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.TaskBook" >
+    update task_book
+    <set >
+      <if test="proNodeId != null" >
+        pro_node_id = #{proNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="taskBookTemplateId != null" >
+        task_book_template_id = #{taskBookTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="quotaNum != null" >
+        quota_num = #{quotaNum,jdbcType=DECIMAL},
+      </if>
+      <if test="quotaNumReal != null" >
+        quota_num_real = #{quotaNumReal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.TaskBook" >
+    update task_book
+    set pro_node_id = #{proNodeId,jdbcType=INTEGER},
+      task_book_template_id = #{taskBookTemplateId,jdbcType=INTEGER},
+      quota_num = #{quotaNum,jdbcType=DECIMAL},
+      quota_num_real = #{quotaNumReal,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

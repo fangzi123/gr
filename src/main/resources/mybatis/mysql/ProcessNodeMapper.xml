@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cyou.gr.dao.ProcessNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.ProcessNode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="process_id" property="processId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="SMALLINT" />
+    <result column="process_type" property="processType" jdbcType="CHAR" />
+    <result column="has_status" property="hasStatus" jdbcType="BIT" />
+    <result column="has_start_end_time" property="hasStartEndTime" jdbcType="BIT" />
+    <result column="has_review_time" property="hasReviewTime" jdbcType="BIT" />
+    <result column="has_doc" property="hasDoc" jdbcType="BIT" />
+    <result column="has_current_progress" property="hasCurrentProgress" jdbcType="BIT" />
+    <result column="has_module_desc" property="hasModuleDesc" jdbcType="BIT" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, process_id, sort, process_type, has_status, has_start_end_time, has_review_time, 
+    has_doc, has_current_progress, has_module_desc, flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_node
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from process_node
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cyou.gr.entity.ProcessNode" >
+    insert into process_node (id, name, process_id, 
+      sort, process_type, has_status, 
+      has_start_end_time, has_review_time, has_doc, 
+      has_current_progress, has_module_desc, flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{processId,jdbcType=INTEGER}, 
+      #{sort,jdbcType=SMALLINT}, #{processType,jdbcType=CHAR}, #{hasStatus,jdbcType=BIT}, 
+      #{hasStartEndTime,jdbcType=BIT}, #{hasReviewTime,jdbcType=BIT}, #{hasDoc,jdbcType=BIT}, 
+      #{hasCurrentProgress,jdbcType=BIT}, #{hasModuleDesc,jdbcType=BIT}, #{flag,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.ProcessNode" >
+    insert into process_node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="processId != null" >
+        process_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="processType != null" >
+        process_type,
+      </if>
+      <if test="hasStatus != null" >
+        has_status,
+      </if>
+      <if test="hasStartEndTime != null" >
+        has_start_end_time,
+      </if>
+      <if test="hasReviewTime != null" >
+        has_review_time,
+      </if>
+      <if test="hasDoc != null" >
+        has_doc,
+      </if>
+      <if test="hasCurrentProgress != null" >
+        has_current_progress,
+      </if>
+      <if test="hasModuleDesc != null" >
+        has_module_desc,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null" >
+        #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="processType != null" >
+        #{processType,jdbcType=CHAR},
+      </if>
+      <if test="hasStatus != null" >
+        #{hasStatus,jdbcType=BIT},
+      </if>
+      <if test="hasStartEndTime != null" >
+        #{hasStartEndTime,jdbcType=BIT},
+      </if>
+      <if test="hasReviewTime != null" >
+        #{hasReviewTime,jdbcType=BIT},
+      </if>
+      <if test="hasDoc != null" >
+        #{hasDoc,jdbcType=BIT},
+      </if>
+      <if test="hasCurrentProgress != null" >
+        #{hasCurrentProgress,jdbcType=BIT},
+      </if>
+      <if test="hasModuleDesc != null" >
+        #{hasModuleDesc,jdbcType=BIT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.ProcessNode" >
+    update process_node
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null" >
+        process_id = #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="processType != null" >
+        process_type = #{processType,jdbcType=CHAR},
+      </if>
+      <if test="hasStatus != null" >
+        has_status = #{hasStatus,jdbcType=BIT},
+      </if>
+      <if test="hasStartEndTime != null" >
+        has_start_end_time = #{hasStartEndTime,jdbcType=BIT},
+      </if>
+      <if test="hasReviewTime != null" >
+        has_review_time = #{hasReviewTime,jdbcType=BIT},
+      </if>
+      <if test="hasDoc != null" >
+        has_doc = #{hasDoc,jdbcType=BIT},
+      </if>
+      <if test="hasCurrentProgress != null" >
+        has_current_progress = #{hasCurrentProgress,jdbcType=BIT},
+      </if>
+      <if test="hasModuleDesc != null" >
+        has_module_desc = #{hasModuleDesc,jdbcType=BIT},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.ProcessNode" >
+    update process_node
+    set name = #{name,jdbcType=VARCHAR},
+      process_id = #{processId,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=SMALLINT},
+      process_type = #{processType,jdbcType=CHAR},
+      has_status = #{hasStatus,jdbcType=BIT},
+      has_start_end_time = #{hasStartEndTime,jdbcType=BIT},
+      has_review_time = #{hasReviewTime,jdbcType=BIT},
+      has_doc = #{hasDoc,jdbcType=BIT},
+      has_current_progress = #{hasCurrentProgress,jdbcType=BIT},
+      has_module_desc = #{hasModuleDesc,jdbcType=BIT},
+      flag = #{flag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
