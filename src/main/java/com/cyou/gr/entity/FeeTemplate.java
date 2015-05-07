@@ -3,9 +3,9 @@ package com.cyou.gr.entity;
 public class FeeTemplate {
     private Integer id;
 
-    private String name;
-
     private Integer processNodeId;
+
+    private String name;
 
     private Byte sort;
 
@@ -17,20 +17,20 @@ public class FeeTemplate {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Integer getProcessNodeId() {
         return processNodeId;
     }
 
     public void setProcessNodeId(Integer processNodeId) {
         this.processNodeId = processNodeId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Byte getSort() {

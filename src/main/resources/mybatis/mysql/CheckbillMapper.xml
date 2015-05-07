@@ -6,9 +6,11 @@
     <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
     <result column="checkbill_template_id" property="checkbillTemplateId" jdbcType="INTEGER" />
     <result column="isqualified" property="isqualified" jdbcType="BIT" />
+    <result column="check_item" property="checkItem" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, pro_node_id, checkbill_template_id, isqualified
+    id, pro_node_id, checkbill_template_id, isqualified, check_item, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.Checkbill" >
     insert into checkbill (id, pro_node_id, checkbill_template_id, 
-      isqualified)
+      isqualified, check_item, remark
+      )
     values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{checkbillTemplateId,jdbcType=INTEGER}, 
-      #{isqualified,jdbcType=BIT})
+      #{isqualified,jdbcType=BIT}, #{checkItem,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Checkbill" >
     insert into checkbill
@@ -41,6 +45,12 @@
       <if test="isqualified != null" >
         isqualified,
       </if>
+      <if test="checkItem != null" >
+        check_item,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +64,12 @@
       </if>
       <if test="isqualified != null" >
         #{isqualified,jdbcType=BIT},
+      </if>
+      <if test="checkItem != null" >
+        #{checkItem,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +85,12 @@
       <if test="isqualified != null" >
         isqualified = #{isqualified,jdbcType=BIT},
       </if>
+      <if test="checkItem != null" >
+        check_item = #{checkItem,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +98,9 @@
     update checkbill
     set pro_node_id = #{proNodeId,jdbcType=INTEGER},
       checkbill_template_id = #{checkbillTemplateId,jdbcType=INTEGER},
-      isqualified = #{isqualified,jdbcType=BIT}
+      isqualified = #{isqualified,jdbcType=BIT},
+      check_item = #{checkItem,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

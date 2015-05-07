@@ -3,12 +3,12 @@
 <mapper namespace="com.cyou.gr.dao.FeeTemplateMapper" >
   <resultMap id="BaseResultMap" type="com.cyou.gr.entity.FeeTemplate" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="process_node_id" property="processNodeId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, process_node_id, sort
+    id, process_node_id, name, sort
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.FeeTemplate" >
-    insert into fee_template (id, name, process_node_id, 
+    insert into fee_template (id, process_node_id, name, 
       sort)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{processNodeId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{sort,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.FeeTemplate" >
@@ -32,11 +32,11 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
-      </if>
       <if test="processNodeId != null" >
         process_node_id,
+      </if>
+      <if test="name != null" >
+        name,
       </if>
       <if test="sort != null" >
         sort,
@@ -46,11 +46,11 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
       <if test="processNodeId != null" >
         #{processNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=TINYINT},
@@ -60,11 +60,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.FeeTemplate" >
     update fee_template
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
       <if test="processNodeId != null" >
         process_node_id = #{processNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="sort != null" >
         sort = #{sort,jdbcType=TINYINT},
@@ -74,8 +74,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.FeeTemplate" >
     update fee_template
-    set name = #{name,jdbcType=VARCHAR},
-      process_node_id = #{processNodeId,jdbcType=INTEGER},
+    set process_node_id = #{processNodeId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -1,11 +1,15 @@
 package com.cyou.gr.entity;
 
+import java.math.BigDecimal;
+
 public class Fee {
     private Integer id;
 
     private Integer proNodeId;
 
     private Integer feeTemplateId;
+
+    private BigDecimal money;
 
     public Integer getId() {
         return id;
@@ -29,5 +33,13 @@ public class Fee {
 
     public void setFeeTemplateId(Integer feeTemplateId) {
         this.feeTemplateId = feeTemplateId;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
     }
 }

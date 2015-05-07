@@ -7,21 +7,15 @@ public class ProcessNode {
 
     private Integer processId;
 
-    private Short sort;
+    private Byte sort;
 
     private String processType;
 
-    private Boolean hasStatus;
+    private String endType;
 
-    private Boolean hasStartEndTime;
+    private String timeType;
 
-    private Boolean hasReviewTime;
-
-    private Boolean hasDoc;
-
-    private Boolean hasCurrentProgress;
-
-    private Boolean hasModuleDesc;
+    private String optMoudles;
 
     private Boolean flag;
 
@@ -49,11 +43,11 @@ public class ProcessNode {
         this.processId = processId;
     }
 
-    public Short getSort() {
+    public Byte getSort() {
         return sort;
     }
 
-    public void setSort(Short sort) {
+    public void setSort(Byte sort) {
         this.sort = sort;
     }
 
@@ -65,52 +59,28 @@ public class ProcessNode {
         this.processType = processType;
     }
 
-    public Boolean getHasStatus() {
-        return hasStatus;
+    public String getEndType() {
+        return endType;
     }
 
-    public void setHasStatus(Boolean hasStatus) {
-        this.hasStatus = hasStatus;
+    public void setEndType(String endType) {
+        this.endType = endType;
     }
 
-    public Boolean getHasStartEndTime() {
-        return hasStartEndTime;
+    public String getTimeType() {
+        return timeType;
     }
 
-    public void setHasStartEndTime(Boolean hasStartEndTime) {
-        this.hasStartEndTime = hasStartEndTime;
+    public void setTimeType(String timeType) {
+        this.timeType = timeType;
     }
 
-    public Boolean getHasReviewTime() {
-        return hasReviewTime;
+    public String getOptMoudles() {
+        return optMoudles;
     }
 
-    public void setHasReviewTime(Boolean hasReviewTime) {
-        this.hasReviewTime = hasReviewTime;
-    }
-
-    public Boolean getHasDoc() {
-        return hasDoc;
-    }
-
-    public void setHasDoc(Boolean hasDoc) {
-        this.hasDoc = hasDoc;
-    }
-
-    public Boolean getHasCurrentProgress() {
-        return hasCurrentProgress;
-    }
-
-    public void setHasCurrentProgress(Boolean hasCurrentProgress) {
-        this.hasCurrentProgress = hasCurrentProgress;
-    }
-
-    public Boolean getHasModuleDesc() {
-        return hasModuleDesc;
-    }
-
-    public void setHasModuleDesc(Boolean hasModuleDesc) {
-        this.hasModuleDesc = hasModuleDesc;
+    public void setOptMoudles(String optMoudles) {
+        this.optMoudles = optMoudles;
     }
 
     public Boolean getFlag() {

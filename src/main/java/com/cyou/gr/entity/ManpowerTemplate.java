@@ -7,8 +7,6 @@ public class ManpowerTemplate {
 
     private String projectTeam;
 
-    private String coreMaster;
-
     private String standardModel;
 
     private Byte sort;
@@ -35,14 +33,6 @@ public class ManpowerTemplate {
 
     public void setProjectTeam(String projectTeam) {
         this.projectTeam = projectTeam;
-    }
-
-    public String getCoreMaster() {
-        return coreMaster;
-    }
-
-    public void setCoreMaster(String coreMaster) {
-        this.coreMaster = coreMaster;
     }
 
     public String getStandardModel() {

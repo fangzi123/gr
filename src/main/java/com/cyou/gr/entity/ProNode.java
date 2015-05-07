@@ -17,9 +17,9 @@ public class ProNode {
 
     private Date reviewTime;
 
-    private String currentProgressDesc;
+    private String isNormal;
 
-    private String moduleDesc;
+    private String currentProgressDesc;
 
     private String additionalDesc;
 
@@ -79,20 +79,20 @@ public class ProNode {
         this.reviewTime = reviewTime;
     }
 
+    public String getIsNormal() {
+        return isNormal;
+    }
+
+    public void setIsNormal(String isNormal) {
+        this.isNormal = isNormal;
+    }
+
     public String getCurrentProgressDesc() {
         return currentProgressDesc;
     }
 
     public void setCurrentProgressDesc(String currentProgressDesc) {
         this.currentProgressDesc = currentProgressDesc;
-    }
-
-    public String getModuleDesc() {
-        return moduleDesc;
-    }
-
-    public void setModuleDesc(String moduleDesc) {
-        this.moduleDesc = moduleDesc;
     }
 
     public String getAdditionalDesc() {

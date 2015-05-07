@@ -5,12 +5,11 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="process_node_id" property="processNodeId" jdbcType="INTEGER" />
     <result column="project_team" property="projectTeam" jdbcType="VARCHAR" />
-    <result column="core_master" property="coreMaster" jdbcType="VARCHAR" />
     <result column="standard_model" property="standardModel" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, process_node_id, project_team, core_master, standard_model, sort
+    id, process_node_id, project_team, standard_model, sort
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.ManpowerTemplate" >
     insert into manpower_template (id, process_node_id, project_team, 
-      core_master, standard_model, sort
-      )
+      standard_model, sort)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{projectTeam,jdbcType=VARCHAR}, 
-      #{coreMaster,jdbcType=VARCHAR}, #{standardModel,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT}
-      )
+      #{standardModel,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.ManpowerTemplate" >
     insert into manpower_template
@@ -41,9 +38,6 @@
       </if>
       <if test="projectTeam != null" >
         project_team,
-      </if>
-      <if test="coreMaster != null" >
-        core_master,
       </if>
       <if test="standardModel != null" >
         standard_model,
@@ -62,9 +56,6 @@
       <if test="projectTeam != null" >
         #{projectTeam,jdbcType=VARCHAR},
       </if>
-      <if test="coreMaster != null" >
-        #{coreMaster,jdbcType=VARCHAR},
-      </if>
       <if test="standardModel != null" >
         #{standardModel,jdbcType=VARCHAR},
       </if>
@@ -82,9 +73,6 @@
       <if test="projectTeam != null" >
         project_team = #{projectTeam,jdbcType=VARCHAR},
       </if>
-      <if test="coreMaster != null" >
-        core_master = #{coreMaster,jdbcType=VARCHAR},
-      </if>
       <if test="standardModel != null" >
         standard_model = #{standardModel,jdbcType=VARCHAR},
       </if>
@@ -98,7 +86,6 @@
     update manpower_template
     set process_node_id = #{processNodeId,jdbcType=INTEGER},
       project_team = #{projectTeam,jdbcType=VARCHAR},
-      core_master = #{coreMaster,jdbcType=VARCHAR},
       standard_model = #{standardModel,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}

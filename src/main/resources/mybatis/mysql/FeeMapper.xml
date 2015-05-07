@@ -5,9 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
     <result column="fee_template_id" property="feeTemplateId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, pro_node_id, fee_template_id
+    id, pro_node_id, fee_template_id, money
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,10 +21,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.Fee" >
-    insert into fee (id, pro_node_id, fee_template_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{feeTemplateId,jdbcType=INTEGER}
-      )
+    insert into fee (id, pro_node_id, fee_template_id, 
+      money)
+    values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{feeTemplateId,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Fee" >
     insert into fee
@@ -37,6 +38,9 @@
       <if test="feeTemplateId != null" >
         fee_template_id,
       </if>
+      <if test="money != null" >
+        money,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -47,6 +51,9 @@
       </if>
       <if test="feeTemplateId != null" >
         #{feeTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -59,13 +66,17 @@
       <if test="feeTemplateId != null" >
         fee_template_id = #{feeTemplateId,jdbcType=INTEGER},
       </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.Fee" >
     update fee
     set pro_node_id = #{proNodeId,jdbcType=INTEGER},
-      fee_template_id = #{feeTemplateId,jdbcType=INTEGER}
+      fee_template_id = #{feeTemplateId,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

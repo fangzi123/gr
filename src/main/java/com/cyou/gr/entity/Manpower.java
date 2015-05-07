@@ -7,6 +7,8 @@ public class Manpower {
 
     private Integer manpowerId;
 
+    private String coreMan;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class Manpower {
 
     public void setManpowerId(Integer manpowerId) {
         this.manpowerId = manpowerId;
+    }
+
+    public String getCoreMan() {
+        return coreMan;
+    }
+
+    public void setCoreMan(String coreMan) {
+        this.coreMan = coreMan;
     }
 }

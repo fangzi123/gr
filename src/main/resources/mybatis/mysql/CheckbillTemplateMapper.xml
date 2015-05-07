@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="process_node_id" property="processNodeId" jdbcType="INTEGER" />
     <result column="check_item" property="checkItem" jdbcType="VARCHAR" />
-    <result column="check_item_property" property="checkItemProperty" jdbcType="VARCHAR" />
+    <result column="check_item_property" property="checkItemProperty" jdbcType="CHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="isqualified" property="isqualified" jdbcType="BIT" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
@@ -28,7 +28,7 @@
       check_item_property, remark, isqualified, 
       sort)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{checkItem,jdbcType=VARCHAR}, 
-      #{checkItemProperty,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isqualified,jdbcType=BIT}, 
+      #{checkItemProperty,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{isqualified,jdbcType=BIT}, 
       #{sort,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.CheckbillTemplate" >
@@ -67,7 +67,7 @@
         #{checkItem,jdbcType=VARCHAR},
       </if>
       <if test="checkItemProperty != null" >
-        #{checkItemProperty,jdbcType=VARCHAR},
+        #{checkItemProperty,jdbcType=CHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -90,7 +90,7 @@
         check_item = #{checkItem,jdbcType=VARCHAR},
       </if>
       <if test="checkItemProperty != null" >
-        check_item_property = #{checkItemProperty,jdbcType=VARCHAR},
+        check_item_property = #{checkItemProperty,jdbcType=CHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -108,7 +108,7 @@
     update checkbill_template
     set process_node_id = #{processNodeId,jdbcType=INTEGER},
       check_item = #{checkItem,jdbcType=VARCHAR},
-      check_item_property = #{checkItemProperty,jdbcType=VARCHAR},
+      check_item_property = #{checkItemProperty,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR},
       isqualified = #{isqualified,jdbcType=BIT},
       sort = #{sort,jdbcType=TINYINT}
