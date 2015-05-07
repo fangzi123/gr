@@ -11,6 +11,8 @@ public class Fee {
 
     private BigDecimal money;
 
+    private Boolean display;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Fee {
 
     public void setMoney(BigDecimal money) {
         this.money = money;
+    }
+
+    public Boolean getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Boolean display) {
+        this.display = display;
     }
 }

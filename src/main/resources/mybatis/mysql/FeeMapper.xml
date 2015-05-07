@@ -6,9 +6,10 @@
     <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
     <result column="fee_template_id" property="feeTemplateId" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="display" property="display" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, pro_node_id, fee_template_id, money
+    id, pro_node_id, fee_template_id, money, display
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.Fee" >
     insert into fee (id, pro_node_id, fee_template_id, 
-      money)
+      money, display)
     values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{feeTemplateId,jdbcType=INTEGER}, 
-      #{money,jdbcType=DECIMAL})
+      #{money,jdbcType=DECIMAL}, #{display,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Fee" >
     insert into fee
@@ -41,6 +42,9 @@
       <if test="money != null" >
         money,
       </if>
+      <if test="display != null" >
+        display,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="money != null" >
         #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="money != null" >
         money = #{money,jdbcType=DECIMAL},
       </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update fee
     set pro_node_id = #{proNodeId,jdbcType=INTEGER},
       fee_template_id = #{feeTemplateId,jdbcType=INTEGER},
-      money = #{money,jdbcType=DECIMAL}
+      money = #{money,jdbcType=DECIMAL},
+      display = #{display,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

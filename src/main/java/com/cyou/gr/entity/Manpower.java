@@ -1,5 +1,7 @@
 package com.cyou.gr.entity;
 
+import java.math.BigDecimal;
+
 public class Manpower {
     private Integer id;
 
@@ -7,7 +9,7 @@ public class Manpower {
 
     private Integer manpowerId;
 
-    private String coreMan;
+    private BigDecimal coreMan;
 
     public Integer getId() {
         return id;
@@ -33,11 +35,11 @@ public class Manpower {
         this.manpowerId = manpowerId;
     }
 
-    public String getCoreMan() {
+    public BigDecimal getCoreMan() {
         return coreMan;
     }
 
-    public void setCoreMan(String coreMan) {
+    public void setCoreMan(BigDecimal coreMan) {
         this.coreMan = coreMan;
     }
 }
