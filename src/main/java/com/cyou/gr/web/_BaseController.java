@@ -11,12 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.Locale;
 
-/**
- * @author
- * @version 1.0
- * @Description 控制器基类(SBS权限管理部分迁移使用)
- * @date 2012-11-15
- */
 public abstract class _BaseController extends MultiActionController {
 
     protected transient Logger log = LoggerFactory.getLogger(this.getClass());

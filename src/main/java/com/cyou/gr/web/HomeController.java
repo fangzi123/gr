@@ -12,21 +12,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cyou.gr.entity.User;
 import com.cyou.gr.service.UserManageService;
 
 
 @Controller
-public class HomeController {
+public class HomeController extends _BaseController{
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private UserManageService userManageService;
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		log.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -38,13 +36,4 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Model model) throws Exception {
-		model.addAttribute("serverTime", 1 );
-		User e=new User();
-		e.setId(1);
-		e.setName("测试成功");
-		userManageService.updateEmp(e);
-		return "home";
-	}
 }
