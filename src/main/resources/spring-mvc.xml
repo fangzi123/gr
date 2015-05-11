@@ -10,8 +10,9 @@
 	            <mvc:mapping path="/**" />
 	            <mvc:exclude-mapping path="/resources/**" />
 	            <mvc:exclude-mapping path="/images/**" />
-	            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-				</bean>
+<!-- 	            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> -->
+<!-- 				</bean> -->
+				<bean class="com.cyou.gr.web.comm.GlobalInterceptor"></bean>
 	        </mvc:interceptor>
 	  </mvc:interceptors>
 	<!-- 使用注解的包，包括子集 -->

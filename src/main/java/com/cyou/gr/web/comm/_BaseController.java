@@ -1,4 +1,4 @@
-package com.cyou.gr.web;
+package com.cyou.gr.web.comm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

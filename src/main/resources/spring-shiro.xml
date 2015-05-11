@@ -108,8 +108,9 @@
         <property name="filterChainDefinitions">
             <value>
                 /oauth2Failure.jsp = anon
+                /refuse.jsp = anon
                 /index = oauth2Authc
-                /logout = logout
+                /logout = anon
                 /** = user
             </value>
         </property>
