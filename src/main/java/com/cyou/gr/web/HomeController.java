@@ -1,9 +1,12 @@
 package com.cyou.gr.web;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.io.IOException;
 import java.util.Locale;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +25,20 @@ public class HomeController extends _BaseController{
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		log.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+	public String home(Model model) {
+		return "index";
 	}
+	
+	//退出
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public void logout(Model model) throws HttpException, IOException {
+//		  HttpClient httpClient = new HttpClient();
+//	        String url = "http://ldapproxy.cyou-inc.com/oauth/logout?client_id=54d7293dce&redirect_uri=http://10.12.20.14:8080/gr/index";
+//	        GetMethod getMethod = new GetMethod(url);
+//	        String charSet = "UTF-8";
+//	        httpClient.getParams().setParameter(
+//	                HttpMethodParams.HTTP_CONTENT_CHARSET, charSet);
+//	        int statusCode = httpClient.executeMethod(getMethod);
+//	}
 	
 }

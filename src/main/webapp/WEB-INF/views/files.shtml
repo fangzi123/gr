@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GR评审系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Web Layout:Silence">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/daterangepicker-bs3.css" rel="stylesheet">
+<link href="css/css.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!--#include file="inc/nav.html"-->
+<!--nav-->
+<div id="content">
+	<!--#include file="inc/left_box.html"-->
+	<!--left_box-->
+	<div id="right_box">
+    	<div class="row">
+        	<div class="col-xs-10">
+                <ol class="breadcrumb">
+                    <li><a href="index.shtml">首页</a></li>
+                    <li class="active">文档管理</li>
+                </ol>
+            </div>
+        	<div class="col-xs-2 text-right">
+            </div>
+        </div>
+		<!--路径导航-->
+		<div class="choose">
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+            <input type="text" class="form-control" id="recipient-name" placeholder="文档名称">
+		  </div>
+		  <div class="form-group">
+				<select class="form-control">
+				  <option>流程</option>
+				  <option>端游GR流程</option>
+				  <option>手游GR流程</option>
+				</select>
+		  </div>
+		  <div class="form-group">
+				<select class="form-control">
+				  <option>节点</option>
+				  <option>GR0</option>
+				  <option>GR1</option>
+				  <option>GR2</option>
+				  <option>GR3</option>
+				</select>
+		  </div>
+		  <div class="form-group">
+				<select class="form-control">
+				  <option>项目</option>
+				  <option>游戏A</option>
+				  <option>幻想神域</option>
+				</select>
+		  </div>
+		  <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search">&nbsp;</span>搜索</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#upfiles"><span class="glyphicon glyphicon-paperclip">&nbsp;</span>添加文档</button>
+		</form>
+		</div>
+        <!--choose-->
+		<div class="panel panel-default">
+		<div class="panel-body tab-content">
+        <table class="table table-condensed table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th>文档名称</th>
+                        <th>发行线</th>
+                        <th>项目</th>
+                        <th>节点</th>
+                        <th>上传者</th>
+                        <th>上传时间</th>
+                        <th>管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><a href="#">xxxxxxx.doc</a></td>
+                        <td>大中华发行线</td>
+                        <td>天龙八部</td>
+                        <td>GR3</td>
+                        <td>胡婧博</td>
+                        <td>2015/12/12</td>
+                        <td>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><a href="#">xxxxxxx.doc</a></td>
+                        <td>大中华发行线</td>
+                        <td>天龙八部</td>
+                        <td>GR3</td>
+                        <td>胡婧博</td>
+                        <td>2015/12/12</td>
+                        <td>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><a href="#">xxxxxxx.doc</a></td>
+                        <td>大中华发行线</td>
+                        <td>天龙八部</td>
+                        <td>GR3</td>
+                        <td>胡婧博</td>
+                        <td>2015/12/12</td>
+                        <td>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </tbody>
+                </table>
+		</div>
+		</div>
+		<!--check list-->
+	</div>
+	<!--right_box-->
+</div>
+<!--content-->
+<!--弹窗开始-->
+<div class="modal fade" id="upfiles" tabindex="-1" role="dialog" aria-labelledby="upfiles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">添加文档</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <select class="form-control">
+              <option>选择项目</option>
+              <option>天龙八部</option>
+              <option>海战</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control">
+              <option>选择节点</option>
+              <option>GR0</option>
+              <option>GR1</option>
+              <option>GR2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="file" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--弹窗结束-->
+<!--弹窗开始-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">删除确认</h4>
+      </div>
+      <div class="modal-body">
+      <p>确定删除此文档内容吗？</p>
+      <p>PS：删除后不可恢复哦，请三思！</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--弹窗结束-->
+<script>
+
+</script>
+</body>
+</html>
