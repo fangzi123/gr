@@ -65,4 +65,12 @@ public class RightsController extends _BaseController {
 		userService.saveOrUpdateUser(uv);
 		return "redirect:/rights/index";
 	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Integer userId=this.findIntegerParameterValue(request, "userId");
+		userService.deleteUser(userId);
+		return "redirect:/rights/index";
+	}
 }

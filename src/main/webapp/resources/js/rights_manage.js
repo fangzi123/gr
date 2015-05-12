@@ -1,4 +1,5 @@
 $(function(){
+	//添加账户
 	$("#btn-save").on("click",function(){
 		var username=$("#recipient-name").val();
 		if(username){
@@ -19,5 +20,13 @@ $(function(){
 				}
 			});
 		}
+	})
+//del
+$('.glyphicon-trash').parent().click(function(){
+	$('#del_userid').val($(this).data('userid'));
+});
+	//账户删除
+$("#btn-delete").on("click",function(){
+			window.location="delete?userId="+$('#del_userid').val();
 	})
 })

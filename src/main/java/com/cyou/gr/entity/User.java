@@ -6,7 +6,9 @@ public class User {
     private String name;
 
     private String type;
-
+    
+    private Boolean flag;
+    
     public Integer getId() {
         return id;
     }
@@ -30,4 +32,12 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
 }

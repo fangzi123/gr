@@ -1,5 +1,6 @@
 package com.cyou.gr.web.comm;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,7 +71,12 @@ public abstract class _BaseController extends MultiActionController {
     }
 
 
-
+    protected Integer findIntegerParameterValue(HttpServletRequest request,
+            String name) {
+        String pv = WebUtils.findParameterValue(request, name);
+        return StringUtils.isBlank(pv) ? null : Integer.parseInt(pv);
+    }
+    
     protected Locale getLocal(HttpServletRequest request) {
         return RequestContextUtils.getLocale(request);
     }

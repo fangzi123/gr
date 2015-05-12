@@ -19,15 +19,15 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where name = #{name,jdbcType=VARCHAR}
+    where name = #{name,jdbcType=VARCHAR} and flag=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.User" keyProperty="id" useGeneratedKeys="true">
-    insert into user (id, name, type)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=CHAR})
+    insert into user (id, name, type,flag)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{flag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.User" >
     insert into user
@@ -63,6 +63,9 @@
       <if test="type != null" >
         type = #{type,jdbcType=CHAR},
       </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -86,5 +89,6 @@
     from user u 
     left join user2project up on up.user_id=u.id
     left join project p on p.id=up.project_id
+    where u.flag=1
   </select>
 </mapper>

@@ -20,4 +20,9 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	public void saveOrUpdateUser(UserVo uv) throws Exception;
+	/**
+	 * 删除账户
+	 * @param userId
+	 */
+	public void deleteUser(Integer userId);
 }

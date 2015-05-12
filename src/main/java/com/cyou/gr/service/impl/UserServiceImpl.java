@@ -57,4 +57,12 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public void deleteUser(Integer userId) {
+		User u=new User();
+		u.setId(userId);
+		u.setFlag(false);
+		userMapper.updateByPrimaryKeySelective(u);
+	}
+
 }

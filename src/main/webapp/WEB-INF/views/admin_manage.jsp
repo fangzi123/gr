@@ -58,8 +58,8 @@
                         <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isView}">${pro.name}、</c:if></c:forEach></td>
                         <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isEdit}">${pro.name}、</c:if></c:forEach></td>
                         <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-userid="${user.id}"><span class="glyphicon glyphicon-trash"></span></button>
                         </td>
                         </tr>
                         </c:forEach>
@@ -135,10 +135,11 @@
       <div class="modal-body">
       <p>确定删除此账号吗？</p>
       <p>PS：删除后该账号则不能再次登陆此系统，请三思！</p>
+      <input type="hidden" value="" id="del_userid">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
+        <button type="button" class="btn btn-danger" id="btn-delete"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
       </div>
     </div>
   </div>
@@ -147,7 +148,7 @@
 <script>
 //role
 $('#admin').change(function(){
-	if ($(this).val() == 'yes'){
+	if ($(this).val() == '管理员'){
 		$('#porject_view').find('option').attr('selected',true);
 		$('#porject_edit').find('option').attr('selected',true);
 		$('#porject_view').attr('disabled',true);
