@@ -25,7 +25,7 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cyou.gr.entity.User" >
+  <insert id="insert" parameterType="com.cyou.gr.entity.User" keyProperty="id" useGeneratedKeys="true">
     insert into user (id, name, type)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=CHAR})
   </insert>
@@ -72,4 +72,19 @@
       type = #{type,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="UserVoResultMap" type="com.cyou.gr.entity.vo.UserVo" extends="BaseResultMap">
+    <collection property="proList" ofType="ProjectVo">
+    <id property="id" column="proId"/>
+    <result property="name" column="proName"/>
+    <result property="isView" column="isView"/>
+    <result property="isEdit" column="isEdit"/>
+  </collection>
+  </resultMap>
+  <select id="selectUserList" resultMap="UserVoResultMap">
+    select 
+    u.id, u.name, u.type,p.id proId,p.name proName,up.is_view isView,up.is_edit isEdit
+    from user u 
+    left join user2project up on up.user_id=u.id
+    left join project p on p.id=up.project_id
+  </select>
 </mapper>

@@ -1,12 +1,5 @@
 package com.cyou.gr.web;
 
-import java.io.IOException;
-import java.util.Locale;
-
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +14,7 @@ import com.cyou.gr.web.comm._BaseController;
 public class HomeController extends _BaseController{
 	
 	@Autowired
-	private UserService userManageService;
+	private UserService userService;
 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)

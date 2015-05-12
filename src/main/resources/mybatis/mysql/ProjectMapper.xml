@@ -101,4 +101,10 @@
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+   <select id="selectProList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where flag=1 order by sort
+  </select>
 </mapper>

@@ -72,9 +72,8 @@ public class OAuthClientTest {
 
     public static void dummyTest(OAuthClientRequest request) throws HttpException, IOException {
         HttpClient httpClient = new HttpClient();
-        // String url = "http://localhost:8080/rental/rent/entry.html";
-        String url = "request";
-        GetMethod getMethod = new GetMethod(request.getLocationUri());
+        String url = "http://ldapproxy.cyou-inc.com/hasuser/";
+        GetMethod getMethod = new GetMethod(url);
         String charSet = "UTF-8";
         httpClient.getParams().setParameter(
                 HttpMethodParams.HTTP_CONTENT_CHARSET, charSet);

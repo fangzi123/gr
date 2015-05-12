@@ -1,6 +1,9 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.User;
+import com.cyou.gr.entity.vo.UserVo;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+	List<UserVo> selectUserList();
 }

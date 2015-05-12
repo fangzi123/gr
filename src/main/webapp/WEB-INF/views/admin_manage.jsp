@@ -1,3 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,18 +10,19 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/daterangepicker-bs3.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/rights_manage.js"></script>
 </head>
 
 <body>
-<!--#include file="inc/nav.html"-->
+<%@ include file="inc/nav.html"%> 
 <!--nav-->
 <div id="content">
-	<!--#include file="inc/left_box.html"-->
+	<jsp:include page="inc/left_box.jsp" flush="true"/>
 	<!--left_box-->
 	<div id="right_box">
     	<div class="row">
@@ -45,36 +51,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    	<c:forEach items="${userList}" var="user">
                         <tr>
-                        <td>xiaoqiangshi@cyou-inc.com</td>
-                        <td>管理员</td>
-                        <td>All</td>
-                        <td>All</td>
+                        <td>${user.name}</td>
+                        <td>${user.type}</td>
+                        <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isView}">${pro.name}、</c:if></c:forEach></td>
+                        <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isEdit}">${pro.name}、</c:if></c:forEach></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
                         </td>
                         </tr>
-                        <tr>
-                        <td>xiaoqiangshi@cyou-inc.com</td>
-                        <td>普通用户</td>
-                        <td>天龙八部、魔剑之刃</td>
-                        <td>天龙八部、魔剑之刃</td>
-                        <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>xiaoqiangshi@cyou-inc.com</td>
-                        <td>普通用户</td>
-                        <td>All</td>
-                        <td>天龙八部、魔剑之刃</td>
-                        <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
-                        </td>
-                        </tr>
+                        </c:forEach>
                     </tbody>
                     </tbody>
                 </table>
@@ -93,15 +81,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">管理账号</h4>
       </div>
-      <form>
+      <form action="useradd" id="form-save" method="post">
       <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" id="recipient-name" placeholder="账号邮箱名称">
+            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="账号邮箱名称">
           </div>
           <div class="form-group">
-            <select class="form-control" id="admin">
-              <option value="no">普通用户</option>
-              <option value="yes">管理员</option>
+            <select class="form-control" id="admin" name="type">
+              <option value="普通用户">普通用户</option>
+              <option value="管理员">管理员</option>
             </select>
           </div>
           <div class="form-group" id="porject">
@@ -112,26 +100,16 @@
               </tr>
               <tr>
                 <td>
-            <select multiple  class="form-control" id="porject_view">
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
+            <select multiple  class="form-control" id="porject_view" name="porIdsView">
+            <c:forEach items="${proList}" var="pro">
+              <option value="${pro.id}">${pro.name}</option>
+            </c:forEach>
             </select></td>
                 <td>
-            <select multiple  class="form-control" id="porject_edit">
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
-              <option>项目A</option>
-              <option>项目B</option>
+            <select multiple  class="form-control" id="porject_edit" name="porIdsEdit">
+              <c:forEach items="${proList}" var="pro">
+              	<option value="${pro.id}">${pro.name}</option>
+              </c:forEach>
             </select></td>
               </tr>
             </table>
@@ -139,7 +117,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
+        <button type="button" class="btn btn-danger" id="btn-save"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
       </div>
       </form>
     </div>

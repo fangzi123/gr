@@ -13,15 +13,15 @@
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
-<script type="text/javascript" src="<%=contextPath%>/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
 </head>
 
 <body>
 <%@ include file="inc/nav.html"%> 
 <!--nav-->
 <div id="content">
-<%@ include file="inc/left_box.html"%> 
+<jsp:include page="inc/left_box.jsp" flush="true"/> 
 	<!--left_box-->
 	<div id="right_box">
 		<ol class="breadcrumb">
