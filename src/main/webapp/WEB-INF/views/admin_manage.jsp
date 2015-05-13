@@ -58,12 +58,11 @@
                         <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isView}">${pro.name}、</c:if></c:forEach></td>
                         <td><c:forEach items="${user.proList}" var="pro"><c:if test="${pro.isEdit}">${pro.name}、</c:if></c:forEach></td>
                         <td>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-userid="${user.id}"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-userid="${user.id}"><span class="glyphicon glyphicon-trash"></span></button>
                         </td>
                         </tr>
                         </c:forEach>
-                    </tbody>
                     </tbody>
                 </table>
 		</div>
@@ -82,6 +81,7 @@
         <h4 class="modal-title" id="exampleModalLabel">管理账号</h4>
       </div>
       <form action="useradd" id="form-save" method="post">
+      <input type="hidden" value="" id="edit_userid" name="id">
       <div class="modal-body">
           <div class="form-group">
             <input type="text" class="form-control" id="recipient-name" name="name" placeholder="账号邮箱名称">
@@ -102,13 +102,13 @@
                 <td>
             <select multiple  class="form-control" id="porject_view" name="porIdsView">
             <c:forEach items="${proList}" var="pro">
-              <option value="${pro.id}">${pro.name}</option>
+              <option value="${pro.id}" text="${pro.name}">${pro.name}</option>
             </c:forEach>
             </select></td>
                 <td>
             <select multiple  class="form-control" id="porject_edit" name="porIdsEdit">
               <c:forEach items="${proList}" var="pro">
-              	<option value="${pro.id}">${pro.name}</option>
+              	<option value="${pro.id}" text="${pro.name}">${pro.name}</option>
               </c:forEach>
             </select></td>
               </tr>
@@ -151,8 +151,8 @@ $('#admin').change(function(){
 	if ($(this).val() == '管理员'){
 		$('#porject_view').find('option').attr('selected',true);
 		$('#porject_edit').find('option').attr('selected',true);
-		$('#porject_view').attr('disabled',true);
-		$('#porject_edit').attr('disabled',true);
+// 		$('#porject_view').attr('disabled',true);
+// 		$('#porject_edit').attr('disabled',true);
 	}
 	else{
 		$('#porject_view').find('option').attr('selected',false);

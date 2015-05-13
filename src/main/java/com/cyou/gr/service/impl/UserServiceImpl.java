@@ -13,13 +13,14 @@ import com.cyou.gr.entity.User;
 import com.cyou.gr.entity.User2project;
 import com.cyou.gr.entity.vo.UserVo;
 import com.cyou.gr.service.UserService;
+
 @Transactional
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private User2projectMapper user2projectMapper;
+	@Autowired
+	private UserMapper userMapper;
+	@Autowired
+	private User2projectMapper user2projectMapper;
 
 	@Override
 	public User selectUserByName(String name) throws Exception {
@@ -28,38 +29,52 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserVo> selectUserList() throws Exception {
-		List<UserVo> list=userMapper.selectUserList();
+		List<UserVo> list = userMapper.selectUserList();
 		return list;
 	}
 
 	@Override
 	public void saveOrUpdateUser(UserVo uv) throws Exception {
-		User u=new User();
-		BeanUtils.copyProperties(uv, u);
-		int a=userMapper.insert(u);
-		
-		String porIdsView=uv.getPorIdsView();
-		String porIdsEdit=uv.getPorIdsEdit();
-		String[] porIds=porIdsView.split(",");
-		for(int i=0;i<porIds.length;i++){
-			User2project up=new User2project();
-			up.setUserId(u.getId());
-			up.setIsView(true);
-			up.setProjectId(Integer.valueOf(porIds[i]));
-			up.setFlag(true);
-			if(porIdsEdit.contains(porIds[i])){
-				up.setIsEdit(true);
-			}else{
-				up.setIsEdit(false);
+		if (uv.getId() == null) {//新增
+			User u = new User();
+			BeanUtils.copyProperties(uv, u);
+			userMapper.insert(u);
+			String porIdsView = uv.getPorIdsView();
+			String porIdsEdit = uv.getPorIdsEdit();
+			String[] porIds = porIdsView.split(",");
+			for (int i = 0; i < porIds.length; i++) {
+				User2project up = new User2project();
+				up.setUserId(u.getId());
+				up.setProjectId(Integer.valueOf(porIds[i]));
+				if (porIdsEdit.contains(porIds[i])) {
+					up.setIsEdit(true);
+				} 
+				user2projectMapper.insertSelective(up);
 			}
-			user2projectMapper.insertSelective(up);
+		} else {//修改
+			user2projectMapper.deleteAllByUserId(uv.getId());
+			User u = new User();
+			BeanUtils.copyProperties(uv, u);
+		    userMapper.updateByPrimaryKeySelective(u);
+		    String porIdsView = uv.getPorIdsView();
+			String porIdsEdit = uv.getPorIdsEdit();
+			String[] porIds = porIdsView.split(",");
+			for (int i = 0; i < porIds.length; i++) {
+				User2project up = new User2project();
+				up.setUserId(u.getId());
+				up.setProjectId(Integer.valueOf(porIds[i]));
+				if (porIdsEdit.contains(porIds[i])) {
+					up.setIsEdit(true);
+				}
+				user2projectMapper.insertSelective(up);
+			}
 		}
-		
+
 	}
 
 	@Override
 	public void deleteUser(Integer userId) {
-		User u=new User();
+		User u = new User();
 		u.setId(userId);
 		u.setFlag(false);
 		userMapper.updateByPrimaryKeySelective(u);

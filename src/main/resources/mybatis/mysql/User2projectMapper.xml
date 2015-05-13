@@ -23,6 +23,10 @@
     delete from user2project
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteAllByUserId" parameterType="java.lang.Integer" >
+    delete from user2project
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.User2project" >
     insert into user2project (id, user_id, project_id, 
       is_view, is_edit, user_type, flag

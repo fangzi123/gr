@@ -14,4 +14,6 @@ public interface User2projectMapper {
     int updateByPrimaryKeySelective(User2project record);
 
     int updateByPrimaryKey(User2project record);
+
+	void deleteAllByUserId(Integer userId);
 }

@@ -7,7 +7,7 @@ public class User {
 
     private String type;
     
-    private Boolean flag;
+    private Boolean flag=true;
     
     public Integer getId() {
         return id;

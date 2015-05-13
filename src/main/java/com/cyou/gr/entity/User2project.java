@@ -7,13 +7,13 @@ public class User2project {
 
     private Integer projectId;
 
-    private Boolean isView;
+    private Boolean isView=true;
 
-    private Boolean isEdit;
+    private Boolean isEdit=false;
 
     private String userType;
 
-    private Boolean flag;
+    private Boolean flag=true;
 
     public Integer getId() {
         return id;
