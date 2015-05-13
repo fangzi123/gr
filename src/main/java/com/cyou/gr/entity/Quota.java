@@ -7,9 +7,9 @@ public class Quota {
 
     private String type;
 
-    private Byte sort;
+    private Integer sort;
 
-    private Boolean flag;
+    private Boolean flag=true;
 
     public Integer getId() {
         return id;
@@ -35,12 +35,12 @@ public class Quota {
         this.type = type;
     }
 
-    public Byte getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(Byte sort) {
-        this.sort = sort;
+    public void setSort(Integer maxid) {
+        this.sort = maxid;
     }
 
     public Boolean getFlag() {

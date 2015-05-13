@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.Quota;
 
 public interface QuotaMapper {
@@ -14,4 +16,8 @@ public interface QuotaMapper {
     int updateByPrimaryKeySelective(Quota record);
 
     int updateByPrimaryKey(Quota record);
+
+	List<Quota> selectQuotaList();
+
+	int selectMaxSort();
 }

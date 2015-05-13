@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="CHAR" />
-    <result column="sort" property="sort" jdbcType="TINYINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -17,6 +17,15 @@
     from quota
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectQuotaList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from quota
+    where flag=1 order by sort
+  </select>
+  <select id="selectMaxSort" resultType="java.lang.Integer">
+    select max(sort) from quota where flag=1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from quota
     where id = #{id,jdbcType=INTEGER}
@@ -25,7 +34,7 @@
     insert into quota (id, name, type, 
       sort, flag)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
-      #{sort,jdbcType=TINYINT}, #{flag,jdbcType=BIT})
+      #{sort,jdbcType=INTEGER}, #{flag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Quota" >
     insert into quota
@@ -57,7 +66,7 @@
         #{type,jdbcType=CHAR},
       </if>
       <if test="sort != null" >
-        #{sort,jdbcType=TINYINT},
+        #{sort,jdbcType=INTEGER},
       </if>
       <if test="flag != null" >
         #{flag,jdbcType=BIT},
@@ -74,7 +83,7 @@
         type = #{type,jdbcType=CHAR},
       </if>
       <if test="sort != null" >
-        sort = #{sort,jdbcType=TINYINT},
+        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="flag != null" >
         flag = #{flag,jdbcType=BIT},
@@ -86,7 +95,7 @@
     update quota
     set name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=CHAR},
-      sort = #{sort,jdbcType=TINYINT},
+      sort = #{sort,jdbcType=INTEGER},
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
