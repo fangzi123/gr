@@ -6,6 +6,6 @@ import com.cyou.gr.entity.Project;
 
 public interface ProjectService {
 
-	List<Project> selectProjectList() throws Exception;
+	List<Project> selectProjectList();
 
 }

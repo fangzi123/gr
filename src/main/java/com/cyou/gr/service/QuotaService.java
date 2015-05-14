@@ -10,8 +10,6 @@ public interface QuotaService {
 
 	void saveOrUpdateQuota(Quota qu);
 
-	void deleteQuota(Integer id);
-
 	void updownSort(Integer upSort, Integer upId, Integer downSort, Integer downId);
 
 }

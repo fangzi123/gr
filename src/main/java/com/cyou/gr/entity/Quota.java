@@ -9,7 +9,7 @@ public class Quota {
 
     private Integer sort;
 
-    private Boolean flag=true;
+    private Boolean flag;
 
     public Integer getId() {
         return id;

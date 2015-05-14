@@ -101,10 +101,17 @@
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-   <select id="selectProList" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from project
-    where flag=1 order by sort
+  <resultMap id="ProVoResultMap" type="com.cyou.gr.entity.vo.ProjectVo" extends="BaseResultMap">
+	<association property="process" javaType="com.cyou.gr.entity.Process">
+		    <id property="id" column="ps_id"/>
+		    <result property="name" column="ps_name"/>
+		    <result property="flag" column="ps_flag"/>
+	</association>
+  </resultMap>
+   <select id="selectProList" resultMap="ProVoResultMap">
+    select pt.id,pt.name,pt.process_id,pt.release_line,pt.flag,ps.id ps_id,ps.name ps_name,ps.flag ps_flag
+    from project pt 
+    left join process ps on ps.id=pt.process_id
+    order by pt.sort
   </select>
 </mapper>

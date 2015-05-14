@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${quotaList}" var="quota" varStatus="status">
-                        <tr>
+                        <tr <c:if test="${!quota.flag}">class="warning"</c:if>>
                         <input type="hidden" value="${quota.id}" name="id">
                         <input type="hidden" value="${quota.sort}" name="sort">
                         <td>${quota.name}</td>
@@ -60,7 +60,8 @@
                         <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
                         <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-quotaid="${quota.id}"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-quotaid="${quota.id}"><span class="glyphicon glyphicon-trash"></span></button>
+                        <c:if test="${quota.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-quotaid="${quota.id}"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!quota.flag}"><button type="button" class="btn btn-default" data-quotaid="${quota.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </td>
                         </tr>
                      </c:forEach>

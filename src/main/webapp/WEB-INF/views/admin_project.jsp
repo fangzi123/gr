@@ -1,3 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,19 +10,19 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/daterangepicker-bs3.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-<!--#include file="inc/nav.html"-->
+<%@ include file="inc/nav.html"%> 
 <!--nav-->
 <div id="content">
-	<!--#include file="inc/left_box.html"-->
+	<jsp:include page="inc/left_box.jsp" flush="true"/>
 	<!--left_box-->
 	<div id="right_box">
     	<div class="row">
@@ -45,39 +50,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>天龙八部</td>
-                        <td>端游GR流程</td>
-                        <td>大中华发行线</td>
+                     <c:forEach items="${proList}" var="pro" varStatus="status">
+                        <tr <c:if test="${!pro.flag}">class="warning"</c:if>>
+                        <td>${pro.name}</td>
+                        <td>${pro.process.name}</td>
+                        <td>${pro.releaseLine}</td>
                         <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
+                        <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
+                        <c:if test="${pro.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!pro.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </td>
-                        </tr>
-                        <tr class="warning">
-                        <td>鹿鼎记</td>
-                        <td>端游GR流程</td>
-                        <td>大中华发行线</td>
-                        <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span></button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>大话</td>
-                        <td>端游GR流程</td>
-                        <td>大中华发行线</td>
-                        <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button>
-                        </td>
-                        </tr>
+                        </tr></c:forEach>
                     </tbody>
                     </tbody>
                 </table>

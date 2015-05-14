@@ -16,6 +16,10 @@ $(function(){
 		$("#quota_type").find("option[value='"+type+"']").attr("selected",true);
 	});
 	
+	//删除状态恢复
+	$('.glyphicon-wrench').parent().click(function(){
+		window.location="regain?id="+$(this).data('quotaid');
+	})
 	//删除赋值
 	$('.glyphicon-trash').parent().click(function(){
 		$('#del_quotaId').val($(this).data('quotaid'));

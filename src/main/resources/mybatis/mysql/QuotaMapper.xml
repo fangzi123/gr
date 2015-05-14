@@ -20,8 +20,7 @@
   <select id="selectQuotaList" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from quota
-    where flag=1 order by sort
+    from quota order by sort
   </select>
   <select id="selectMaxSort" resultType="java.lang.Integer">
     select max(sort) from quota where flag=1

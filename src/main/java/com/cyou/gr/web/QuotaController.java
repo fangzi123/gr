@@ -43,7 +43,21 @@ public class QuotaController extends _BaseController {
 	public String delete(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
-		quotaService.deleteQuota(id);
+		Quota q=new Quota();
+		q.setId(id);
+		q.setFlag(false);
+		quotaService.saveOrUpdateQuota(q);
+		return "redirect:/quota/index";
+	}
+	
+	@RequestMapping(value = "/regain")
+	public String regain(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Integer id=this.findIntegerParameterValue(request, "id");
+		Quota q=new Quota();
+		q.setId(id);
+		q.setFlag(true);
+		quotaService.saveOrUpdateQuota(q);
 		return "redirect:/quota/index";
 	}
 	

@@ -24,14 +24,11 @@ public class QuotaServiceImpl implements QuotaService {
 		if(qu.getId()==null){//新增
 			Integer maxsort=quotaMapper.selectMaxSort();
 			qu.setSort(maxsort+1);
+			qu.setFlag(true);
 			quotaMapper.insertSelective(qu);
 		}else{//修改
 			quotaMapper.updateByPrimaryKeySelective(qu);
 		}
-	}
-	@Override
-	public void deleteQuota(Integer id) {
-		quotaMapper.deleteByPrimaryKey(id);
 	}
 	
 	@Override

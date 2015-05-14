@@ -17,7 +17,7 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper projectMapper;
 
 	@Override
-	public List<Project> selectProjectList() throws Exception {
+	public List<Project> selectProjectList(){
 		List<Project> proList=projectMapper.selectProList();
 		return proList;
 	}
