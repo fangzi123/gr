@@ -2,7 +2,6 @@
 <%
 	String contextPath = pageContext.getServletContext().getContextPath();
 %>
-<html>
 	<div id="left_box">
 		<ul>
 			<li class="n1"><a href="index.shtml"><span class="glyphicon glyphicon-align-left"></span><b>评审进度</b></a></li>

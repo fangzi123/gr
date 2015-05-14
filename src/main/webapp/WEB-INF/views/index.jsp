@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<%@ include file="inc/nav.html"%> 
+<%@ include file="inc/nav.jsp"%> 
 <!--nav-->
 <div id="content">
 <jsp:include page="inc/left_box.jsp" flush="true"/> 

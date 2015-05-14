@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <div id="nav" class="row">
 	<div class="col-xs-2"><h1>Git Review</h1></div>
@@ -21,7 +20,7 @@
 	</div>
 	<div class="col-xs-1">
 		<div class="input-group">
-		<button type="submit" class="btn btn-default"><a href="http://ldapproxy.cyou-inc.com/oauth/logout?client_id=54d7293dce&redirect_uri=http://10.12.20.14:8080/gr/index">退出</a></button>
+		<button type="submit" class="btn btn-default"><a href="<%=contextPath%>/logout">退出</a></button>
 		</div>
 	</div>
 </div>
