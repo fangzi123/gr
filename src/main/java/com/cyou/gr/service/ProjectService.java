@@ -8,4 +8,9 @@ public interface ProjectService {
 
 	List<Project> selectProjectList();
 
+	void saveOrUpdateProject(Project p);
+
+	void updownSort(Integer upSort, Integer upId, Integer downSort,
+			Integer downId);
+
 }

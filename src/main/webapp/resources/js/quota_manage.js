@@ -6,7 +6,12 @@ $(function(){
 			$("#form-save").submit();
 		}
 	})
-	
+	//添加还原事件
+	$('#btn-add').click(function(){
+		$('#edit_quotaId').val("");
+		$("#recipient-name").val("");
+		$("#quota_type option").attr("selected",false);
+	});
 	//编辑赋值事件
 	$('.glyphicon-edit').parent().click(function(){
 		$('#edit_quotaId').val($(this).data('quotaid'));
@@ -24,7 +29,7 @@ $(function(){
 	$('.glyphicon-trash').parent().click(function(){
 		$('#del_quotaId').val($(this).data('quotaid'));
 	})
-		//账户删除
+	//账户删除
 	$("#btn-delete").on("click",function(){
 			window.location="delete?id="+$('#del_quotaId').val();
 	})

@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.Process;
 
 public interface ProcessMapper {
@@ -14,4 +16,6 @@ public interface ProcessMapper {
     int updateByPrimaryKeySelective(Process record);
 
     int updateByPrimaryKey(Process record);
+
+	List<Process> selectProcessList();
 }

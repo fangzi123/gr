@@ -11,10 +11,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/project_manage.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal">添加项目</button>
+                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">添加项目</button>
             </div>
         </div>
 		<!--路径导航-->
@@ -52,15 +52,17 @@
                     <tbody>
                      <c:forEach items="${proList}" var="pro" varStatus="status">
                         <tr <c:if test="${!pro.flag}">class="warning"</c:if>>
+                        <input type="hidden" value="${pro.id}" name="id">
+                        <input type="hidden" value="${pro.sort}" name="sort">
                         <td>${pro.name}</td>
                         <td>${pro.process.name}</td>
                         <td>${pro.releaseLine}</td>
                         <td>
                         <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
                         <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <c:if test="${pro.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr"><span class="glyphicon glyphicon-trash"></span></button></c:if>
-                        <c:if test="${!pro.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-projectid="${pro.id }"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
+                        <c:if test="${pro.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-projectid="${pro.id }"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!pro.flag}"><button type="button" class="btn btn-default" data-projectid="${pro.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </td>
                         </tr></c:forEach>
                     </tbody>
@@ -82,32 +84,33 @@
         <h4 class="modal-title" id="exampleModalLabel">项目管理</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="add" method="post" id="form-save">
+        <input type="hidden" value="" id="edit_projectId" name="id">
           <div class="form-group">
-            <input type="text" class="form-control" id="recipient-name" placeholder="项目名称">
+            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="项目名称">
           </div>
           <div class="form-group">
-            <select class="form-control">
-              <option>选择流程</option>
-              <option>端游GR流程</option>
-              <option>手游GR流程</option>
+            <select class="form-control" name="processId" id="ps_id">
+              <option value="">选择流程</option>
+              <c:forEach items="${processList}"  var="ps"> 
+              <option value="${ps.id }" text="${ps.name }">${ps.name }</option>
+              </c:forEach>
             </select>
           </div>
           <div class="form-group">
-            <select class="form-control">
-              <option>选择发行线</option>
-              <option>大中华</option>
-              <option>欧美</option>
-              <option>韩国</option>
-              <option>自研</option>
-              <option>合作</option>
+            <select class="form-control" name="releaseLine" id="releaseLine">
+              <option value="大中华">大中华</option>
+              <option value="欧美">欧美</option>
+              <option value="韩国">韩国</option>
+              <option value="自研">自研</option>
+              <option value="合作">合作</option>
             </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
+        <button type="button" class="btn btn-danger" id="btn-save"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
       </div>
     </div>
   </div>
@@ -124,10 +127,11 @@
       <div class="modal-body">
       <p>您确定要删除这个项目吗？</p>
       <p>PS：删除后仅在前台不显示，资料还在哦！</p>
+      <input type="hidden" value="" id="del_projectId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
+        <button type="button" class="btn btn-danger" id="btn-delete"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
       </div>
     </div>
   </div>
@@ -135,12 +139,6 @@
 <!--弹窗结束-->
 <script>
 //up&dwon
-$('.glyphicon-arrow-up').parent().click(function(){
-	$(this).parent().parent().prev('tr').before($(this).parent().parent());
-});
-$('.glyphicon-arrow-down').parent().click(function(){
-	$(this).parent().parent().next('tr').after($(this).parent().parent());
-});
 </script>
 </body>
 </html>

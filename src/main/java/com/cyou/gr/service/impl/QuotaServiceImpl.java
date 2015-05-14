@@ -22,8 +22,7 @@ public class QuotaServiceImpl implements QuotaService {
 	@Override
 	public void saveOrUpdateQuota(Quota qu) {
 		if(qu.getId()==null){//新增
-			Integer maxsort=quotaMapper.selectMaxSort();
-			qu.setSort(maxsort+1);
+			qu.setSort(quotaMapper.selectMaxSort());
 			qu.setFlag(true);
 			quotaMapper.insertSelective(qu);
 		}else{//修改

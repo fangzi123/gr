@@ -22,4 +22,28 @@ public class ProjectServiceImpl implements ProjectService {
 		return proList;
 	}
 
+	@Override
+	public void saveOrUpdateProject(Project p) {
+		if(p.getId()==null){//新增
+			p.setSort(projectMapper.selectMaxSort());
+			p.setFlag(true);
+			projectMapper.insertSelective(p);
+		}else{//修改
+			projectMapper.updateByPrimaryKeySelective(p);
+		}
+	}
+
+	@Override
+	public void updownSort(Integer upSort, Integer upId, Integer downSort,
+			Integer downId) {
+		Project up=new Project();
+		up.setId(upId);
+		up.setSort(downSort);
+		projectMapper.updateByPrimaryKeySelective(up);
+		Project down=new Project();
+		down.setId(downId);
+		down.setSort(upSort);
+		projectMapper.updateByPrimaryKeySelective(down);
+	}
+
 }

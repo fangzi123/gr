@@ -18,4 +18,6 @@ public interface ProjectMapper {
     int updateByPrimaryKey(Project record);
 
 	List<Project> selectProList();
+
+	Integer selectMaxSort();
 }

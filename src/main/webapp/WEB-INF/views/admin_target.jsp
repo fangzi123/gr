@@ -11,7 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
@@ -34,7 +33,7 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal">指标</button>
+                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">指标</button>
             </div>
         </div>
 		<!--路径导航-->

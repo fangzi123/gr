@@ -9,7 +9,7 @@ public class Project {
 
     private String releaseLine;
 
-    private Byte sort;
+    private Integer sort;
 
     private Boolean flag;
 
@@ -45,11 +45,11 @@ public class Project {
         this.releaseLine = releaseLine;
     }
 
-    public Byte getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(Byte sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

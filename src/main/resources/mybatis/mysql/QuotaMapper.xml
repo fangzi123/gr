@@ -23,7 +23,7 @@
     from quota order by sort
   </select>
   <select id="selectMaxSort" resultType="java.lang.Integer">
-    select max(sort) from quota where flag=1
+    select IFNULL(max(sort)+1,0) from quota
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from quota
