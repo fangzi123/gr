@@ -23,7 +23,7 @@ public class ProcessNodeController extends _BaseController {
 
 	@Autowired
 	private ProcessNodeService processNodeService;
-
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
@@ -42,26 +42,19 @@ public class ProcessNodeController extends _BaseController {
 		return "redirect:/process/procNode/index";
 	}
 	
-	@RequestMapping(value = "/delete")
-	public String delete(HttpServletRequest request,
+	@RequestMapping(value = "/modifyFlag")
+	@ResponseBody
+	public ModelMap modifyFlag(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		ModelMap mm=new ModelMap();
 		Integer id=this.findIntegerParameterValue(request, "id");
+		Boolean flag=this.findBooleanParameterValue(request, "flag");
 		ProcessNode obj=new ProcessNode();
 		obj.setId(id);
-		obj.setFlag(false);
+		obj.setFlag(flag);
 		processNodeService.saveOrUpdateProcessNode(obj);
-		return "redirect:/process/procNode/index";
-	}
-	
-	@RequestMapping(value = "/regain")
-	public String regain(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		Integer id=this.findIntegerParameterValue(request, "id");
-		ProcessNode obj=new ProcessNode();
-		obj.setId(id);
-		obj.setFlag(true);
-		processNodeService.saveOrUpdateProcessNode(obj);
-		return "redirect:/process/procNode/index";
+		mm.addAttribute("success", true);
+		return mm;
 	}
 	
 	@RequestMapping(value = "/sort", method = RequestMethod.POST)

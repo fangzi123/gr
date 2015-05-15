@@ -86,7 +86,7 @@
       </div>
       <div class="modal-body">
         <form action="add" method="post" id="form-save">
-        <input type="hidden" value="${procId}"  name="processId">
+        <input type="hidden" value="${procId}"  name="processId" id="processId">
         <input type="hidden" value="" id="edit_procNodeId" name="id">
           <div class="form-group">
             <input type="text" class="form-control" id="recipient-name" name="name" placeholder="流程节点名称">
@@ -112,10 +112,11 @@
       <div class="modal-body">
       <p>确定删除此节点内容吗？</p>
       <p>PS：删除后不可恢复哦，请三思！</p>
+      <input type="hidden" value="" id="del_procNodeId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
+        <button type="button" class="btn btn-danger" id="btn-delete"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
       </div>
     </div>
   </div>

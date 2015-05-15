@@ -140,7 +140,7 @@
   	  select 
     <include refid="Base_Column_List" />
     from process_node
-    where process_id = #{procId,jdbcType=INTEGER}
+    where process_id = #{procId,jdbcType=INTEGER} order by sort
   </select>
    <select id="selectMaxSort" resultType="java.lang.Integer">
     select IFNULL(max(sort)+1,0) from process_node

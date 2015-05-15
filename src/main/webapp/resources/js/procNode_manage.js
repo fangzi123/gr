@@ -9,27 +9,33 @@ $(function(){
 	
 	//添加还原事件
 	$('#btn-add').click(function(){
-		$('#edit_processId').val("");
+		$('#edit_procNodeId').val("");
 		$("#recipient-name").val("");
 	});
 	//编辑赋值事件
 	$('.glyphicon-edit').parent().click(function(){
-		$('#edit_processId').val($(this).data('processid'));
+		$('#edit_procNodeId').val($(this).data('proc_node_id'));
 		var thistds=$(this).parent().parent().find("td");
 		$("#recipient-name").val(thistds.first().text());
 	});
 	
 	//删除状态恢复
 	$('.glyphicon-wrench').parent().click(function(){
-		window.location="regain?id="+$(this).data('processid');
+		var obj={};
+		obj.id=$(this).data('proc_node_id');
+		obj.flag=true;
+		modifyFlag(obj);
 	})
 	//删除赋值
 	$('.glyphicon-trash').parent().click(function(){
-		$('#del_processId').val($(this).data('processid'));
+		$('#del_procNodeId').val($(this).data('proc_node_id'));
 	})
 		//账户删除
 	$("#btn-delete").on("click",function(){
-			window.location="delete?id="+$('#del_processId').val();
+		var obj={};
+		obj.id=$('#del_procNodeId').val();
+		obj.flag=false;
+		modifyFlag(obj);
 	})
 	
 	//up&dwon
@@ -67,7 +73,21 @@ function sort(obj){
 		data : obj,
 		success : function(data) {
 			if(data.success){
-				window.location="index";
+				window.location="index?procId="+$("#processId").val();
+			}
+		}
+	});
+}
+function modifyFlag(obj){
+	$.ajax({
+		url :"modifyFlag.json",
+		type : 'POST',
+		dataType : 'json',
+		async : false,
+		data : obj,
+		success : function(data) {
+			if(data.success){
+				window.location="index?procId="+$("#processId").val();
 			}
 		}
 	});

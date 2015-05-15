@@ -33,8 +33,14 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 	@Override
 	public void updownSort(Integer upSort, Integer upId, Integer downSort,
 			Integer downId) {
-		// TODO Auto-generated method stub
-		
+		ProcessNode up=new ProcessNode();
+		up.setId(upId);
+		up.setSort(downSort);
+		processNodeMapper.updateByPrimaryKeySelective(up);
+		ProcessNode down=new ProcessNode();
+		down.setId(downId);
+		down.setSort(upSort);
+		processNodeMapper.updateByPrimaryKeySelective(down);
 	}
 
 
