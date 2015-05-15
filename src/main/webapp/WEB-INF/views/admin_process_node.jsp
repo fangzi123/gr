@@ -14,7 +14,7 @@
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/process_manage.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/procNode_manage.js"></script>
 </head>
 
 <body>
@@ -29,41 +29,43 @@
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
                     <li><a href="index.shtml">首页</a></li>
-                    <li class="active">流程</li>
+                    <li><a href="admin_process.shtml">流程</a></li>
+                    <li class="active">端游GR流程</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">添加流程</button>
+                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">添加流程节点</button>
             </div>
         </div>
 		<!--路径导航-->
 		<div class="panel panel-default">
-        <div class="panel-heading">流程管理</div>
+        <div class="panel-heading">流程节点管理</div>
 		<div class="panel-body tab-content">
         <table class="table table-condensed table-striped table-hover">
                     <thead>
                         <tr>
-                        <th width="20%">流程名称</th>
-                        <th>流程节点</th>
+                        <th width="20%">节点名称</th>
+                        <th>节点内容</th>
                         <th>排序&amp;删除</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${prosList}" var="pros" varStatus="status">
-                        <tr <c:if test="${!pros.flag}">class="warning"</c:if>>
-                        <input type="hidden" value="${pros.id}" name="id">
-                        <input type="hidden" value="${pros.sort}" name="sort">
-                        <td>${pros.name }</td>
-                        <td><button type="button" class="btn btn-default" onclick="javascript:window.location.href='procNode/index?procId=${pros.id}'"><span class="glyphicon glyphicon-th-large">&nbsp;</span>配置流程节点</button></td>
+                    
+                      <c:forEach items="${procNodeList}" var="procNode" varStatus="status">
+                        <tr <c:if test="${!procNode.flag}">class="warning"</c:if>>
+                        <input type="hidden" value="${procNode.id}" name="id">
+                        <input type="hidden" value="${procNode.sort}" name="sort">
+                        <td>${procNode.name}</td>
+                        <td><button type="button" class="btn btn-default" onclick="javascript:window.location.href='admin_process_node_edit.shtml'"><span class="glyphicon glyphicon-edit">&nbsp;</span>配置节点内容</button></td>
                         <td>
                         <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
                         <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
-                        <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#exampleModal" data-processid="${pros.id}"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <c:if test="${pros.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-processid="${pros.id}"><span class="glyphicon glyphicon-trash"></span></button></c:if>
-                        <c:if test="${!pros.flag}"><button type="button" class="btn btn-default"  data-processid="${pros.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#exampleModal" data-proc_node_id="${procNode.id}"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
+                        <c:if test="${procNode.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-proc_node_id="${procNode.id}"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!procNode.flag}"><button type="button" class="btn btn-default"  data-proc_node_id="${procNode.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </td>
                         </tr>
-                        </c:forEach>
+                       </c:forEach> 
                     </tbody>
                     </tbody>
                 </table>
@@ -80,13 +82,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">流程名称管理</h4>
+        <h4 class="modal-title" id="exampleModalLabel">流程节点管理</h4>
       </div>
       <div class="modal-body">
         <form action="add" method="post" id="form-save">
-        <input type="hidden" value="" id="edit_processId" name="id">
+        <input type="hidden" value="${procId}"  name="processId">
+        <input type="hidden" value="" id="edit_procNodeId" name="id">
           <div class="form-group">
-            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="流程名称">
+            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="流程节点名称">
           </div>
         </form>
       </div>
@@ -109,11 +112,10 @@
       <div class="modal-body">
       <p>确定删除此节点内容吗？</p>
       <p>PS：删除后不可恢复哦，请三思！</p>
-      <input type="hidden" value="" id="del_processId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" id="btn-delete"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
+        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button>
       </div>
     </div>
   </div>

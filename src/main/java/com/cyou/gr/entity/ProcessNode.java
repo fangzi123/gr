@@ -7,7 +7,7 @@ public class ProcessNode {
 
     private Integer processId;
 
-    private Byte sort;
+    private Integer sort;
 
     private String processType;
 
@@ -43,11 +43,11 @@ public class ProcessNode {
         this.processId = processId;
     }
 
-    public Byte getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(Byte sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

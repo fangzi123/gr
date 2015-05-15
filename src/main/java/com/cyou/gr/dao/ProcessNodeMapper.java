@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.ProcessNode;
 
 public interface ProcessNodeMapper {
@@ -14,4 +16,8 @@ public interface ProcessNodeMapper {
     int updateByPrimaryKeySelective(ProcessNode record);
 
     int updateByPrimaryKey(ProcessNode record);
+
+	List<ProcessNode> selectProcNodeListByProcId(Integer procId);
+
+	Integer selectMaxSort();
 }
