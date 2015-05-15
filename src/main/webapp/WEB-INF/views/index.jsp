@@ -25,7 +25,7 @@
 	<!--left_box-->
 	<div id="right_box">
 		<ol class="breadcrumb">
-			<li><a href="index.shtml">首页</a></li>
+			<li><a href="<%=contextPath%>">首页</a></li>
 			<li class="active">评审进度查询</li>
 			</ol>
 		<!--路径导航-->

@@ -43,5 +43,10 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 		processNodeMapper.updateByPrimaryKeySelective(down);
 	}
 
+	@Override
+	public ProcessNode selectProcNodeById(Integer id) {
+		return processNodeMapper.selectByPrimaryKey(id);
+	}
+
 
 }

@@ -13,4 +13,6 @@ public interface ProcessService {
 	void updownSort(Integer upSort, Integer upId, Integer downSort,
 			Integer downId);
 
+	Process selectProcessById(Integer procId);
+
 }

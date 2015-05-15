@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cyou.gr.entity.Process;
 import com.cyou.gr.entity.ProcessNode;
 import com.cyou.gr.service.ProcessNodeService;
+import com.cyou.gr.service.ProcessService;
 import com.cyou.gr.web.comm._BaseController;
 
 @RequestMapping("/process/procNode")
 @Controller
 public class ProcessNodeController extends _BaseController {
-
+	@Autowired
+	private ProcessService processService;
 	@Autowired
 	private ProcessNodeService processNodeService;
 	
@@ -28,9 +31,10 @@ public class ProcessNodeController extends _BaseController {
 	public String home(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
 		Integer procId=this.findIntegerParameterValue(request, "procId");
+		Process process=processService.selectProcessById(procId);
 		List<ProcessNode> procNodeList = processNodeService.selectProcNodeListByProcId(procId);
 		model.addAttribute("procNodeList", procNodeList);
-		model.addAttribute("procId", procId);
+		model.addAttribute("process", process);
 		return "admin_process_node";
 	}
 	
@@ -70,4 +74,16 @@ public class ProcessNodeController extends _BaseController {
         mm.addAttribute("success", true);
 		return mm;
 	}
+	
+	/************************配置节点内容页面逻辑***start****************************/
+	
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(HttpServletRequest request,
+			HttpServletResponse response, Model model,ProcessNode obj) throws Exception {
+		ProcessNode procNode=processNodeService.selectProcNodeById(obj.getId());
+		model.addAttribute("procNode", procNode);
+		return "admin_process_node_view";
+	}
+	
+	/************************配置节点内容页面逻辑***end******************************/
 }

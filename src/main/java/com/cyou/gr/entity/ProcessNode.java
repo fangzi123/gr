@@ -6,6 +6,7 @@ public class ProcessNode {
     private String name;
 
     private Integer processId;
+    private Process Process;
 
     private Integer sort;
 
@@ -90,4 +91,12 @@ public class ProcessNode {
     public void setFlag(Boolean flag) {
         this.flag = flag;
     }
+
+	public Process getProcess() {
+		return Process;
+	}
+
+	public void setProcess(Process process) {
+		Process = process;
+	}
 }

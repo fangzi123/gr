@@ -1,3 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,28 +10,28 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/daterangepicker-bs3.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/procNode_manage.js"></script>
 </head>
 
 <body>
 
-<!--#include file="inc/nav.html"-->
+<%@ include file="inc/nav.jsp"%> 
 <!--nav-->
 <div id="content">
-	<!--#include file="inc/left_box.html"-->
+	<jsp:include page="inc/left_box.jsp" flush="true"/>
 	<!--left_box-->
 	<div id="right_box">
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="index.shtml">首页</a></li>
-                    <li><a href="admin_process.shtml">流程</a></li>
-                    <li><a href="admin_process_node.shtml">端游GR流程</a></li>
-                    <li class="active">GR0</li>
+                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>/process/index">流程</a></li>
+                    <li><a href="<%=contextPath%>/process/procNode/index?procId=${procNode.processId}">${procNode.process.name }</a></li>
+                    <li class="active">${procNode.name}</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
@@ -35,7 +40,7 @@
         </div>
 		<!--路径导航-->
 		<div class="panel panel-default">
-        <div class="panel-heading">GR0</div>
+        <div class="panel-heading">${procNode.name}</div>
 		<div class="panel-body">
                 <div class="form-inline">
                   <div class="form-group">

@@ -40,5 +40,9 @@ public class ProcessServiceImpl implements ProcessService {
 		down.setSort(upSort);
 		processMapper.updateByPrimaryKeySelective(down);
 	}
+	@Override
+	public Process selectProcessById(Integer procId) {
+		return processMapper.selectByPrimaryKey(procId);
+	}
 
 }

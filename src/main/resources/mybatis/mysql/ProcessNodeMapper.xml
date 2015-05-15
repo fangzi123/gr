@@ -11,15 +11,21 @@
     <result column="time_type" property="timeType" jdbcType="CHAR" />
     <result column="opt_moudles" property="optMoudles" jdbcType="CHAR" />
     <result column="flag" property="flag" jdbcType="BIT" />
+    <association property="process" javaType="com.cyou.gr.entity.Process">
+	    <id column="pid" property="id" jdbcType="INTEGER" />
+	    <result column="pname" property="name" jdbcType="VARCHAR" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, process_id, sort, process_type, end_type, time_type, opt_moudles, flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from process_node
-    where id = #{id,jdbcType=INTEGER}
+	    pn.id, pn.name, pn.process_id, pn.sort, pn.process_type, pn.end_type, pn.time_type, pn.opt_moudles, pn.flag,
+	    p.id pid,p.name pname
+    from process_node pn
+    left join process p on p.id=pn.process_id
+    where pn.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from process_node

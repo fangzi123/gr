@@ -28,9 +28,9 @@
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="index.shtml">首页</a></li>
-                    <li><a href="admin_process.shtml">流程</a></li>
-                    <li class="active">端游GR流程</li>
+                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>/process/index">流程</a></li>
+                    <li class="active">${process.name}</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
@@ -56,7 +56,7 @@
                         <input type="hidden" value="${procNode.id}" name="id">
                         <input type="hidden" value="${procNode.sort}" name="sort">
                         <td>${procNode.name}</td>
-                        <td><button type="button" class="btn btn-default" onclick="javascript:window.location.href='admin_process_node_edit.shtml'"><span class="glyphicon glyphicon-edit">&nbsp;</span>配置节点内容</button></td>
+                        <td><button type="button" class="btn btn-default" onclick="javascript:window.location.href='view?id=${procNode.id}'"><span class="glyphicon glyphicon-edit">&nbsp;</span>配置节点内容</button></td>
                         <td>
                         <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
                         <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
@@ -86,7 +86,7 @@
       </div>
       <div class="modal-body">
         <form action="add" method="post" id="form-save">
-        <input type="hidden" value="${procId}"  name="processId" id="processId">
+        <input type="hidden" value="${process.id}"  name="processId" id="processId">
         <input type="hidden" value="" id="edit_procNodeId" name="id">
           <div class="form-group">
             <input type="text" class="form-control" id="recipient-name" name="name" placeholder="流程节点名称">

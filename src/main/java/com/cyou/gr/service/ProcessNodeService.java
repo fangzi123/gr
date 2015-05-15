@@ -14,4 +14,7 @@ public interface ProcessNodeService {
 
 	void saveOrUpdateProcessNode(ProcessNode obj);
 
+
+	ProcessNode selectProcNodeById(Integer id);
+
 }
