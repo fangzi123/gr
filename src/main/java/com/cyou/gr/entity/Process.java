@@ -5,7 +5,7 @@ public class Process {
 
     private String name;
 
-    private Byte sort;
+    private Integer sort;
 
     private Boolean flag;
 
@@ -25,11 +25,11 @@ public class Process {
         this.name = name;
     }
 
-    public Byte getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(Byte sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

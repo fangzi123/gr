@@ -14,7 +14,7 @@
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/project_manage.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/process_manage.js"></script>
 </head>
 
 <body>
@@ -29,48 +29,47 @@
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
                     <li><a href="index.shtml">首页</a></li>
-                    <li class="active">项目</li>
+                    <li class="active">流程</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">添加项目</button>
+                <button type="button" class="btn btn-danger  btn-block" data-toggle="modal" data-target="#exampleModal" id="btn-add">添加流程</button>
             </div>
         </div>
 		<!--路径导航-->
 		<div class="panel panel-default">
-        <div class="panel-heading">项目管理</div>
+        <div class="panel-heading">流程管理</div>
 		<div class="panel-body tab-content">
         <table class="table table-condensed table-striped table-hover">
                     <thead>
                         <tr>
-                        <th width="30%">项目名称</th>
-                        <th width="30%">流程</th>
-                        <th>发行线</th>
+                        <th width="20%">流程名称</th>
+                        <th>流程节点</th>
                         <th>排序&amp;删除</th>
                         </tr>
                     </thead>
                     <tbody>
-                     <c:forEach items="${proList}" var="pro" varStatus="status">
-                        <tr <c:if test="${!pro.flag}">class="warning"</c:if>>
-                        <input type="hidden" value="${pro.id}" name="id">
-                        <input type="hidden" value="${pro.sort}" name="sort">
-                        <td>${pro.name}</td>
-                        <td>${pro.process.name}</td>
-                        <td>${pro.releaseLine}</td>
+                        <c:forEach items="${prosList}" var="pros" varStatus="status">
+                        <tr <c:if test="${!pros.flag}">class="warning"</c:if>>
+                        <input type="hidden" value="${pros.id}" name="id">
+                        <input type="hidden" value="${pros.sort}" name="sort">
+                        <td>${pros.name }</td>
+                        <td><button type="button" class="btn btn-default" onclick="javascript:window.location.href='admin_process_node.shtml'"><span class="glyphicon glyphicon-th-large">&nbsp;</span>配置流程节点</button></td>
                         <td>
                         <c:if test="${!status.first}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button></c:if> 
                         <c:if test="${!status.last}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button></c:if> 
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-projectid="${pro.id }"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
-                        <c:if test="${pro.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-projectid="${pro.id }"><span class="glyphicon glyphicon-trash"></span></button></c:if>
-                        <c:if test="${!pro.flag}"><button type="button" class="btn btn-default" data-projectid="${pro.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#exampleModal" data-processid="${pros.id}"><span class="glyphicon glyphicon glyphicon-edit"></span></button>
+                        <c:if test="${pros.flag}"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delete_gr" data-processid="${pros.id}"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!pros.flag}"><button type="button" class="btn btn-default"  data-processid="${pros.id}"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </td>
-                        </tr></c:forEach>
+                        </tr>
+                        </c:forEach>
                     </tbody>
                     </tbody>
                 </table>
 		</div>
 		</div>
-		<!--check list-->
+		<!--Process-->
 	</div>
 	<!--right_box-->
 </div>
@@ -81,30 +80,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">项目管理</h4>
+        <h4 class="modal-title" id="exampleModalLabel">流程名称管理</h4>
       </div>
       <div class="modal-body">
         <form action="add" method="post" id="form-save">
-        <input type="hidden" value="" id="edit_projectId" name="id">
+        <input type="hidden" value="" id="edit_processId" name="id">
           <div class="form-group">
-            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="项目名称">
-          </div>
-          <div class="form-group">
-            <select class="form-control" name="processId" id="ps_id">
-              <option value="">选择流程</option>
-              <c:forEach items="${processList}"  var="ps"> 
-              <option value="${ps.id }" text="${ps.name }">${ps.name }</option>
-              </c:forEach>
-            </select>
-          </div>
-          <div class="form-group">
-            <select class="form-control" name="releaseLine" id="releaseLine">
-              <option value="大中华">大中华</option>
-              <option value="欧美">欧美</option>
-              <option value="韩国">韩国</option>
-              <option value="自研">自研</option>
-              <option value="合作">合作</option>
-            </select>
+            <input type="text" class="form-control" id="recipient-name" name="name" placeholder="流程名称">
           </div>
         </form>
       </div>
@@ -125,9 +107,9 @@
         <h4 class="modal-title" id="exampleModalLabel">删除确认</h4>
       </div>
       <div class="modal-body">
-      <p>您确定要删除这个项目吗？</p>
-      <p>PS：删除后仅在前台不显示，资料还在哦！</p>
-      <input type="hidden" value="" id="del_projectId">
+      <p>确定删除此节点内容吗？</p>
+      <p>PS：删除后不可恢复哦，请三思！</p>
+      <input type="hidden" value="" id="del_processId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -6,7 +6,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="process_id" property="processId" jdbcType="INTEGER" />
     <result column="release_line" property="releaseLine" jdbcType="CHAR" />
-    <result column="sort" property="sort" jdbcType="TINYINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -26,7 +26,7 @@
     insert into project (id, name, process_id, 
       release_line, sort, flag)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{processId,jdbcType=INTEGER}, 
-      #{releaseLine,jdbcType=CHAR}, #{sort,jdbcType=TINYINT}, #{flag,jdbcType=BIT})
+      #{releaseLine,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{flag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Project" >
     insert into project
@@ -64,7 +64,7 @@
         #{releaseLine,jdbcType=CHAR},
       </if>
       <if test="sort != null" >
-        #{sort,jdbcType=TINYINT},
+        #{sort,jdbcType=INTEGER},
       </if>
       <if test="flag != null" >
         #{flag,jdbcType=BIT},
@@ -84,7 +84,7 @@
         release_line = #{releaseLine,jdbcType=CHAR},
       </if>
       <if test="sort != null" >
-        sort = #{sort,jdbcType=TINYINT},
+        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="flag != null" >
         flag = #{flag,jdbcType=BIT},
@@ -97,7 +97,7 @@
     set name = #{name,jdbcType=VARCHAR},
       process_id = #{processId,jdbcType=INTEGER},
       release_line = #{releaseLine,jdbcType=CHAR},
-      sort = #{sort,jdbcType=TINYINT},
+      sort = #{sort,jdbcType=INTEGER},
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

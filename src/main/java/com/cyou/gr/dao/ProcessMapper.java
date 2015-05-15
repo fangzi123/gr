@@ -18,4 +18,6 @@ public interface ProcessMapper {
     int updateByPrimaryKey(Process record);
 
 	List<Process> selectProcessList();
+
+	Integer selectMaxSort();
 }
