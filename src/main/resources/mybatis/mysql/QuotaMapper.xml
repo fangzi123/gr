@@ -22,6 +22,11 @@
     <include refid="Base_Column_List" />
     from quota order by sort
   </select>
+  <select id="selectQuotaListBy" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from quota where flag=1 order by sort
+  </select>
   <select id="selectMaxSort" resultType="java.lang.Integer">
     select IFNULL(max(sort)+1,0) from quota
   </select>

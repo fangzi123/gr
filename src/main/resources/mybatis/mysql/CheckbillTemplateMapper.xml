@@ -114,4 +114,7 @@
       sort = #{sort,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectCheckbillTsByProcNodeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select * from checkbill_template where process_node_id = #{procNodeId,jdbcType=INTEGER}
+  </select>
 </mapper>

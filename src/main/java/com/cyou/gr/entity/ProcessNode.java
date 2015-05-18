@@ -16,9 +16,13 @@ public class ProcessNode {
 
     private String timeType;
 
-    private String optMoudles;
-
     private Boolean flag;
+    
+    private Boolean hasFee;
+    private Boolean hasManPower;
+    private Boolean hasTaskBook;
+    private Boolean hasCheckBill;
+    private Boolean hasDocument;
 
     public Integer getId() {
         return id;
@@ -76,14 +80,6 @@ public class ProcessNode {
         this.timeType = timeType;
     }
 
-    public String getOptMoudles() {
-        return optMoudles;
-    }
-
-    public void setOptMoudles(String optMoudles) {
-        this.optMoudles = optMoudles;
-    }
-
     public Boolean getFlag() {
         return flag;
     }
@@ -98,5 +94,45 @@ public class ProcessNode {
 
 	public void setProcess(Process process) {
 		Process = process;
+	}
+
+	public Boolean getHasFee() {
+		return hasFee;
+	}
+
+	public void setHasFee(Boolean hasFee) {
+		this.hasFee = hasFee;
+	}
+
+	public Boolean getHasManPower() {
+		return hasManPower;
+	}
+
+	public void setHasManPower(Boolean hasManPower) {
+		this.hasManPower = hasManPower;
+	}
+
+	public Boolean getHasTaskBook() {
+		return hasTaskBook;
+	}
+
+	public void setHasTaskBook(Boolean hasTaskBook) {
+		this.hasTaskBook = hasTaskBook;
+	}
+
+	public Boolean getHasCheckBill() {
+		return hasCheckBill;
+	}
+
+	public void setHasCheckBill(Boolean hasCheckBill) {
+		this.hasCheckBill = hasCheckBill;
+	}
+
+	public Boolean getHasDocument() {
+		return hasDocument;
+	}
+
+	public void setHasDocument(Boolean hasDocument) {
+		this.hasDocument = hasDocument;
 	}
 }

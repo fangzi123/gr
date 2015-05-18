@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.ManpowerTemplate;
 
 public interface ManpowerTemplateMapper {
@@ -14,4 +16,6 @@ public interface ManpowerTemplateMapper {
     int updateByPrimaryKeySelective(ManpowerTemplate record);
 
     int updateByPrimaryKey(ManpowerTemplate record);
+
+	List<ManpowerTemplate> selectManpowerTsByprocNodeId(Integer procNodeId);
 }

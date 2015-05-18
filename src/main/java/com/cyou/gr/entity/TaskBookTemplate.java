@@ -7,7 +7,7 @@ public class TaskBookTemplate {
 
     private String quotaName;
 
-    private String qutaType;
+    private String quotaType;
 
     private Byte sort;
 
@@ -35,12 +35,12 @@ public class TaskBookTemplate {
         this.quotaName = quotaName;
     }
 
-    public String getQutaType() {
-        return qutaType;
+    public String getQuotaType() {
+        return quotaType;
     }
 
     public void setQutaType(String qutaType) {
-        this.qutaType = qutaType;
+        this.quotaType = qutaType;
     }
 
     public Byte getSort() {

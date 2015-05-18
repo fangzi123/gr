@@ -13,10 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cyou.gr.entity.CheckbillTemplate;
+import com.cyou.gr.entity.FeeTemplate;
+import com.cyou.gr.entity.ManpowerTemplate;
 import com.cyou.gr.entity.Process;
 import com.cyou.gr.entity.ProcessNode;
+import com.cyou.gr.entity.Quota;
+import com.cyou.gr.entity.TaskBookTemplate;
+import com.cyou.gr.entity.vo.ProcessNodeVo;
+import com.cyou.gr.service.CheckbillTemplateService;
+import com.cyou.gr.service.FeeTemplateService;
+import com.cyou.gr.service.ManPowerTemplateService;
 import com.cyou.gr.service.ProcessNodeService;
 import com.cyou.gr.service.ProcessService;
+import com.cyou.gr.service.QuotaService;
+import com.cyou.gr.service.TaskBookTemplateService;
 import com.cyou.gr.web.comm._BaseController;
 
 @RequestMapping("/process/procNode")
@@ -26,6 +37,16 @@ public class ProcessNodeController extends _BaseController {
 	private ProcessService processService;
 	@Autowired
 	private ProcessNodeService processNodeService;
+	@Autowired
+	private QuotaService quotaService;
+	@Autowired
+	private FeeTemplateService feeTemplateService;
+	@Autowired
+	private ManPowerTemplateService manPowerTemplateService;
+	@Autowired
+	private TaskBookTemplateService taskBookTemplateService;
+	@Autowired
+	private CheckbillTemplateService checkbillTemplateService;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request,
@@ -40,7 +61,7 @@ public class ProcessNodeController extends _BaseController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpServletRequest request,
-			HttpServletResponse response, Model model,ProcessNode obj) throws Exception {
+			HttpServletResponse response, Model model,ProcessNodeVo obj) throws Exception {
 		processNodeService.saveOrUpdateProcessNode(obj);
 		model.addAttribute("procId", obj.getProcessId());
 		return "redirect:/process/procNode/index";
@@ -53,7 +74,7 @@ public class ProcessNodeController extends _BaseController {
 		ModelMap mm=new ModelMap();
 		Integer id=this.findIntegerParameterValue(request, "id");
 		Boolean flag=this.findBooleanParameterValue(request, "flag");
-		ProcessNode obj=new ProcessNode();
+		ProcessNodeVo obj=new ProcessNodeVo();
 		obj.setId(id);
 		obj.setFlag(flag);
 		processNodeService.saveOrUpdateProcessNode(obj);
@@ -79,11 +100,39 @@ public class ProcessNodeController extends _BaseController {
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(HttpServletRequest request,
-			HttpServletResponse response, Model model,ProcessNode obj) throws Exception {
+			HttpServletResponse response, Model model,ProcessNodeVo obj) throws Exception {
 		ProcessNode procNode=processNodeService.selectProcNodeById(obj.getId());
 		model.addAttribute("procNode", procNode);
+		List<Quota> quotaList=quotaService.selectQuotaListBy();
+		model.addAttribute("quotaList", quotaList);
+		if(procNode.getHasFee()){
+			List<FeeTemplate> feets=feeTemplateService.selectFeeTemplatesByprocNodeId(obj.getId());
+			model.addAttribute("feets", feets);
+		}
+		if(procNode.getHasManPower()){
+			List<ManpowerTemplate> manpowerts=manPowerTemplateService.selectManpowerTemplatesByprocNodeId(obj.getId());
+			model.addAttribute("manpowerts", manpowerts);
+		}
+		if(procNode.getHasTaskBook()){
+			List<TaskBookTemplate> taskbookts=taskBookTemplateService.selectTaskbooktsByProcNodeId(obj.getId());
+			model.addAttribute("taskbookts", taskbookts);
+		}
+		if(procNode.getHasCheckBill()){
+			List<CheckbillTemplate> checkbillTs=checkbillTemplateService.selectCheckbillTsByProcNodeId(obj.getId());
+			model.addAttribute("checkbillTs", checkbillTs);
+		}
 		return "admin_process_node_view";
 	}
+	
+	@RequestMapping(value = "/editSave", method = RequestMethod.POST)
+	public String editSave(HttpServletRequest request,
+			HttpServletResponse response, Model model,ProcessNodeVo obj) throws Exception {
+		
+		processNodeService.saveOrUpdateProcessNode(obj);
+		model.addAttribute("procId", obj.getProcessId());
+		return "redirect:/process/procNode/index";
+	}
+	
 	
 	/************************配置节点内容页面逻辑***end******************************/
 }

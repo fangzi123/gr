@@ -79,4 +79,7 @@
       sort = #{sort,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectFeetsByprocNodeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select * from fee_template where process_node_id=#{procNodeId,jdbcType=INTEGER}
+  </select>
 </mapper>

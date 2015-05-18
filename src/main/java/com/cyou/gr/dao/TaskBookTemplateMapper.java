@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.TaskBookTemplate;
 
 public interface TaskBookTemplateMapper {
@@ -14,4 +16,6 @@ public interface TaskBookTemplateMapper {
     int updateByPrimaryKeySelective(TaskBookTemplate record);
 
     int updateByPrimaryKey(TaskBookTemplate record);
+
+	List<TaskBookTemplate> selectTaskbooktsByProcNodeId(Integer procNodeId);
 }

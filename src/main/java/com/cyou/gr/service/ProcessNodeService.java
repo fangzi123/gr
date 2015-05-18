@@ -3,6 +3,7 @@ package com.cyou.gr.service;
 import java.util.List;
 
 import com.cyou.gr.entity.ProcessNode;
+import com.cyou.gr.entity.vo.ProcessNodeVo;
 
 public interface ProcessNodeService {
 
@@ -12,7 +13,7 @@ public interface ProcessNodeService {
 	void updownSort(Integer upSort, Integer upId, Integer downSort,
 			Integer downId);
 
-	void saveOrUpdateProcessNode(ProcessNode obj);
+	void saveOrUpdateProcessNode(ProcessNodeVo obj);
 
 
 	ProcessNode selectProcNodeById(Integer id);

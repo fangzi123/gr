@@ -14,7 +14,7 @@
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/procNode_manage.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/procNode_manage_view.js"></script>
 </head>
 
 <body>
@@ -41,35 +41,40 @@
 		<!--路径导航-->
 		<div class="panel panel-default">
         <div class="panel-heading">${procNode.name}</div>
+        <form action="editSave" method="post" id="form-save">
+        <input type="hidden" value="${procNode.id}" name="id">
+        <input type="hidden" value="${procNode.processId}" name="processId" id="processId">
+        <input type="hidden" value="${procNode.hasFee}" name="hasFee">
+        <input type="hidden" value="${procNode.hasManPower}" name="hasManPower">
+        <input type="hidden" value="${procNode.hasTaskBook }" name="hasTaskBook">
+        <input type="hidden" value="${procNode.hasCheckBill }" name="hasCheckBill">
+        <input type="hidden" value="${procNode.hasDocument }" name="hasDocument">
 		<div class="panel-body">
                 <div class="form-inline">
                   <div class="form-group">
-                    <select name="" class="form-control">
-                          <option>选择流程类型</option>
-                          <option>GR</option>
-                          <option>CR</option>
-                          <option>MR</option>
-                          <option>TR</option>
-                          <option>CB&amp;OB</option>
+                    <select name="processType" class="form-control" data="${procNode.processType}"> 
+                          <option value="GR">GR</option>
+                          <option value="CR">CR</option>
+                          <option value="MR">MR</option>
+                          <option value="TR">TR</option>
+                          <option value="CB&OB">CB&amp;OB</option>
                         </select>
                   </div>
                   <div class="form-group">
-                    <select name="" class="form-control">
-                          <option>选择完结类型</option>
-                          <option>手动完结</option>
-                          <option>邮件完结</option>
+                    <select name="endType" class="form-control" data="${procNode.endType }">
+                          <option value="手动完结">手动完结</option>
+                          <option value="邮件完结">邮件完结</option>
                         </select>
                   </div>
                   <div class="form-group">
-                    <select name="" class="form-control">
-                          <option>选择时间类型</option>
-                          <option>时间段</option>
-                          <option>时间点</option>
+                    <select name="timeType" class="form-control" data="${procNode.timeType }">
+                          <option value="时间段">时间段</option>
+                          <option value="时间点">时间点</option>
                         </select>
                   </div>
                 <hr>
                 </div>
-                <div id="fee_box" style="display:none">
+                <div id="hasFee_box" style="<c:if test="${!procNode.hasFee}">display:none</c:if>">
                 <h3>费用</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -79,8 +84,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${feets}" var="feet">
+                    <input type="hidden" name="feetId" value="${feet.id}">
                         <tr>
-                        <td><input type="text" class="form-control" id="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder=""></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -88,19 +95,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
-                        <tr>
-                        <td><input type="text" class="form-control" id="" placeholder=""></td>
-                        <td>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
-                        </td>
-                        </tr>
+                     </c:forEach>
                     </tbody>
                 </table>
                 </div>
-                <div id="manpower_box" style="display:none">
+                <div id="hasManPower_box" style="<c:if test="${!procNode.hasManPower}">display:none</c:if>">
                 <h3>人力</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -111,9 +110,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${manpowerts}" var="manpower">
                         <tr>
-                        <td><input type="text" class="form-control" id="" placeholder=""></td>
-                        <td><input type="text" class="form-control" id="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="projectTeam" value="${manpower.projectTeam }" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="standardModel" value="${manpower.standardModel }" placeholder=""></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -121,10 +121,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
+                     </c:forEach>
                     </tbody>
                 </table>
                 </div>
-                <div id="mission_box" style="display:none">
+                <div id="hasTaskBook_box" style="<c:if test="${!procNode.hasTaskBook}">display:none</c:if>">
                 <h3>任务书</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -135,16 +136,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${taskbookts}" var="taskBookt">
                         <tr>
-                        <td><select name="" class="form-control">
-                          <option>新增有效率</option>
-                          <option>次日留存率</option>
-                          <option>7日留存率</option>
+                        <td><select name="quotaName" class="form-control">
+                        <c:forEach items="${quotaList}" var="quota">
+                          <option value="${quota.name}" <c:if test="${quota.name eq  taskBookt.quotaName }">selected="selected"</c:if>>${quota.name}</option>
+                        </c:forEach>
                         </select></td>
-                        <td><select name="" class="form-control">
-                          <option>辅助参考</option>
-                          <option>关键指标</option>
+                        <td><select name="quotaType" class="form-control">
+                          <option vauel="辅助参考" <c:if test="${'辅助参考' eq  taskBookt.quotaType }">selected="selected"</c:if>>辅助参考</option>
+                          <option value="关键指标" <c:if test="${'关键指标' eq  taskBookt.quotaType }">selected="selected"</c:if>>关键指标</option>
                         </select></td>
+                      </c:forEach>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -155,7 +158,7 @@
                     </tbody>
                 </table>
                 </div>
-                <div id="checklist_box" style="display:none">
+                <div id="hasCheckBill_box" style="<c:if test="${!procNode.hasCheckBill}">display:none</c:if>">
                 <h3>检查单</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -167,14 +170,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${checkbillTs}" var="checkBill">
                         <tr>
-                        <td><input type="text" class="form-control" id="" placeholder=""></td>
-                        <td><select name="" class="form-control">
-                          <option>必须</option>
-                          <option>建议</option>
-                          <option>特殊增项</option>
+                        <td><input type="text" class="form-control" name="checkItem" value="${ checkBill.checkItem}" placeholder=""></td>
+                        <td><select name="checkItemProperty" class="form-control">
+                          <option value="必须" <c:if test="${checkBill.checkItemProperty eq '必须'}">selected="selected"</c:if>>必须</option>
+                          <option value="建议" <c:if test="${checkBill.checkItemProperty eq '建议'}">selected="selected"</c:if>>建议</option>
+                          <option value="特殊增项" <c:if test="${checkBill.checkItemProperty eq '特殊增项'}">selected="selected"</c:if>>特殊增项</option>
                         </select></td>
-                        <td><input type="text" class="form-control" id="" placeholder="检查项说明，非必填"></td>
+                        <td><input type="text" class="form-control" name="remark" value="${checkBill.remark}" placeholder="检查项说明，非必填"></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -182,10 +186,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 </div>
-                <div id="document_box" style="display:none">
+                <div id="hasDocument_box" style="<c:if test="${!procNode.hasDocument}">display:none</c:if>">
                 <h3>文档管理</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -216,11 +221,12 @@
                 <div class="form-group"><textarea class="form-control" rows="3" disabled></textarea></div>
 				<!--readme-->
 		</div>
+		</form>
 		</div>
 		<!--check list-->
         <div class="text-center">
-              <a href="02.shtml" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>保存</a>
-              <a href="02.shtml" class="btn btn-default btn-lg"><span class="glyphicon glyphicon glyphicon-share">&nbsp;</span>返回</a>
+              <a href="javascript:void(0)" id="a-save" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>保存</a>
+              <a href="javascript:void(0)" id="a-back" class="btn btn-default btn-lg"><span class="glyphicon glyphicon glyphicon-share">&nbsp;</span>返回</a>
         </div>
 	</div>
 	<!--right_box-->
@@ -236,30 +242,21 @@
       </div>
       <div class="modal-body">
         <form id="module">
-        <div class="checkbox"><label><input type="checkbox" value="fee">费用模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="manpower">人力模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="mission">任务书模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="checklist">检查单模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="document">文档管理模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasFee">费用模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasManPower">人力模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasTaskBook">任务书模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasCheckBill">检查单模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasDocument">文档管理模块</label></div>
         </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button>
+<!--         <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>Save</button> -->
       </div>
     </div>
   </div>
 </div>
 <!--弹窗结束-->
 <script>
-//module
-$('#module input').change(function(){
-	if ($(this).prop('checked')){
-		$('#'+$(this).val()+'_box').css('display','block');
-	}
-	else{
-		$('#'+$(this).val()+'_box').css('display','none');
-	};
-});
 //up&dwon
 $('.glyphicon-arrow-up').parent().click(function(){
 	$(this).parent().parent().prev('tr').before($(this).parent().parent());

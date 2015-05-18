@@ -20,4 +20,6 @@ public interface QuotaMapper {
 	List<Quota> selectQuotaList();
 
 	int selectMaxSort();
+
+	List<Quota> selectQuotaListBy();
 }

@@ -7,6 +7,8 @@ import com.cyou.gr.entity.Quota;
 public interface QuotaService {
 
 	List<Quota> selectQuotaList();
+	
+	List<Quota> selectQuotaListBy();
 
 	void saveOrUpdateQuota(Quota qu);
 

@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.FeeTemplate;
 
 public interface FeeTemplateMapper {
@@ -14,4 +16,6 @@ public interface FeeTemplateMapper {
     int updateByPrimaryKeySelective(FeeTemplate record);
 
     int updateByPrimaryKey(FeeTemplate record);
+
+	List<FeeTemplate> selectFeetsByprocNodeId(Integer procNodeId);
 }

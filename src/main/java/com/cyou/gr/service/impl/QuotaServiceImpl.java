@@ -42,5 +42,10 @@ public class QuotaServiceImpl implements QuotaService {
 		down.setSort(upSort);
 		quotaMapper.updateByPrimaryKeySelective(down);
 	}
+	@Override
+	public List<Quota> selectQuotaListBy() {
+		List<Quota> list=quotaMapper.selectQuotaListBy();
+		return list;
+	}
 
 }

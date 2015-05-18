@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.CheckbillTemplate;
 
 public interface CheckbillTemplateMapper {
@@ -14,4 +16,6 @@ public interface CheckbillTemplateMapper {
     int updateByPrimaryKeySelective(CheckbillTemplate record);
 
     int updateByPrimaryKey(CheckbillTemplate record);
+
+	List<CheckbillTemplate> selectCheckbillTsByProcNodeId(Integer procNodeId);
 }
