@@ -97,7 +97,15 @@ public class ProcessNodeController extends _BaseController {
 	}
 	
 	/************************配置节点内容页面逻辑***start****************************/
-	
+	/**
+	 * 节点内容查看页
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(HttpServletRequest request,
 			HttpServletResponse response, Model model,ProcessNodeVo obj) throws Exception {
@@ -123,16 +131,34 @@ public class ProcessNodeController extends _BaseController {
 		}
 		return "admin_process_node_view";
 	}
-	
+	/**
+	 * 节点内容保存
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/editSave", method = RequestMethod.POST)
 	public String editSave(HttpServletRequest request,
 			HttpServletResponse response, Model model,ProcessNodeVo obj) throws Exception {
-		
 		processNodeService.saveOrUpdateProcessNode(obj);
 		model.addAttribute("procId", obj.getProcessId());
 		return "redirect:/process/procNode/index";
 	}
 	
-	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelMap delete(HttpServletRequest request,
+			HttpServletResponse response) throws  Exception {
+		ModelMap mm=new ModelMap();
+		String who=this.findStringParameterValue(request, "who");
+		Integer whoId=this.findIntegerParameterValue(request, "whoId");
+		Boolean flag=this.findBooleanParameterValue(request, "flag");
+		processNodeService.deleteWho(who,whoId,flag);
+        mm.addAttribute("success", true);
+		return mm;
+	}
 	/************************配置节点内容页面逻辑***end******************************/
 }

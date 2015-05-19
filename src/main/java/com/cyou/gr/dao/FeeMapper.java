@@ -14,4 +14,6 @@ public interface FeeMapper {
     int updateByPrimaryKeySelective(Fee record);
 
     int updateByPrimaryKey(Fee record);
+
+	Boolean isUsed(Integer feeTemplateId);
 }

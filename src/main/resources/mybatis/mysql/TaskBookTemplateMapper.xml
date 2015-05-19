@@ -7,9 +7,10 @@
     <result column="quota_name" property="quotaName" jdbcType="VARCHAR" />
     <result column="quota_type" property="quotaType" jdbcType="CHAR" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
+    <result column="flag" property="flag" jdbcType="BIT"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, process_node_id, quota_name, quota_type, sort
+    id, process_node_id, quota_name, quota_type, sort,flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.TaskBookTemplate" >
     insert into task_book_template (id, process_node_id, quota_name, 
-      quota_type, sort)
+      quota_type, sort,flag)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{quotaName,jdbcType=VARCHAR}, 
-      #{quotaType,jdbcType=CHAR}, #{sort,jdbcType=TINYINT})
+      #{quotaType,jdbcType=CHAR}, #{sort,jdbcType=TINYINT}, #{flag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.TaskBookTemplate" >
     insert into task_book_template
@@ -45,6 +46,9 @@
       <if test="sort != null" >
         sort,
       </if>
+      <if test="flag != null" >
+        flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -61,6 +65,9 @@
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -79,6 +86,9 @@
       <if test="sort != null" >
         sort = #{sort,jdbcType=TINYINT},
       </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -87,10 +97,14 @@
     set process_node_id = #{processNodeId,jdbcType=INTEGER},
       quota_name = #{quotaName,jdbcType=VARCHAR},
       quota_type = #{quotaType,jdbcType=CHAR},
-      sort = #{sort,jdbcType=TINYINT}
+      sort = #{sort,jdbcType=TINYINT},
+      flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectTaskbooktsByProcNodeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  	select * from  task_book_template where process_node_id = #{procNodeId,jdbcType=INTEGER}
+  	select * from  task_book_template where process_node_id = #{procNodeId,jdbcType=INTEGER} order by sort
+  </select>
+    <select id="selectMaxSort" resultType="java.lang.Byte" parameterType="java.lang.Integer">
+    select IFNULL(max(sort)+1,0) from task_book_template where process_node_id = #{procNodeId,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -90,4 +90,7 @@
       quota_num_real = #{quotaNumReal,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <select id="isUsed" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+  		select id from task_book where  task_book_template_id = #{taskBookTemplateId,jdbcType=INTEGER} limit 1
+  </select>
 </mapper>

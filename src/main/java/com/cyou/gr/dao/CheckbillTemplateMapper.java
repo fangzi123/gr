@@ -18,4 +18,6 @@ public interface CheckbillTemplateMapper {
     int updateByPrimaryKey(CheckbillTemplate record);
 
 	List<CheckbillTemplate> selectCheckbillTsByProcNodeId(Integer procNodeId);
+
+	Byte selectMaxSort(Integer procNodeId);
 }

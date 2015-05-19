@@ -14,4 +14,6 @@ public interface TaskBookMapper {
     int updateByPrimaryKeySelective(TaskBook record);
 
     int updateByPrimaryKey(TaskBook record);
+
+	Boolean isUsed(Integer taskBookTemplateId);
 }

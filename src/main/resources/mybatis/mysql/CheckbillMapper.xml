@@ -103,4 +103,7 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="isUsed" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+  		select id from checkbill where  checkbill_template_id = #{checkbillTemplateId,jdbcType=INTEGER} limit 1
+  </select>
 </mapper>

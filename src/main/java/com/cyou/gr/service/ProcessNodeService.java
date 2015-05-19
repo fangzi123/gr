@@ -18,4 +18,7 @@ public interface ProcessNodeService {
 
 	ProcessNode selectProcNodeById(Integer id);
 
+
+	void deleteWho(String who, Integer whoId,Boolean flag);
+
 }

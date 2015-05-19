@@ -18,4 +18,6 @@ public interface TaskBookTemplateMapper {
     int updateByPrimaryKey(TaskBookTemplate record);
 
 	List<TaskBookTemplate> selectTaskbooktsByProcNodeId(Integer procNodeId);
+
+	Byte selectMaxSort(Integer procNodeId);
 }

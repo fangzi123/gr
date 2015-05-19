@@ -18,4 +18,7 @@ public interface FeeTemplateMapper {
     int updateByPrimaryKey(FeeTemplate record);
 
 	List<FeeTemplate> selectFeetsByprocNodeId(Integer procNodeId);
+	
+	Byte selectMaxSort(Integer procNodeId);
+
 }

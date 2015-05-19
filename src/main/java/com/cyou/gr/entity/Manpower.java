@@ -7,7 +7,7 @@ public class Manpower {
 
     private Integer proNodeId;
 
-    private Integer manpowerId;
+    private Integer manpowerTemplateId;
 
     private BigDecimal coreMan;
 
@@ -27,14 +27,6 @@ public class Manpower {
         this.proNodeId = proNodeId;
     }
 
-    public Integer getManpowerId() {
-        return manpowerId;
-    }
-
-    public void setManpowerId(Integer manpowerId) {
-        this.manpowerId = manpowerId;
-    }
-
     public BigDecimal getCoreMan() {
         return coreMan;
     }
@@ -42,4 +34,12 @@ public class Manpower {
     public void setCoreMan(BigDecimal coreMan) {
         this.coreMan = coreMan;
     }
+
+	public Integer getManpowerTemplateId() {
+		return manpowerTemplateId;
+	}
+
+	public void setManpowerTemplateId(Integer manpowerTemplateId) {
+		this.manpowerTemplateId = manpowerTemplateId;
+	}
 }

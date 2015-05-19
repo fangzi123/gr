@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.cyou.gr.entity.Manpower" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
-    <result column="manpower_id" property="manpowerId" jdbcType="INTEGER" />
+    <result column="manpower_template_id" property="manpowerTemplateId" jdbcType="INTEGER" />
     <result column="core_man" property="coreMan" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, pro_node_id, manpower_id, core_man
+    id, pro_node_id, manpower_template_id, core_man
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.Manpower" >
-    insert into manpower (id, pro_node_id, manpower_id, 
+    insert into manpower (id, pro_node_id, manpower_template_id, 
       core_man)
-    values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{manpowerId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, #{manpowerTemplateId,jdbcType=INTEGER}, 
       #{coreMan,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Manpower" >
@@ -35,8 +35,8 @@
       <if test="proNodeId != null" >
         pro_node_id,
       </if>
-      <if test="manpowerId != null" >
-        manpower_id,
+      <if test="manpowerTemplateId != null" >
+        manpower_template_id,
       </if>
       <if test="coreMan != null" >
         core_man,
@@ -49,8 +49,8 @@
       <if test="proNodeId != null" >
         #{proNodeId,jdbcType=INTEGER},
       </if>
-      <if test="manpowerId != null" >
-        #{manpowerId,jdbcType=INTEGER},
+      <if test="manpowerTemplateId != null" >
+        #{manpowerTemplateId,jdbcType=INTEGER},
       </if>
       <if test="coreMan != null" >
         #{coreMan,jdbcType=DECIMAL},
@@ -63,8 +63,8 @@
       <if test="proNodeId != null" >
         pro_node_id = #{proNodeId,jdbcType=INTEGER},
       </if>
-      <if test="manpowerId != null" >
-        manpower_id = #{manpowerId,jdbcType=INTEGER},
+      <if test="manpowerTemplateId != null" >
+        manpower_template_id = #{manpowerTemplateId,jdbcType=INTEGER},
       </if>
       <if test="coreMan != null" >
         core_man = #{coreMan,jdbcType=DECIMAL},
@@ -75,8 +75,11 @@
   <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.Manpower" >
     update manpower
     set pro_node_id = #{proNodeId,jdbcType=INTEGER},
-      manpower_id = #{manpowerId,jdbcType=INTEGER},
+      manpower_template_id = #{manpowerTemplateId,jdbcType=INTEGER},
       core_man = #{coreMan,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="isUsed" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+  		select id from manpower where  manpower_template_id = #{manpowerTemplateId,jdbcType=INTEGER} limit 1
+  </select>
 </mapper>

@@ -9,9 +9,10 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="isqualified" property="isqualified" jdbcType="BIT" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
+   <result column="flag" property="flag" jdbcType="BIT"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, process_node_id, check_item, check_item_property, remark, isqualified, sort
+    id, process_node_id, check_item, check_item_property, remark, isqualified, sort,flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.cyou.gr.entity.CheckbillTemplate" >
     insert into checkbill_template (id, process_node_id, check_item, 
       check_item_property, remark, isqualified, 
-      sort)
+      sort,flag)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{checkItem,jdbcType=VARCHAR}, 
       #{checkItemProperty,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{isqualified,jdbcType=BIT}, 
-      #{sort,jdbcType=TINYINT})
+      #{sort,jdbcType=TINYINT}, #{sort,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.CheckbillTemplate" >
     insert into checkbill_template
@@ -55,6 +56,9 @@
       <if test="sort != null" >
         sort,
       </if>
+      <if test="flag != null" >
+        flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -74,6 +78,9 @@
       </if>
       <if test="isqualified != null" >
         #{isqualified,jdbcType=BIT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=TINYINT},
@@ -98,6 +105,9 @@
       <if test="isqualified != null" >
         isqualified = #{isqualified,jdbcType=BIT},
       </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
       <if test="sort != null" >
         sort = #{sort,jdbcType=TINYINT},
       </if>
@@ -111,10 +121,14 @@
       check_item_property = #{checkItemProperty,jdbcType=CHAR},
       remark = #{remark,jdbcType=VARCHAR},
       isqualified = #{isqualified,jdbcType=BIT},
+      flag = #{flag,jdbcType=BIT},
       sort = #{sort,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectCheckbillTsByProcNodeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  select * from checkbill_template where process_node_id = #{procNodeId,jdbcType=INTEGER}
+  select * from checkbill_template where process_node_id = #{procNodeId,jdbcType=INTEGER} order by sort
+  </select>
+    <select id="selectMaxSort" resultType="java.lang.Byte" parameterType="java.lang.Integer">
+    select IFNULL(max(sort)+1,0) from checkbill_template where process_node_id = #{procNodeId,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String contextPath = pageContext.getServletContext().getContextPath();
 %>
@@ -84,10 +85,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:choose><c:when test="${fn:length(feets)>0}">
                     <c:forEach items="${feets}" var="feet">
-                    <input type="hidden" name="feetId" value="${feet.id}">
                         <tr>
+                        <input type="hidden" name="feetId" value="${feet.id}">
                         <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder=""></td>
+                        <td>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                        <c:if test="${!feet.isUsed}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></c:if>
+                       	<c:if test="${feet.isUsed}">
+                       	<c:if test="${feet.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!feet.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        </c:if>
+                        </td>
+                        </tr>
+                     </c:forEach></c:when>
+                     <c:otherwise>
+                        <tr>
+                        <td><input type="text" class="form-control" name="feeName" value="" placeholder=""></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -95,7 +112,8 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
-                     </c:forEach>
+                     </c:otherwise>
+                     </c:choose>
                     </tbody>
                 </table>
                 </div>
@@ -110,8 +128,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                     <c:choose><c:when test="${fn:length(manpowerts)>0}">
                     <c:forEach items="${manpowerts}" var="manpower">
                         <tr>
+                        <input type="hidden" name="manpowertId" value="${manpower.id}">
                         <td><input type="text" class="form-control" name="projectTeam" value="${manpower.projectTeam }" placeholder=""></td>
                         <td><input type="text" class="form-control" name="standardModel" value="${manpower.standardModel }" placeholder=""></td>
                         <td>
@@ -121,7 +141,20 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
-                     </c:forEach>
+                     </c:forEach></c:when>
+                     <c:otherwise>
+                        <tr>
+                        <td><input type="text" class="form-control" name="projectTeam" value="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="standardModel" value="" placeholder=""></td>
+                        <td>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        </td>
+                        </tr>
+                     </c:otherwise>
+                     </c:choose>
                     </tbody>
                 </table>
                 </div>
@@ -136,8 +169,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:choose><c:when test="${fn:length(taskbookts)>0}">
                     <c:forEach items="${taskbookts}" var="taskBookt">
                         <tr>
+                        <input type="hidden" name="taskbooktId" value="${taskBookt.id}">
                         <td><select name="quotaName" class="form-control">
                         <c:forEach items="${quotaList}" var="quota">
                           <option value="${quota.name}" <c:if test="${quota.name eq  taskBookt.quotaName }">selected="selected"</c:if>>${quota.name}</option>
@@ -147,7 +182,6 @@
                           <option vauel="辅助参考" <c:if test="${'辅助参考' eq  taskBookt.quotaType }">selected="selected"</c:if>>辅助参考</option>
                           <option value="关键指标" <c:if test="${'关键指标' eq  taskBookt.quotaType }">selected="selected"</c:if>>关键指标</option>
                         </select></td>
-                      </c:forEach>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -155,6 +189,28 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
+                        </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                          <tr>
+                        <td><select name="quotaName" class="form-control">
+                        <c:forEach items="${quotaList}" var="quota">
+                          <option value="${quota.name}">${quota.name}</option>
+                        </c:forEach>
+                        </select></td>
+                        <td><select name="quotaType" class="form-control">
+                          <option vauel="辅助参考">辅助参考</option>
+                          <option value="关键指标">关键指标</option>
+                        </select></td>
+                        <td>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        </td>
+                        </tr>
+                        </c:otherwise>
+                        </c:choose>
                     </tbody>
                 </table>
                 </div>
@@ -170,8 +226,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:choose><c:when test="${fn:length(checkbillTs)>0}">
                     <c:forEach items="${checkbillTs}" var="checkBill">
                         <tr>
+                        <input type="hidden" name="checkbilltId" value="${checkbillTs.id}">
                         <td><input type="text" class="form-control" name="checkItem" value="${ checkBill.checkItem}" placeholder=""></td>
                         <td><select name="checkItemProperty" class="form-control">
                           <option value="必须" <c:if test="${checkBill.checkItemProperty eq '必须'}">selected="selected"</c:if>>必须</option>
@@ -186,7 +244,24 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
                         </td>
                         </tr>
-                        </c:forEach>
+                        </c:forEach></c:when>
+                        <c:otherwise>
+                        <tr>
+                        <td><input type="text" class="form-control" name="checkItem" value="" placeholder=""></td>
+                        <td><select name="checkItemProperty" class="form-control">
+                          <option value="必须">必须</option>
+                          <option value="建议">建议</option>
+                          <option value="特殊增项">特殊增项</option>
+                        </select></td>
+                        <td><input type="text" class="form-control" name="remark" value="" placeholder="检查项说明，非必填"></td>
+                        <td>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        </td>
+                        </tr>
+                        </c:otherwise></c:choose>
                     </tbody>
                 </table>
                 </div>
@@ -242,11 +317,11 @@
       </div>
       <div class="modal-body">
         <form id="module">
-        <div class="checkbox"><label><input type="checkbox" value="hasFee">费用模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasManPower">人力模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasTaskBook">任务书模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasCheckBill">检查单模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasDocument">文档管理模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasFee"       <c:if test="${procNode.hasFee }">checked</c:if>>费用模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasManPower"  <c:if test="${procNode.hasManPower }">checked</c:if>>人力模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasTaskBook"  <c:if test="${procNode.hasTaskBook }">checked</c:if>>任务书模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasCheckBill" <c:if test="${procNode.hasCheckBill }">checked</c:if>>检查单模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasDocument"  <c:if test="${procNode.hasDocument }">checked</c:if>>文档管理模块</label></div>
         </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -256,23 +331,5 @@
   </div>
 </div>
 <!--弹窗结束-->
-<script>
-//up&dwon
-$('.glyphicon-arrow-up').parent().click(function(){
-	$(this).parent().parent().prev('tr').before($(this).parent().parent());
-});
-$('.glyphicon-arrow-down').parent().click(function(){
-	$(this).parent().parent().next('tr').after($(this).parent().parent());
-});
-//+-
-$('.glyphicon-plus').parent().click(function(){
-	$(this).parent().parent().clone(true).insertAfter($(this).parent().parent());
-});
-$('.glyphicon-minus').parent().click(function(){
-	var tr_length = $(this).parent().parent().parent().children('tr').length;
-	if (tr_length>1){$(this).parent().parent().remove();}
-	else{alert('最后一行无法删除！');};
-});
-</script>
 </body>
 </html>

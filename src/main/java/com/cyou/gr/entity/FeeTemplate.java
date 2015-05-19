@@ -8,7 +8,8 @@ public class FeeTemplate {
     private String name;
 
     private Byte sort;
-
+    private Boolean flag;
+    private Boolean isUsed;
     public Integer getId() {
         return id;
     }
@@ -40,4 +41,20 @@ public class FeeTemplate {
     public void setSort(Byte sort) {
         this.sort = sort;
     }
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
+
+	public Boolean getIsUsed() {
+		return isUsed;
+	}
+
+	public void setIsUsed(Boolean isUsed) {
+		this.isUsed = isUsed;
+	}
 }

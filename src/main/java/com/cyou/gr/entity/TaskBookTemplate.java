@@ -10,7 +10,8 @@ public class TaskBookTemplate {
     private String quotaType;
 
     private Byte sort;
-
+    private Boolean flag;
+    private Boolean isUsed;
     public Integer getId() {
         return id;
     }
@@ -35,13 +36,6 @@ public class TaskBookTemplate {
         this.quotaName = quotaName;
     }
 
-    public String getQuotaType() {
-        return quotaType;
-    }
-
-    public void setQutaType(String qutaType) {
-        this.quotaType = qutaType;
-    }
 
     public Byte getSort() {
         return sort;
@@ -50,4 +44,28 @@ public class TaskBookTemplate {
     public void setSort(Byte sort) {
         this.sort = sort;
     }
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
+
+	public void setQuotaType(String quotaType) {
+		this.quotaType = quotaType;
+	}
+
+	public String getQuotaType() {
+		return quotaType;
+	}
+
+	public Boolean getIsUsed() {
+		return isUsed;
+	}
+
+	public void setIsUsed(Boolean isUsed) {
+		this.isUsed = isUsed;
+	}
 }

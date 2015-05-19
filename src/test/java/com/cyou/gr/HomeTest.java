@@ -5,12 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.cyou.gr.comm.AbstractSpringContextTestSupport;
+import com.cyou.gr.dao.FeeMapper;
+import com.cyou.gr.dao.FeeTemplateMapper;
 import com.cyou.gr.entity.User;
 import com.cyou.gr.service.UserService;
+import com.cyou.gr.util.Constants;
 @WebAppConfiguration
 public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
 	private UserService userManageService;
+	@Autowired
+	private FeeTemplateMapper feeTemplateMapper;
+	@Autowired
+	private FeeMapper feeMapper;
 
     @Test
     public void fatherId() throws Exception {
@@ -18,6 +25,35 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 		e.setId(1);
 		e.setName("测试成功1");
 		//userManageService.updateEmp(e);
+    }
+    @Test
+    public void t() throws Exception {
+    	int a=feeTemplateMapper.selectMaxSort(9);
+    	System.out.println(a);
+    }
+    @Test
+    public void tttt() throws Exception {
+    	Boolean a=feeMapper.isUsed(23);
+    	if(a==null){
+    		System.out.println(1);
+    	}else{
+    		System.out.println(2);
+    		
+    	}
+    }
+    @Test
+    public void tt() throws Exception {
+    	String who=Constants.MANPOWERTID;
+    		switch (who) {
+    		case Constants.FEETID:
+    			System.out.println(Constants.FEETID);
+    			break;
+    		case Constants.MANPOWERTID:
+    			System.out.println(Constants.MANPOWERTID);
+    			break;
+    		default:
+    			break;
+    	}
     }
 
 //    @Test

@@ -90,4 +90,7 @@
       display = #{display,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="isUsed" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+  		select id from fee where  fee_template_id = #{feeTemplateId,jdbcType=INTEGER} limit 1
+  </select>
 </mapper>

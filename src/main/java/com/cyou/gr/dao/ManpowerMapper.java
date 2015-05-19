@@ -14,4 +14,6 @@ public interface ManpowerMapper {
     int updateByPrimaryKeySelective(Manpower record);
 
     int updateByPrimaryKey(Manpower record);
+
+	Boolean isUsed(Integer manpowerTemplateId);
 }

@@ -18,4 +18,6 @@ public interface ManpowerTemplateMapper {
     int updateByPrimaryKey(ManpowerTemplate record);
 
 	List<ManpowerTemplate> selectManpowerTsByprocNodeId(Integer procNodeId);
+
+	Byte selectMaxSort(Integer procNodeId);
 }

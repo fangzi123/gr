@@ -14,4 +14,6 @@ public interface CheckbillMapper {
     int updateByPrimaryKeySelective(Checkbill record);
 
     int updateByPrimaryKey(Checkbill record);
+
+	Boolean isUsed(Integer checkbillTemplateId);
 }
