@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String contextPath = pageContext.getServletContext().getContextPath();
 %>
@@ -11,7 +13,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=contextPath%>/resources/css/daterangepicker-bs3.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
@@ -31,8 +32,9 @@
 		<!--路径导航-->
 		<div class="choose">
         	<div class="btn-group" role="group" aria-label="" id="process_btn">
-              <button type="button" class="btn btn-default">端游GR流程</button>
-              <button type="button" class="btn btn-default">手游GR流程</button>
+        	<c:forEach items="${procList}" var="process">
+              <button type="button" class="btn btn-default">${process.name }</button>
+            </c:forEach>
             </div>
         	<div class="btn-group" role="group" aria-label="" id="line_btn">
               <button type="button" class="btn btn-default active">全部</button>

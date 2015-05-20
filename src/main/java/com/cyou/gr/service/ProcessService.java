@@ -6,7 +6,7 @@ import com.cyou.gr.entity.Process;
 
 public interface ProcessService {
 
-	List<Process> selectProcessList();
+	List<Process> selectProcessList(Boolean flag);
 
 	void saveOrUpdateProcess(Process p);
 

@@ -15,8 +15,8 @@ public class ProcessServiceImpl implements ProcessService {
 	@Autowired
 	private ProcessMapper processMapper;
 	@Override
-	public List<Process> selectProcessList() {
-		return processMapper.selectProcessList();
+	public List<Process> selectProcessList(Boolean flag) {
+		return processMapper.selectProcessList(flag);
 	}
 	@Override
 	public void saveOrUpdateProcess(Process p) {

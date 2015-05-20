@@ -27,7 +27,7 @@ public class ProcessController extends _BaseController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
-		List<Process> prosList = processService.selectProcessList();
+		List<Process> prosList = processService.selectProcessList(null);
 		model.addAttribute("prosList", prosList);
 		return "admin_process";
 	}

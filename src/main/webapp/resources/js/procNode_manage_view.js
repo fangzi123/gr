@@ -2,6 +2,7 @@ $(function(){
 	init();
 	//保存
 	$("#a-save").on("click",function(){
+		$("div[id$='_box']:hidden").empty();
 		if($.html5Validate.isAllpass($("#form-save"))){
 			$("#form-save").submit();
 		}

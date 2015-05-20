@@ -19,7 +19,11 @@
   <select id="selectProcessList" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from process order by sort
+    from process 
+    <if test="flag != null" >
+        where flag = #{flag,jdbcType=BIT}
+    </if>
+    order by sort
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from process

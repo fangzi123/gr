@@ -33,7 +33,7 @@ public class ProjectController extends _BaseController {
 			HttpServletResponse response, Model model) throws Exception {
 		List<Project> proList = projectService.selectProjectList(null);
 		model.addAttribute("proList", proList);
-		List<Process> processList = processService.selectProcessList();
+		List<Process> processList = processService.selectProcessList(true);
 		model.addAttribute("processList", processList);
 		return "admin_project";
 	}

@@ -2,6 +2,8 @@ package com.cyou.gr.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cyou.gr.entity.Process;
 
 public interface ProcessMapper {
@@ -17,7 +19,7 @@ public interface ProcessMapper {
 
     int updateByPrimaryKey(Process record);
 
-	List<Process> selectProcessList();
+	List<Process> selectProcessList(@Param(value = "flag")Boolean flag);
 
 	Integer selectMaxSort();
 }
