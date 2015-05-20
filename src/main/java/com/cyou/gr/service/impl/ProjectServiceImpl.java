@@ -17,8 +17,8 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper projectMapper;
 
 	@Override
-	public List<Project> selectProjectList(){
-		List<Project> proList=projectMapper.selectProList();
+	public List<Project> selectProjectList(Boolean flag){
+		List<Project> proList=projectMapper.selectProList(flag);
 		return proList;
 	}
 

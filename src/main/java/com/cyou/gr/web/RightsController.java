@@ -36,7 +36,7 @@ public class RightsController extends _BaseController {
 			HttpServletResponse response, Model model) throws Exception {
 		List<UserVo> userList = userService.selectUserList();
 		model.addAttribute("userList", userList);
-		List<Project> proList = projectService.selectProjectList();
+		List<Project> proList = projectService.selectProjectList(true);
 		model.addAttribute("proList", proList);
 		return "admin_manage";
 	}

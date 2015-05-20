@@ -31,7 +31,7 @@ public class ProjectController extends _BaseController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
-		List<Project> proList = projectService.selectProjectList();
+		List<Project> proList = projectService.selectProjectList(null);
 		model.addAttribute("proList", proList);
 		List<Process> processList = processService.selectProcessList();
 		model.addAttribute("processList", processList);

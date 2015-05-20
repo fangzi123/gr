@@ -2,6 +2,8 @@ package com.cyou.gr.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cyou.gr.entity.Project;
 
 public interface ProjectMapper {
@@ -17,7 +19,7 @@ public interface ProjectMapper {
 
     int updateByPrimaryKey(Project record);
 
-	List<Project> selectProList();
+	List<Project> selectProList(@Param(value = "flag")Boolean flag);
 
 	Integer selectMaxSort();
 }

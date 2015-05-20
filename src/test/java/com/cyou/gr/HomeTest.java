@@ -1,5 +1,7 @@
 package com.cyou.gr;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -7,6 +9,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.cyou.gr.comm.AbstractSpringContextTestSupport;
 import com.cyou.gr.dao.FeeMapper;
 import com.cyou.gr.dao.FeeTemplateMapper;
+import com.cyou.gr.dao.ProjectMapper;
+import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.User;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.util.Constants;
@@ -18,7 +22,15 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 	private FeeTemplateMapper feeTemplateMapper;
 	@Autowired
 	private FeeMapper feeMapper;
+	@Autowired
+	private ProjectMapper projectMapper;
 
+	@Test
+	public void ee() throws Exception {
+		Boolean flag=null;
+		List<Project> l=projectMapper.selectProList(flag);
+		System.out.println(l.size());
+	}
     @Test
     public void fatherId() throws Exception {
     	User e=new User();
