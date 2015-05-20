@@ -2,8 +2,10 @@ $(function(){
 	init();
 	//保存
 	$("#a-save").on("click",function(){
+		if($.html5Validate.isAllpass($("#form-save"))){
 			$("#form-save").submit();
-	})
+		}
+	});
 	//返回
 	$("#a-back").on("click",function(){
 		window.location="index?procId="+$("#processId").val();

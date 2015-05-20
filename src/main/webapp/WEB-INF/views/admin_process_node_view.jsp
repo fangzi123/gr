@@ -14,6 +14,7 @@
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery-html5Validate.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/procNode_manage_view.js"></script>
 </head>
@@ -40,9 +41,9 @@
             </div>
         </div>
 		<!--路径导航-->
+        <form action="editSave" method="post" id="form-save">
 		<div class="panel panel-default">
         <div class="panel-heading">${procNode.name}</div>
-        <form action="editSave" method="post" id="form-save">
         <input type="hidden" value="${procNode.id}" name="id">
         <input type="hidden" value="${procNode.processId}" name="processId" id="processId">
         <input type="hidden" value="${procNode.hasFee}" name="hasFee">
@@ -89,7 +90,7 @@
                     <c:forEach items="${feets}" var="feet">
                         <tr <c:if test="${feet.isUsed and !feet.flag}">class="warning"</c:if>>
                         <input type="hidden" name="feetId" value="${feet.id}">
-                        <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder="" required data-validation-required-message="请输入"></td>
+                        <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder="" required></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -104,7 +105,7 @@
                      </c:forEach></c:when>
                      <c:otherwise>
                         <tr>
-                        <td><input type="text" class="form-control" name="feeName" value="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="feeName" value="" placeholder="" required></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -132,8 +133,8 @@
                     <c:forEach items="${manpowerts}" var="manpower">
                         <tr <c:if test="${manpower.isUsed and !manpower.flag}">class="warning"</c:if>>
                         <input type="hidden" name="manpowertId" value="${manpower.id}">
-                        <td><input type="text" class="form-control" name="projectTeam" value="${manpower.projectTeam }" placeholder=""></td>
-                        <td><input type="text" class="form-control" name="standardModel" value="${manpower.standardModel }" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="projectTeam" value="${manpower.projectTeam }" placeholder="" required></td>
+                        <td><input type="text" class="form-control" name="standardModel" value="${manpower.standardModel }" placeholder="" required></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -148,8 +149,8 @@
                      </c:forEach></c:when>
                      <c:otherwise>
                         <tr>
-                        <td><input type="text" class="form-control" name="projectTeam" value="" placeholder=""></td>
-                        <td><input type="text" class="form-control" name="standardModel" value="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="projectTeam" value="" placeholder="" required></td>
+                        <td><input type="text" class="form-control" name="standardModel" value="" placeholder="" required></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
@@ -238,7 +239,7 @@
                     <c:forEach items="${checkbillTs}" var="checkBill">
                         <tr <c:if test="${checkBill.isUsed and !checkBill.flag}">class="warning"</c:if>>
                         <input type="hidden" name="checkbilltId" value="${checkBill.id}">
-                        <td><input type="text" class="form-control" name="checkItem" value="${ checkBill.checkItem}" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="checkItem" value="${ checkBill.checkItem}" placeholder="" required></td>
                         <td><select name="checkItemProperty" class="form-control">
                           <option value="必须" <c:if test="${checkBill.checkItemProperty eq '必须'}">selected="selected"</c:if>>必须</option>
                           <option value="建议" <c:if test="${checkBill.checkItemProperty eq '建议'}">selected="selected"</c:if>>建议</option>
@@ -259,7 +260,7 @@
                         </c:forEach></c:when>
                         <c:otherwise>
                         <tr>
-                        <td><input type="text" class="form-control" name="checkItem" value="" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="checkItem" value="" placeholder="" required></td>
                         <td><select name="checkItemProperty" class="form-control">
                           <option value="必须">必须</option>
                           <option value="建议">建议</option>
@@ -308,13 +309,13 @@
                 <div class="form-group"><textarea class="form-control" rows="3" disabled></textarea></div>
 				<!--readme-->
 		</div>
-		</form>
 		</div>
 		<!--check list-->
         <div class="text-center">
               <a href="javascript:void(0)" id="a-save" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>保存</a>
               <a href="javascript:void(0)" id="a-back" class="btn btn-default btn-lg"><span class="glyphicon glyphicon glyphicon-share">&nbsp;</span>返回</a>
         </div>
+		</form>
 	</div>
 	<!--right_box-->
 </div>

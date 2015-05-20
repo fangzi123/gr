@@ -4,7 +4,7 @@
 %>
 	<div id="left_box">
 		<ul>
-			<li class="n1"><a href="index.shtml"><span class="glyphicon glyphicon-align-left"></span><b>评审进度</b></a></li>
+			<li class="n1"><a href="<%=contextPath%>"><span class="glyphicon glyphicon-align-left"></span><b>评审进度</b></a></li>
 			<li class="n2"><a href="calendart.shtml"><span class="glyphicon glyphicon-calendar"></span><b>日历</b></a></li>
 			<li class="n3"><a href="files.shtml"><span class="glyphicon glyphicon-paperclip"></span><b>文档管理</b></a></li>
 			<li class="n4"><a href="<%=contextPath%>/process/index"><span class="glyphicon glyphicon-flag"></span><b>流程管理</b></a></li>
