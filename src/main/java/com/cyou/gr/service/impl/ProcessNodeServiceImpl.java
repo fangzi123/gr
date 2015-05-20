@@ -78,6 +78,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 					ft.setSort(i);
 					if(isnew){//新增
 						ft.setProcessNodeId(obj.getId());
+						ft.setFlag(true);
 						feeTemplateMapper.insertSelective(ft);
 					}else{//修改
 						ft.setId(obj.getFeetId()[i]);
@@ -104,6 +105,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 					mt.setStandardModel(obj.getStandardModel()[i]);
 					if(isnew){
 						mt.setProcessNodeId(obj.getId());
+						mt.setFlag(true);
 						manpowerTemplateMapper.insertSelective(mt);
 					}else{
 						mt.setId(obj.getManpowertId()[i]);
@@ -128,6 +130,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 					tt.setQuotaType(obj.getQuotaType()[i]);
 					if(isnew){
 						tt.setProcessNodeId(obj.getId());
+						tt.setFlag(true);
 						taskBookTemplateMapper.insertSelective(tt);
 					}else{
 						tt.setId(obj.getTaskbooktId()[i]);
@@ -150,9 +153,12 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 					ct.setSort(i);
 					ct.setCheckItem(obj.getCheckItem()[i]);
 					ct.setCheckItemProperty(obj.getCheckItemProperty()[i]);
-					ct.setRemark(obj.getRemark()[i]);
+					if(obj.getRemark().length>0){
+						ct.setRemark(obj.getRemark()[i]);
+					}
 					if(isnew){
 						ct.setProcessNodeId(obj.getId());
+						ct.setFlag(true);
 						checkbillTemplateMapper.insertSelective(ct);
 					}else{
 						ct.setId(obj.getCheckbilltId()[i]);

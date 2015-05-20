@@ -1,5 +1,7 @@
 package com.cyou.gr.entity.vo;
 
+import java.math.BigDecimal;
+
 import com.cyou.gr.entity.ProcessNode;
 
 public class ProcessNodeVo extends ProcessNode {
@@ -7,7 +9,7 @@ public class ProcessNodeVo extends ProcessNode {
 	private String[] feeName;
 	//人力模板
 	private String[] projectTeam;
-	private String[] standardModel;
+	private BigDecimal[] standardModel;
 	//任务书模板
 	private String[] quotaName;
 	private String[] quotaType;
@@ -37,11 +39,11 @@ public class ProcessNodeVo extends ProcessNode {
 		this.projectTeam = projectTeam;
 	}
 
-	public String[] getStandardModel() {
+	public BigDecimal[] getStandardModel() {
 		return standardModel;
 	}
 
-	public void setStandardModel(String[] standardModel) {
+	public void setStandardModel(BigDecimal[] standardModel) {
 		this.standardModel = standardModel;
 	}
 

@@ -2,7 +2,7 @@ $(function(){
 	init();
 	//保存
 	$("#a-save").on("click",function(){
-		$("#form-save").submit();
+			$("#form-save").submit();
 	})
 	//返回
 	$("#a-back").on("click",function(){
@@ -53,9 +53,9 @@ $(function(){
 			alert('最后一行无法删除！');
 			};
 	});
-	$('.glyphicon-trash').parent().click(function(){
+	$('.panel-body').on('click','button[status="glyphicon-trash"]',function(){
 		var tr_length = $(this).parent().parent().parent().children('tr').length;
-		if (tr_length>1)
+		if (tr_length>0)
 		{
 			var e=$(this).parent().parent().find("input[name$='Id']");
 			var obj={};
@@ -64,14 +64,15 @@ $(function(){
 			obj.flag=false;
 			del(obj);
 			if(status){
-				window.location="view?id="+$("input[name='id']").val();
-//				$(this).find("span").removeClass("glyphicon-trash").addClass("glyphicon-wrench");
+				$(this).find("span").removeClass("glyphicon-trash").addClass("glyphicon-wrench");
+				$(this).attr("status","glyphicon-wrench");
+				$(this).parent().parent().addClass("warning");
 			}
 		}
 	});
-	$('.glyphicon-wrench').parent().click(function(){
+	$('.panel-body').on('click','button[status="glyphicon-wrench"]',function(){
 		var tr_length = $(this).parent().parent().parent().children('tr').length;
-		if (tr_length>1)
+		if (tr_length>0)
 		{
 			var e=$(this).parent().parent().find("input[name$='Id']");
 			var obj={};
@@ -80,8 +81,9 @@ $(function(){
 			obj.flag=true;
 			del(obj);
 			if(status){
-				window.location="view?id="+$("input[name='id']").val();
-//				$(this).find("span").removeClass("glyphicon-wrench").addClass("glyphicon-trash");
+				$(this).find("span").removeClass("glyphicon-wrench").addClass("glyphicon-trash");
+				$(this).attr("status","glyphicon-trash");
+				$(this).parent().parent().removeClass("warning");
 			}
 		}
 	});
@@ -113,5 +115,10 @@ function del(obj){
 		}
 	});
 }
-
+function validate(obj){
+	if(obj){
+		return true;
+	}
+	return false;
+}
 var status=false;

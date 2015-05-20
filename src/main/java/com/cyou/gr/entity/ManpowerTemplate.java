@@ -1,5 +1,7 @@
 package com.cyou.gr.entity;
 
+import java.math.BigDecimal;
+
 public class ManpowerTemplate {
     private Integer id;
 
@@ -7,7 +9,7 @@ public class ManpowerTemplate {
 
     private String projectTeam;
 
-    private String standardModel;
+    private BigDecimal standardModel;
 
     private Byte sort;
     private Boolean flag;
@@ -36,11 +38,11 @@ public class ManpowerTemplate {
         this.projectTeam = projectTeam;
     }
 
-    public String getStandardModel() {
+    public BigDecimal getStandardModel() {
         return standardModel;
     }
 
-    public void setStandardModel(String standardModel) {
+    public void setStandardModel(BigDecimal standardModel) {
         this.standardModel = standardModel;
     }
 

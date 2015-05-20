@@ -87,17 +87,17 @@
                     <tbody>
                     <c:choose><c:when test="${fn:length(feets)>0}">
                     <c:forEach items="${feets}" var="feet">
-                        <tr>
+                        <tr <c:if test="${feet.isUsed and !feet.flag}">class="warning"</c:if>>
                         <input type="hidden" name="feetId" value="${feet.id}">
-                        <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder=""></td>
+                        <td><input type="text" class="form-control" name="feeName" value="${feet.name }" placeholder="" required data-validation-required-message="请输入"></td>
                         <td>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
                         <c:if test="${!feet.isUsed}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></c:if>
                        	<c:if test="${feet.isUsed}">
-                       	<c:if test="${feet.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></c:if>
-                        <c:if test="${!feet.flag}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                       	<c:if test="${feet.flag}"><button type="button" class="btn btn-default" status="glyphicon-trash"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!feet.flag}"><button type="button" class="btn btn-default" status="glyphicon-wrench"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
                         </c:if>
                         </td>
                         </tr>
@@ -130,7 +130,7 @@
                     <tbody>
                      <c:choose><c:when test="${fn:length(manpowerts)>0}">
                     <c:forEach items="${manpowerts}" var="manpower">
-                        <tr>
+                        <tr <c:if test="${manpower.isUsed and !manpower.flag}">class="warning"</c:if>>
                         <input type="hidden" name="manpowertId" value="${manpower.id}">
                         <td><input type="text" class="form-control" name="projectTeam" value="${manpower.projectTeam }" placeholder=""></td>
                         <td><input type="text" class="form-control" name="standardModel" value="${manpower.standardModel }" placeholder=""></td>
@@ -138,7 +138,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        <c:if test="${!manpower.isUsed}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></c:if>
+                       	<c:if test="${manpower.isUsed}">
+                       	<c:if test="${manpower.flag}"><button type="button" class="btn btn-default" status="glyphicon-trash"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!manpower.flag}"><button type="button" class="btn btn-default" status="glyphicon-wrench"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        </c:if>
                         </td>
                         </tr>
                      </c:forEach></c:when>
@@ -171,7 +175,7 @@
                     <tbody>
                     <c:choose><c:when test="${fn:length(taskbookts)>0}">
                     <c:forEach items="${taskbookts}" var="taskBookt">
-                        <tr>
+                        <tr <c:if test="${taskBookt.isUsed and !taskBookt.flag}">class="warning"</c:if>>
                         <input type="hidden" name="taskbooktId" value="${taskBookt.id}">
                         <td><select name="quotaName" class="form-control">
                         <c:forEach items="${quotaList}" var="quota">
@@ -186,7 +190,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        <c:if test="${!taskBookt.isUsed}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></c:if>
+                       	<c:if test="${taskBookt.isUsed}">
+                       	<c:if test="${taskBookt.flag}"><button type="button" class="btn btn-default" status="glyphicon-trash"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!taskBookt.flag}"><button type="button" class="btn btn-default" status="glyphicon-wrench"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        </c:if>
                         </td>
                         </tr>
                         </c:forEach>
@@ -228,8 +236,8 @@
                     <tbody>
                     <c:choose><c:when test="${fn:length(checkbillTs)>0}">
                     <c:forEach items="${checkbillTs}" var="checkBill">
-                        <tr>
-                        <input type="hidden" name="checkbilltId" value="${checkbillTs.id}">
+                        <tr <c:if test="${checkBill.isUsed and !checkBill.flag}">class="warning"</c:if>>
+                        <input type="hidden" name="checkbilltId" value="${checkBill.id}">
                         <td><input type="text" class="form-control" name="checkItem" value="${ checkBill.checkItem}" placeholder=""></td>
                         <td><select name="checkItemProperty" class="form-control">
                           <option value="必须" <c:if test="${checkBill.checkItemProperty eq '必须'}">selected="selected"</c:if>>必须</option>
@@ -241,7 +249,11 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></button>
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+                        <c:if test="${!checkBill.isUsed}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></c:if>
+                       	<c:if test="${checkBill.isUsed}">
+                       	<c:if test="${checkBill.flag}"><button type="button" class="btn btn-default" status="glyphicon-trash"><span class="glyphicon glyphicon-trash"></span></button></c:if>
+                        <c:if test="${!checkBill.flag}"><button type="button" class="btn btn-default" status="glyphicon-wrench"><span class="glyphicon glyphicon-wrench"></span></button></c:if>
+                        </c:if>
                         </td>
                         </tr>
                         </c:forEach></c:when>

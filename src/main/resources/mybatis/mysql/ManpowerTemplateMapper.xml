@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="process_node_id" property="processNodeId" jdbcType="INTEGER" />
     <result column="project_team" property="projectTeam" jdbcType="VARCHAR" />
-    <result column="standard_model" property="standardModel" jdbcType="VARCHAR" />
+    <result column="standard_model" property="standardModel" jdbcType="DECIMAL" />
     <result column="sort" property="sort" jdbcType="TINYINT" />
      <result column="flag" property="flag" jdbcType="BIT"/>
   </resultMap>
@@ -26,7 +26,7 @@
     insert into manpower_template (id, process_node_id, project_team, 
       standard_model, sort,flag)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{projectTeam,jdbcType=VARCHAR}, 
-      #{standardModel,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT}, #{sort,jdbcType=BIT})
+      #{standardModel,jdbcType=DECIMAL}, #{sort,jdbcType=TINYINT}, #{sort,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.ManpowerTemplate" >
     insert into manpower_template
@@ -61,7 +61,7 @@
         #{projectTeam,jdbcType=VARCHAR},
       </if>
       <if test="standardModel != null" >
-        #{standardModel,jdbcType=VARCHAR},
+        #{standardModel,jdbcType=DECIMAL},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=TINYINT},
@@ -81,7 +81,7 @@
         project_team = #{projectTeam,jdbcType=VARCHAR},
       </if>
       <if test="standardModel != null" >
-        standard_model = #{standardModel,jdbcType=VARCHAR},
+        standard_model = #{standardModel,jdbcType=DECIMAL},
       </if>
       <if test="sort != null" >
         sort = #{sort,jdbcType=TINYINT},
@@ -96,7 +96,7 @@
     update manpower_template
     set process_node_id = #{processNodeId,jdbcType=INTEGER},
       project_team = #{projectTeam,jdbcType=VARCHAR},
-      standard_model = #{standardModel,jdbcType=VARCHAR},
+      standard_model = #{standardModel,jdbcType=DECIMAL},
       sort = #{sort,jdbcType=TINYINT},
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
