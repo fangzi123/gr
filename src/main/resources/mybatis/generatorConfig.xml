@@ -88,7 +88,7 @@
 <!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
 <!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
 <!--     </table> -->
-    <table schema="" tableName="fee" 
+    <table schema="" tableName="process_node" 
     	enableCountByExample="false" enableUpdateByExample="false" 
     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>

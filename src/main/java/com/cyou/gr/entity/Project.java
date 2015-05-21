@@ -1,5 +1,8 @@
 package com.cyou.gr.entity;
 
+import java.util.List;
+
+
 public class Project {
     private Integer id;
 
@@ -13,6 +16,7 @@ public class Project {
 
     private Boolean flag;
 
+    private List<ProNode> projNodeList;
     public Integer getId() {
         return id;
     }
@@ -60,4 +64,12 @@ public class Project {
     public void setFlag(Boolean flag) {
         this.flag = flag;
     }
+
+	public List<ProNode> getProjNodeList() {
+		return projNodeList;
+	}
+
+	public void setProjNodeList(List<ProNode> projNodeList) {
+		this.projNodeList = projNodeList;
+	}
 }

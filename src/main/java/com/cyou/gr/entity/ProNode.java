@@ -8,6 +8,7 @@ public class ProNode {
     private Integer projectId;
 
     private Integer processNodeId;
+    private ProcessNode processNode;
 
     private String status;
 
@@ -102,4 +103,12 @@ public class ProNode {
     public void setAdditionalDesc(String additionalDesc) {
         this.additionalDesc = additionalDesc;
     }
+
+	public ProcessNode getProcessNode() {
+		return processNode;
+	}
+
+	public void setProcessNode(ProcessNode processNode) {
+		this.processNode = processNode;
+	}
 }

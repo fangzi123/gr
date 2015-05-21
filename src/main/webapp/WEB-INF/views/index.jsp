@@ -46,221 +46,73 @@
             </div>
 		</div>
         <!--choose-->
+        <c:forEach items="${procList}" var="process">
 		<div class="panel panel-default">
 		<div class="panel-body">
 			<table class="table tb1">
 				<tbody>
+				<c:forEach items="${process.projList}" var="proj">
                 	<tr>
                     	<th width="100"></th>
-                        <th>GR0</th>
-                        <th>报审</th>
-                        <th>GR1</th>
-                        <th>用研</th>
-                        <th>MR1</th>
-                        <th>启宣</th>
-                        <th>TR1</th>
-                        <th>GR2</th>
-                        <th>CCB1</th>
-                        <th>CCB2</th>
-                        <th>MR2</th>
-                        <th>TR2</th>
-                        <th>GR3</th>
-                        <th>版号</th>
-                        <th>CB</th>
-                        <th>OB</th>
-                        <th>运营</th>
-                        <th>停运</th>
+                    	<c:forEach items="${proj.projNodeList}" var="projNode">
+                        	<th>${projNode.processNode.name}</th>
+                        </c:forEach>
                     </tr>
 					<tr>
-						<td align="center"><a href="porject.shtml">海战世界</a>&nbsp;<a href="#" class="msg"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="mr"></em><q></q><i class="mr pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="费用工：1234$<br>费用B：3131$"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
+						<td align="center"><a href="porject.shtml">${proj.name }</a>&nbsp;<a href="#" class="msg">
+							<c:forEach items="${proj.projNodeList}" var="projNode">
+								<c:if test="${'进行中' eq projNode.status}">
+								<span class="glyphicon <c:if test="${'正常' eq projNode.isNormal}">glyphicon-ok-circle</c:if><c:if test="${'异常' eq projNode.isNormal}">glyphicon-exclamation-sign</c:if>"></span>
+								</c:if>
+							</c:forEach>
+						</a></td>
+						<c:forEach items="${proj.projNodeList}" var="projNode" varStatus="status">
+							<c:set var="pcType0" value="${fn:toLowerCase(projNode.processNode.processType)}"/>
+							<c:set var="pcType" value="${fn:substring(pcType0, fn:length(pcType0)-2, fn:length(pcType0))}"/>
+							<c:choose>
+								<c:when test="${'已完成' eq projNode.status}">
+									<td class="over"><c:if test="${!status.last}"><q></q></c:if>
+										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i>
+									</td>
+								</c:when>
+								<c:when test="${'进行中' eq projNode.status}">
+									<td class="now"><em class="${pcType}"></em><c:if test="${!status.last}"><q></q></c:if>
+										<i class="${pcType} pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="费用工：1234$<br>费用B：3131$"></i>
+									</td>
+								</c:when>
+								<c:otherwise>
+									<td><c:if test="${!status.last}"><q></q></c:if>
+										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="费用工：1234$<br>费用B：3131$"></i>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</tr>
-					<tr class="msg_nothing">
-                    	<td class="bg-success"></td>
-                    	<td colspan="18" class="bg-success">
-                        	<p><strong>当前进展概述</strong>：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件</p>
-                            <p>这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。</p></td>
-                    </tr>
-                	<tr>
-                    	<th width="100"></th>
-                        <th>GR0</th>
-                        <th>报审</th>
-                        <th>GR1</th>
-                        <th>用研</th>
-                        <th>MR1</th>
-                        <th>启宣</th>
-                        <th>TR1</th>
-                        <th>GR2</th>
-                        <th>CCB1</th>
-                        <th>CCB2</th>
-                        <th>MR2</th>
-                        <th>TR2</th>
-                        <th>GR3</th>
-                        <th>版号</th>
-                        <th>CB</th>
-                        <th>OB</th>
-                        <th>运营</th>
-                        <th>停运</th>
-                    </tr>
-					<tr>
-						<td align="center"><a href="porject.shtml">蛮荒搜神记</a>&nbsp;<a href="#" class="msg"><span class="glyphicon glyphicon-exclamation-sign"></span></a></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td><td class="now"><em class="mr"></em><q></q><i class="mr pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr class="msg_something">
-                    	<td class="bg-warning"></td>
-                    	<td colspan="18" class="bg-warning">
-                        	<p><strong>当前进展概述</strong>：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件</p>
-                            <p>这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。</p></td>
-                    </tr>
-                	<tr>
-                    	<th width="100"></th>
-                        <th>GR0</th>
-                        <th>报审</th>
-                        <th>GR1</th>
-                        <th>用研</th>
-                        <th>MR1</th>
-                        <th>启宣</th>
-                        <th>TR1</th>
-                        <th>GR2</th>
-                        <th>CCB1</th>
-                        <th>CCB2</th>
-                        <th>MR2</th>
-                        <th>TR2</th>
-                        <th>GR3</th>
-                        <th>版号</th>
-                        <th>CB</th>
-                        <th>OB</th>
-                        <th>运营</th>
-                        <th>停运</th>
-                    </tr>
-					<tr>
-						<td align="center">封印者&nbsp;<a href="#" class="msg"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="ob"></em><q></q><i class="ob pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr class="msg_nothing">
-                    	<td class="bg-success"></td>
-                    	<td colspan="18" class="bg-success">
-                        	<p><strong>当前进展概述</strong>：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件</p>
-                            <p>这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。</p></td>
-                    </tr>
+					<c:forEach items="${proj.projNodeList}" var="projNode">
+						<c:if test="${'进行中' eq projNode.status}">
+							<c:if test="${'正常' eq projNode.isNormal}">
+								<tr class="msg_nothing">
+			                    	<td class="bg-success"></td>
+			                    	<td colspan="18" class="bg-success">
+			                        	<p><strong>当前进展概述</strong>：${projNode.currentProgressDesc}。</p></td>
+			                    </tr>
+		                   	</c:if>
+		                    <c:if test="${'异常' eq projNode.isNormal}">
+								<tr class="msg_something">
+			                    	<td class="bg-warning"></td>
+			                    	<td colspan="18" class="bg-warning">
+			                    	<p><strong>当前进展概述</strong>：${projNode.currentProgressDesc}。</p></td>
+			                    </tr>
+		                    </c:if>
+	                    </c:if>
+                    </c:forEach>
+                    </c:forEach>
 				</tbody>
 			</table>
 		</div>
 		</div>
         <!--GR-->
-        <div class="panel panel-default">
-		<div class="panel-body">
-			<table class="table table-hover tb1">
-				<tbody>
-					<tr>
-						<td align="center"><a href="porject.shtml">某某革某</a>&nbsp;<a href="#" class="msg"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="cr"></em><q></q><i class="pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr class="msg_nothing">
-                    	<td class="bg-success"></td>
-                    	<td colspan="18" class="bg-success">
-                        	<p><strong>当前进展概述</strong>：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件</p>
-                            <p>这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。</p></td>
-                    </tr>
-					<tr>
-						<td align="center"><a href="porject.shtml">蛮荒搜神记</a>&nbsp;<a href="#" class="msg"><span class="glyphicon glyphicon-exclamation-sign"></span></a></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="cr"></em><q></q><i class="pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr class="msg_something">
-                    	<td class="bg-warning"></td>
-                    	<td colspan="18" class="bg-warning">
-                        	<p><strong>当前进展概述</strong>：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件</p>
-                            <p>这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。</p></td>
-                    </tr>
-				</tbody>
-			</table>
-		</div>
-		</div>
-        <!--GR-->	
+        </c:forEach>
 	</div>
 	<!--right_box-->
 </div>

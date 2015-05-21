@@ -22,13 +22,13 @@
     delete from project
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cyou.gr.entity.Project" >
+  <insert id="insert" parameterType="com.cyou.gr.entity.Project" keyProperty="id" useGeneratedKeys="true">
     insert into project (id, name, process_id, 
       release_line, sort, flag)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{processId,jdbcType=INTEGER}, 
       #{releaseLine,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{flag,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cyou.gr.entity.Project" >
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.Project" keyProperty="id" useGeneratedKeys="true">
     insert into project
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

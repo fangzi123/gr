@@ -1,92 +1,94 @@
 package com.cyou.gr.entity;
 
 public class ProcessNode {
-    private Integer id;
 
-    private String name;
+	private Integer id;
 
-    private Integer processId;
-    private Process Process;
+	private String name;
 
-    private Integer sort;
+	private Integer processId;
+	private Process Process;
 
-    private String processType;
+	private Integer sort;
 
-    private String endType;
+	private String processType;
 
-    private String timeType;
+	private String endType;
 
-    private Boolean flag;
-    
-    private Boolean hasFee;
-    private Boolean hasManPower;
-    private Boolean hasTaskBook;
-    private Boolean hasCheckBill;
-    private Boolean hasDocument;
+	private String timeType;
 
-    public Integer getId() {
-        return id;
-    }
+	private Boolean flag;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Boolean hasFee;
+	private Boolean hasManpower;
+	private Boolean hasTaskbook;
+	private Boolean hasCheckbill;
+	private Boolean hasDocument;
+	private String nodesOverview;
 
-    public String getName() {
-        return name;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getProcessId() {
-        return processId;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setProcessId(Integer processId) {
-        this.processId = processId;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getSort() {
-        return sort;
-    }
+	public Integer getProcessId() {
+		return processId;
+	}
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
+	public void setProcessId(Integer processId) {
+		this.processId = processId;
+	}
 
-    public String getProcessType() {
-        return processType;
-    }
+	public Integer getSort() {
+		return sort;
+	}
 
-    public void setProcessType(String processType) {
-        this.processType = processType;
-    }
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 
-    public String getEndType() {
-        return endType;
-    }
+	public String getProcessType() {
+		return processType;
+	}
 
-    public void setEndType(String endType) {
-        this.endType = endType;
-    }
+	public void setProcessType(String processType) {
+		this.processType = processType;
+	}
 
-    public String getTimeType() {
-        return timeType;
-    }
+	public String getEndType() {
+		return endType;
+	}
 
-    public void setTimeType(String timeType) {
-        this.timeType = timeType;
-    }
+	public void setEndType(String endType) {
+		this.endType = endType;
+	}
 
-    public Boolean getFlag() {
-        return flag;
-    }
+	public String getTimeType() {
+		return timeType;
+	}
 
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
-    }
+	public void setTimeType(String timeType) {
+		this.timeType = timeType;
+	}
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
 
 	public Process getProcess() {
 		return Process;
@@ -105,27 +107,27 @@ public class ProcessNode {
 	}
 
 	public Boolean getHasManPower() {
-		return hasManPower;
+		return hasManpower;
 	}
 
 	public void setHasManPower(Boolean hasManPower) {
-		this.hasManPower = hasManPower;
+		this.hasManpower = hasManPower;
 	}
 
 	public Boolean getHasTaskBook() {
-		return hasTaskBook;
+		return hasTaskbook;
 	}
 
 	public void setHasTaskBook(Boolean hasTaskBook) {
-		this.hasTaskBook = hasTaskBook;
+		this.hasTaskbook = hasTaskBook;
 	}
 
 	public Boolean getHasCheckBill() {
-		return hasCheckBill;
+		return hasCheckbill;
 	}
 
 	public void setHasCheckBill(Boolean hasCheckBill) {
-		this.hasCheckBill = hasCheckBill;
+		this.hasCheckbill = hasCheckBill;
 	}
 
 	public Boolean getHasDocument() {
@@ -134,5 +136,13 @@ public class ProcessNode {
 
 	public void setHasDocument(Boolean hasDocument) {
 		this.hasDocument = hasDocument;
+	}
+
+	public String getNodesOverview() {
+		return nodesOverview;
+	}
+
+	public void setNodesOverview(String nodesOverview) {
+		this.nodesOverview = nodesOverview;
 	}
 }

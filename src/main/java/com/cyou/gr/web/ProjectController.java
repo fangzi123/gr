@@ -37,7 +37,15 @@ public class ProjectController extends _BaseController {
 		model.addAttribute("processList", processList);
 		return "admin_project";
 	}
-	
+	/**
+	 * 添加项目的时候创建  项目节点
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @param p
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpServletRequest request,
 			HttpServletResponse response, Model model,Project p) throws Exception {

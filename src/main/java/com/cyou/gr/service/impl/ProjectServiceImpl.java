@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cyou.gr.dao.ProNodeMapper;
+import com.cyou.gr.dao.ProcessNodeMapper;
 import com.cyou.gr.dao.ProjectMapper;
+import com.cyou.gr.entity.ProNode;
+import com.cyou.gr.entity.ProcessNode;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.service.ProjectService;
 
@@ -15,6 +19,10 @@ import com.cyou.gr.service.ProjectService;
 public class ProjectServiceImpl implements ProjectService {
 	@Autowired
 	private ProjectMapper projectMapper;
+	@Autowired
+	private ProcessNodeMapper processNodeMapper;
+	@Autowired
+	private ProNodeMapper proNodeMapper;
 
 	@Override
 	public List<Project> selectProjectList(Boolean flag){
@@ -28,8 +36,28 @@ public class ProjectServiceImpl implements ProjectService {
 			p.setSort(projectMapper.selectMaxSort());
 			p.setFlag(true);
 			projectMapper.insertSelective(p);
+			
+			List<ProcessNode>  procnList=processNodeMapper.selectProcNodeListByProcId(p.getProcessId());
+			for(ProcessNode procn:procnList){
+				ProNode projn=new ProNode();
+				projn.setProjectId(p.getId());
+				projn.setProcessNodeId(procn.getId());
+				projn.setStatus("未开启");
+				projn.setIsNormal("正常");
+				proNodeMapper.insertSelective(projn);
+			}
+			
 		}else{//修改
 			projectMapper.updateByPrimaryKeySelective(p);
+			List<ProcessNode>  procnList=processNodeMapper.selectProcNodeListByProcId(p.getProcessId());
+			for(ProcessNode procn:procnList){
+				ProNode projn=new ProNode();
+				projn.setProjectId(p.getId());
+				projn.setProcessNodeId(procn.getId());
+				projn.setStatus("未开启");
+				projn.setIsNormal("正常");
+				proNodeMapper.insertSelective(projn);
+			}
 		}
 	}
 

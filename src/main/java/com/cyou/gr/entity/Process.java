@@ -1,5 +1,8 @@
 package com.cyou.gr.entity;
 
+import java.util.List;
+
+
 public class Process {
     private Integer id;
 
@@ -8,7 +11,11 @@ public class Process {
     private Integer sort;
 
     private Boolean flag;
-
+    
+    private List<Project> projList;
+    
+    private List<ProcessNode> procNodeList;
+    
     public Integer getId() {
         return id;
     }
@@ -40,4 +47,20 @@ public class Process {
     public void setFlag(Boolean flag) {
         this.flag = flag;
     }
+
+	public List<Project> getProjList() {
+		return projList;
+	}
+
+	public void setProjList(List<Project> projList) {
+		this.projList = projList;
+	}
+
+	public List<ProcessNode> getProcNodeList() {
+		return procNodeList;
+	}
+
+	public void setProcNodeList(List<ProcessNode> procNodeList) {
+		this.procNodeList = procNodeList;
+	}
 }
