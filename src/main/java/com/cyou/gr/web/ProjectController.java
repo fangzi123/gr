@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.Process;
+import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.ProcessService;
 import com.cyou.gr.service.ProjectService;
 import com.cyou.gr.web.comm._BaseController;
@@ -88,4 +89,14 @@ public class ProjectController extends _BaseController {
         mm.addAttribute("success", true);
 		return mm;
 	}
+	/********************评审进度模块***************************/
+	@RequestMapping(value = "/view")
+	public String view(HttpServletRequest request,
+			HttpServletResponse response,Model model) throws Exception {
+		Integer id=this.findIntegerParameterValue(request, "id");
+		ProjectVo project = projectService.selectProjectRelatedById(id);
+		model.addAttribute("project", project);
+		return "project";
+	}
+	
 }

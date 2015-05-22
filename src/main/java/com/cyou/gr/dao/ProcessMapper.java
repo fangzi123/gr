@@ -19,7 +19,9 @@ public interface ProcessMapper {
 
     int updateByPrimaryKey(Process record);
 
-	List<Process> selectProcessList(@Param(value = "flag")Boolean flag);
+	List<Process> selectProcessList(@Param(value="flag") Boolean flag);
+	
+	List<Process> selectProcessRelatedList();
 
 	Integer selectMaxSort();
 }

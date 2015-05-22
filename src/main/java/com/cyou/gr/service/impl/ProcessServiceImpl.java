@@ -19,6 +19,10 @@ public class ProcessServiceImpl implements ProcessService {
 		return processMapper.selectProcessList(flag);
 	}
 	@Override
+	public List<Process> selectProcessRelatedList() {
+		return processMapper.selectProcessRelatedList();
+	}
+	@Override
 	public void saveOrUpdateProcess(Process p) {
 		if(p.getId()==null){//新增
 			p.setSort(processMapper.selectMaxSort());

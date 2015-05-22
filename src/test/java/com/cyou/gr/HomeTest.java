@@ -12,6 +12,7 @@ import com.cyou.gr.dao.FeeTemplateMapper;
 import com.cyou.gr.dao.ProjectMapper;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.User;
+import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.util.Constants;
 @WebAppConfiguration
@@ -25,6 +26,11 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
 	private ProjectMapper projectMapper;
 
+	@Test
+	public void eeee() throws Exception {
+		ProjectVo vo=projectMapper.selectProjectRelatedById(8);
+		System.out.println(8);
+	}
 	@Test
 	public void ee() throws Exception {
 		Boolean flag=null;

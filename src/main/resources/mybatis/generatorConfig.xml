@@ -28,67 +28,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="com.cyou.gr.dao"  targetProject="gr/src/main/java">
         <property name="enableSubPackages" value="false" />
     </javaClientGenerator>
-<!--     <table schema="" tableName="checkbill"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="checkbill_template"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="document"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="fee"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="fee_template"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="manpower"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="manpower_template"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="pro_node"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="process"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="process_node"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="project"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="quota"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="task_book"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="task_book_template"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-<!--     <table schema="" tableName="user2project"  -->
-<!--     	enableCountByExample="false" enableUpdateByExample="false"  -->
-<!--     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> -->
-<!--     </table> -->
-    <table schema="" tableName="process_node" 
+    <table schema="" tableName="document" 
     	enableCountByExample="false" enableUpdateByExample="false" 
     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>

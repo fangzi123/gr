@@ -12,6 +12,7 @@ import com.cyou.gr.dao.ProjectMapper;
 import com.cyou.gr.entity.ProNode;
 import com.cyou.gr.entity.ProcessNode;
 import com.cyou.gr.entity.Project;
+import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.ProjectService;
 
 @Transactional
@@ -72,6 +73,11 @@ public class ProjectServiceImpl implements ProjectService {
 		down.setId(downId);
 		down.setSort(upSort);
 		projectMapper.updateByPrimaryKeySelective(down);
+	}
+
+	@Override
+	public ProjectVo selectProjectRelatedById(Integer id) {
+		return projectMapper.selectProjectRelatedById(id);
 	}
 
 }

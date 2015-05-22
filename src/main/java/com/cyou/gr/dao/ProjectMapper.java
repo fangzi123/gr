@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.cyou.gr.entity.Project;
+import com.cyou.gr.entity.vo.ProjectVo;
 
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer id);
@@ -22,4 +23,6 @@ public interface ProjectMapper {
 	List<Project> selectProList(@Param(value = "flag")Boolean flag);
 
 	Integer selectMaxSort();
+
+	ProjectVo selectProjectRelatedById(Integer id);
 }

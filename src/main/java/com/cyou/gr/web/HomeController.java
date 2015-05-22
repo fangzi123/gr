@@ -29,7 +29,7 @@ public class HomeController extends _BaseController{
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<Process> procList=processService.selectProcessList(true);
+		List<Process> procList=processService.selectProcessRelatedList();
 		model.addAttribute("procList", procList);
 		return "index";
 	}

@@ -6,6 +6,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ProcessResultMap" type="com.cyou.gr.entity.Process" extends="BaseResultMap">
     <collection property="projList" ofType="com.cyou.gr.entity.Project" columnPrefix="proj_">
 	    <id property="id" column="id"/>
 	    <result property="name" column="name"/>
@@ -38,10 +40,6 @@
 			</collection>
   		</collection>
   	</collection>
-<!--     <collection property="procNodeList" ofType="ProcessNode"> -->
-<!-- 	    <id property="id" column="procNodeId"/> -->
-<!-- 	    <result property="name" column="procNodeName"/> -->
-<!--   	</collection> -->
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, sort, flag
@@ -53,10 +51,17 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectProcessList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from process
+    <if test="flag != null" >
+        where flag = #{flag,jdbcType=BIT}
+    </if>
+  </select>
+  <select id="selectProcessRelatedList" resultMap="ProcessResultMap" >
     select  
     proc.*
     ,proj.id proj_id,proj.name proj_name,proj.release_line proj_release_line
-<!--     ,procn.id procNodeId,procn.name procNodeName -->
     ,projn.id proj_projn_id ,projn.project_id proj_projn_project_id ,projn.process_node_id proj_projn_process_node_id
     ,projn.status proj_projn_status,projn.is_normal proj_projn_is_normal,projn.current_progress_desc proj_projn_cp_desc
    	,procn1.id proj_projn_procn_id,procn1.name proj_projn_procn_name,procn1.process_type proj_projn_procn_type
@@ -64,14 +69,11 @@
    	,ft.id proj_projn_fee_temp_id, ft.name proj_projn_fee_temp_name, ft.sort proj_projn_fee_temp_sort, ft.flag proj_projn_fee_temp_flag
     from process proc 
     left join project proj on proj.process_id=proc.id
-<!--     left join process_node procn on procn.process_id=proc.id -->
     left join pro_node projn on projn.project_id=proj.id 
     left join process_node procn1 on procn1.id=projn.process_node_id
     left join fee f on f.pro_node_id=projn.id
     left join fee_template ft on ft.id=f.fee_template_id
-    <if test="flag != null" >
-        where proc.flag = #{flag,jdbcType=BIT}
-    </if>
+    where proc.flag = true
     order by proc.sort,proj.sort,procn1.sort
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

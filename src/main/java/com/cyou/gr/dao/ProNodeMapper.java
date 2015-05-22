@@ -14,4 +14,6 @@ public interface ProNodeMapper {
     int updateByPrimaryKeySelective(ProNode record);
 
     int updateByPrimaryKey(ProNode record);
+
+	ProNode selectProjNodeList(Integer projectId);
 }

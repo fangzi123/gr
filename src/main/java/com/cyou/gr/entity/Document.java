@@ -7,7 +7,11 @@ public class Document {
 
     private String name;
 
+    private Integer processId;
+
     private Integer projectId;
+
+    private Integer procNodeId;
 
     private Integer proNodeId;
 
@@ -35,12 +39,28 @@ public class Document {
         this.name = name;
     }
 
+    public Integer getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Integer processId) {
+        this.processId = processId;
+    }
+
     public Integer getProjectId() {
         return projectId;
     }
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public Integer getProcNodeId() {
+        return procNodeId;
+    }
+
+    public void setProcNodeId(Integer procNodeId) {
+        this.procNodeId = procNodeId;
     }
 
     public Integer getProNodeId() {

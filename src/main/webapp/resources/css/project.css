@@ -1,0 +1,13 @@
+#gr i.mr,#gr i.cr,#gr em.mr,#gr em.cr{display:none;}					
+
+#cr q {height:2px;}
+#cr i.gr,#cr i.mr,#cr i.gr {display:none;}
+#cr td.over q {background:#43B3CB;}
+#cr em {display:none;}
+#cr em.cr {display:block;}
+
+#mr q {height:2px;}
+#mr i.gr,#mr i.cr,#mr i.gr {display:none;}
+#mr td.over q {background:#B5C90F;}
+#mr em {display:none;}
+#mr em.mr {display:block;}

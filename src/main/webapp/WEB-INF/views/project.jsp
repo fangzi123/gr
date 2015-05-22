@@ -1,3 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,41 +11,27 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<style>
-#gr i.mr,#gr i.cr,#gr em.mr,#gr em.cr{display:none;}					
-
-#cr q {height:2px;}
-#cr i.gr,#cr i.mr,#cr i.gr {display:none;}
-#cr td.over q {background:#43B3CB;}
-#cr em {display:none;}
-#cr em.cr {display:block;}
-
-#mr q {height:2px;}
-#mr i.gr,#mr i.cr,#mr i.gr {display:none;}
-#mr td.over q {background:#B5C90F;}
-#mr em {display:none;}
-#mr em.mr {display:block;}
-</style>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/project.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/project.js"></script>
 </head>
 
 <body>
-
-<!--#include file="inc/nav.html"-->
+<%@ include file="inc/nav.jsp"%>
 <!--nav-->
 <div id="content">
-	<!--#include file="inc/left_box.html"-->
+<jsp:include page="inc/left_box.jsp" flush="true"/> 
 	<!--left_box-->
 	<div id="right_box">
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="index.shtml">首页</a></li>
-                    <li><a href="index.shtml">评审进度查询</a></li>
-                    <li class="active">海战世界</li>
+                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>">评审进度查询</a></li>
+                    <li class="active">${project.name}</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">

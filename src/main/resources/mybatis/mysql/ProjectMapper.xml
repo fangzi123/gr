@@ -9,6 +9,14 @@
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
+  <resultMap id="ProVoResultMap" type="com.cyou.gr.entity.vo.ProjectVo" extends="BaseResultMap">
+	<association property="process" javaType="com.cyou.gr.entity.Process">
+		    <id property="id" column="ps_id"/>
+		    <result property="name" column="ps_name"/>
+		    <result property="flag" column="ps_flag"/>
+	</association>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     id, name, process_id, release_line, sort, flag
   </sql>
@@ -101,15 +109,10 @@
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <resultMap id="ProVoResultMap" type="com.cyou.gr.entity.vo.ProjectVo" extends="BaseResultMap">
-	<association property="process" javaType="com.cyou.gr.entity.Process">
-		    <id property="id" column="ps_id"/>
-		    <result property="name" column="ps_name"/>
-		    <result property="flag" column="ps_flag"/>
-	</association>
-  </resultMap>
+
    <select id="selectProList" resultMap="ProVoResultMap">
-    select pt.id,pt.name,pt.process_id,pt.release_line,pt.sort,pt.flag,ps.id ps_id,ps.name ps_name,ps.flag ps_flag
+    select pt.*
+    ,ps.id ps_id,ps.name ps_name,ps.flag ps_flag
     from project pt 
     left join process ps on ps.id=pt.process_id
     <if test="flag != null" >
@@ -119,5 +122,11 @@
   </select>
    <select id="selectMaxSort" resultType="java.lang.Integer">
     select IFNULL(max(sort)+1,0) from project
+  </select>
+  
+   <select id="selectProjectRelatedById" resultMap="ProVoResultMap">
+    select *
+    from project
+    where id = #{id,jdbcType=INTEGER} and flag=1
   </select>
 </mapper>
