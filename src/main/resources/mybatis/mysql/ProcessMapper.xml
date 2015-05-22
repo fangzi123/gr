@@ -6,28 +6,41 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
-    <collection property="projList" ofType="Project">
+    <collection property="projList" ofType="com.cyou.gr.entity.Project">
 	    <id property="id" column="projId"/>
 	    <result property="name" column="projName"/>
-	    <collection property="projNodeList" ofType="ProNode">
+	    <collection property="projNodeList" ofType="com.cyou.gr.entity.ProNode">
 		    <id property="id" column="pjn_id"/>
 		    <result property="projectId" column="pjn_pjId"/>
 		    <result property="processNodeId" column="pjn_pcnId"/>
 		    <result property="status" column="pjn_status" />
 			<result property="isNormal" column="pjn_isNormal"/>
 			<result property="currentProgressDesc" column="pjn_cpDesc"/>
-		    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode">
-			    <id property="id" column="pjn_ps_id"/>
-			    <result property="name" column="pjn_ps_name"/>
-			    <result property="processType" column="pjn_ps_type"/>
-			    <result property="flag" column="pjn_ps_flag"/>
+		    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pjn_ps_">
+			    <id property="id" column="id"/>
+			    <result property="name" column="name"/>
+			    <result property="processType" column="type"/>
+			    <result property="flag" column="flag"/>
 			</association>
+			<collection property="feeList" ofType="com.cyou.gr.entity.Fee" columnPrefix="fee_">
+				<id property="id" column="id"/>
+			    <result column="pro_node_id" property="proNodeId"/>
+			    <result column="fee_template_id" property="feeTemplateId"/>
+			    <result column="money" property="money"/>
+			    <result column="display" property="display"/>
+			    <association property="feeTemplate" javaType="com.cyou.gr.entity.FeeTemplate" columnPrefix="temp_">
+				    <id property="id" column="id"/>
+				    <result property="name" column="name"/>
+				    <result property="sort" column="sort"/>
+				    <result property="flag" column="flag"/>
+				</association>
+			</collection>
   		</collection>
   	</collection>
-    <collection property="procNodeList" ofType="ProcessNode">
-	    <id property="id" column="procNodeId"/>
-	    <result property="name" column="procNodeName"/>
-  	</collection>
+<!--     <collection property="procNodeList" ofType="ProcessNode"> -->
+<!-- 	    <id property="id" column="procNodeId"/> -->
+<!-- 	    <result property="name" column="procNodeName"/> -->
+<!--   	</collection> -->
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, sort, flag
@@ -42,14 +55,18 @@
     select 
     proc.*
     ,proj.id projId,proj.name projName
-    ,procn.id procNodeId,procn.name procNodeName
+<!--     ,procn.id procNodeId,procn.name procNodeName -->
     ,projn.id pjn_id ,projn.project_id pjn_pjId ,projn.process_node_id pjn_pcnId,projn.status pjn_status,projn.is_normal pjn_isNormal,projn.current_progress_desc pjn_cpDesc
    	,procn1.id pjn_ps_id,procn1.name pjn_ps_name,procn1.process_type pjn_ps_type
+   	,f.id fee_id, f.pro_node_id fee_pro_node_id, f.fee_template_id fee_fee_template_id,f.money fee_money, f.display fee_display
+   	,ft.id fee_temp_id, ft.name fee_temp_name, ft.sort fee_temp_sort, ft.flag fee_temp_flag
     from process proc 
     left join project proj on proj.process_id=proc.id
-    left join process_node procn on procn.process_id=proc.id
+<!--     left join process_node procn on procn.process_id=proc.id -->
     left join pro_node projn on projn.project_id=proj.id 
     left join process_node procn1 on procn1.id=projn.process_node_id
+    left join fee f on f.pro_node_id=projn.id
+    left join fee_template ft on ft.id=f.fee_template_id
     <if test="flag != null" >
         where proc.flag = #{flag,jdbcType=BIT}
     </if>

@@ -14,7 +14,7 @@ public class Process {
     
     private List<Project> projList;
     
-    private List<ProcessNode> procNodeList;
+//    private List<ProcessNode> procNodeList;
     
     public Integer getId() {
         return id;
@@ -56,11 +56,4 @@ public class Process {
 		this.projList = projList;
 	}
 
-	public List<ProcessNode> getProcNodeList() {
-		return procNodeList;
-	}
-
-	public void setProcNodeList(List<ProcessNode> procNodeList) {
-		this.procNodeList = procNodeList;
-	}
 }

@@ -8,6 +8,7 @@ public class Fee {
     private Integer proNodeId;
 
     private Integer feeTemplateId;
+    private FeeTemplate feeTemplate;
 
     private BigDecimal money;
 
@@ -52,4 +53,12 @@ public class Fee {
     public void setDisplay(Boolean display) {
         this.display = display;
     }
+
+	public FeeTemplate getFeeTemplate() {
+		return feeTemplate;
+	}
+
+	public void setFeeTemplate(FeeTemplate feeTemplate) {
+		this.feeTemplate = feeTemplate;
+	}
 }

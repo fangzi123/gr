@@ -7,14 +7,14 @@
     <result column="process_node_id" property="processNodeId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="CHAR" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
-    <result column="end_tiem" property="endTiem" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
     <result column="review_time" property="reviewTime" jdbcType="TIMESTAMP" />
     <result column="is_normal" property="isNormal" jdbcType="CHAR" />
     <result column="current_progress_desc" property="currentProgressDesc" jdbcType="VARCHAR" />
     <result column="additional_desc" property="additionalDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, project_id, process_node_id, status, start_time, end_tiem, review_time, is_normal, 
+    id, project_id, process_node_id, status, start_time, end_time, review_time, is_normal, 
     current_progress_desc, additional_desc
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -29,11 +29,11 @@
   </delete>
   <insert id="insert" parameterType="com.cyou.gr.entity.ProNode" >
     insert into pro_node (id, project_id, process_node_id, 
-      status, start_time, end_tiem, 
+      status, start_time, end_time, 
       review_time, is_normal, current_progress_desc, 
       additional_desc)
     values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, 
-      #{status,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTiem,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
       #{reviewTime,jdbcType=TIMESTAMP}, #{isNormal,jdbcType=CHAR}, #{currentProgressDesc,jdbcType=VARCHAR}, 
       #{additionalDesc,jdbcType=VARCHAR})
   </insert>
@@ -55,8 +55,8 @@
       <if test="startTime != null" >
         start_time,
       </if>
-      <if test="endTiem != null" >
-        end_tiem,
+      <if test="endTime != null" >
+        end_time,
       </if>
       <if test="reviewTime != null" >
         review_time,
@@ -87,8 +87,8 @@
       <if test="startTime != null" >
         #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="endTiem != null" >
-        #{endTiem,jdbcType=TIMESTAMP},
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="reviewTime != null" >
         #{reviewTime,jdbcType=TIMESTAMP},
@@ -119,8 +119,8 @@
       <if test="startTime != null" >
         start_time = #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="endTiem != null" >
-        end_tiem = #{endTiem,jdbcType=TIMESTAMP},
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="reviewTime != null" >
         review_time = #{reviewTime,jdbcType=TIMESTAMP},
@@ -143,7 +143,7 @@
       process_node_id = #{processNodeId,jdbcType=INTEGER},
       status = #{status,jdbcType=CHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_tiem = #{endTiem,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
       review_time = #{reviewTime,jdbcType=TIMESTAMP},
       is_normal = #{isNormal,jdbcType=CHAR},
       current_progress_desc = #{currentProgressDesc,jdbcType=VARCHAR},

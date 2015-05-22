@@ -1,6 +1,7 @@
 package com.cyou.gr.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProNode {
     private Integer id;
@@ -14,7 +15,7 @@ public class ProNode {
 
     private Date startTime;
 
-    private Date endTiem;
+    private Date endTime;
 
     private Date reviewTime;
 
@@ -24,6 +25,7 @@ public class ProNode {
 
     private String additionalDesc;
 
+    private List<Fee> feeList;
     public Integer getId() {
         return id;
     }
@@ -64,12 +66,12 @@ public class ProNode {
         this.startTime = startTime;
     }
 
-    public Date getEndTiem() {
-        return endTiem;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setEndTiem(Date endTiem) {
-        this.endTiem = endTiem;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Date getReviewTime() {
@@ -110,5 +112,13 @@ public class ProNode {
 
 	public void setProcessNode(ProcessNode processNode) {
 		this.processNode = processNode;
+	}
+
+	public List<Fee> getFeeList() {
+		return feeList;
+	}
+
+	public void setFeeList(List<Fee> feeList) {
+		this.feeList = feeList;
 	}
 }

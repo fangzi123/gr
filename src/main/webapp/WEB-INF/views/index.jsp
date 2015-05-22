@@ -69,20 +69,26 @@
 						<c:forEach items="${proj.projNodeList}" var="projNode" varStatus="status">
 							<c:set var="pcType0" value="${fn:toLowerCase(projNode.processNode.processType)}"/>
 							<c:set var="pcType" value="${fn:substring(pcType0, fn:length(pcType0)-2, fn:length(pcType0))}"/>
+							
+							<c:set var="feeVar" value=""/>
+							<c:forEach items="${projNode.feeList}" var="fee">
+								<c:set var="fee_i" value="${fee.feeTemplate.name}:${fee.money}"/>
+								<c:set var="feeVar" value="${feeVar}${fee_i}<br>"/>
+							</c:forEach>
 							<c:choose>
 								<c:when test="${'已完成' eq projNode.status}">
 									<td class="over"><c:if test="${!status.last}"><q></q></c:if>
-										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i>
+										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
 									</td>
 								</c:when>
 								<c:when test="${'进行中' eq projNode.status}">
 									<td class="now"><em class="${pcType}"></em><c:if test="${!status.last}"><q></q></c:if>
-										<i class="${pcType} pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="费用工：1234$<br>费用B：3131$"></i>
+										<i class="${pcType} pop_show" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
 									</td>
 								</c:when>
 								<c:otherwise>
 									<td><c:if test="${!status.last}"><q></q></c:if>
-										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="费用工：1234$<br>费用B：3131$"></i>
+										<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
 									</td>
 								</c:otherwise>
 							</c:choose>
