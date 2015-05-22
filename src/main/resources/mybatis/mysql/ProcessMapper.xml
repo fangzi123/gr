@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cyou.gr.dao.ProcessMapper" >
-  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.Process" >
+  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.Process">
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="BIT" />
-    <collection property="projList" ofType="com.cyou.gr.entity.Project">
-	    <id property="id" column="projId"/>
-	    <result property="name" column="projName"/>
-	    <collection property="projNodeList" ofType="com.cyou.gr.entity.ProNode">
-		    <id property="id" column="pjn_id"/>
-		    <result property="projectId" column="pjn_pjId"/>
-		    <result property="processNodeId" column="pjn_pcnId"/>
-		    <result property="status" column="pjn_status" />
-			<result property="isNormal" column="pjn_isNormal"/>
-			<result property="currentProgressDesc" column="pjn_cpDesc"/>
-		    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pjn_ps_">
+    <collection property="projList" ofType="com.cyou.gr.entity.Project" columnPrefix="proj_">
+	    <id property="id" column="id"/>
+	    <result property="name" column="name"/>
+	    <result property="releaseLine" column="release_line"/>
+	    <collection property="projNodeList" ofType="com.cyou.gr.entity.ProNode" columnPrefix="projn_">
+		    <id property="id" column="id"/>
+		    <result property="projectId" column="project_id"/>
+		    <result property="processNodeId" column="process_node_id"/>
+		    <result property="status" column="status" />
+			<result property="isNormal" column="is_normal"/>
+			<result property="currentProgressDesc" column="cp_desc"/>
+		    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="procn_">
 			    <id property="id" column="id"/>
 			    <result property="name" column="name"/>
 			    <result property="processType" column="type"/>
@@ -52,14 +53,15 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectProcessList" resultMap="BaseResultMap" >
-    select 
+    select  
     proc.*
-    ,proj.id projId,proj.name projName
+    ,proj.id proj_id,proj.name proj_name,proj.release_line proj_release_line
 <!--     ,procn.id procNodeId,procn.name procNodeName -->
-    ,projn.id pjn_id ,projn.project_id pjn_pjId ,projn.process_node_id pjn_pcnId,projn.status pjn_status,projn.is_normal pjn_isNormal,projn.current_progress_desc pjn_cpDesc
-   	,procn1.id pjn_ps_id,procn1.name pjn_ps_name,procn1.process_type pjn_ps_type
-   	,f.id fee_id, f.pro_node_id fee_pro_node_id, f.fee_template_id fee_fee_template_id,f.money fee_money, f.display fee_display
-   	,ft.id fee_temp_id, ft.name fee_temp_name, ft.sort fee_temp_sort, ft.flag fee_temp_flag
+    ,projn.id proj_projn_id ,projn.project_id proj_projn_project_id ,projn.process_node_id proj_projn_process_node_id
+    ,projn.status proj_projn_status,projn.is_normal proj_projn_is_normal,projn.current_progress_desc proj_projn_cp_desc
+   	,procn1.id proj_projn_procn_id,procn1.name proj_projn_procn_name,procn1.process_type proj_projn_procn_type
+   	,f.id proj_projn_fee_id, f.pro_node_id proj_projn_fee_pro_node_id, f.fee_template_id proj_projn_fee_fee_template_id,f.money proj_projn_fee_money, f.display proj_projn_fee_display
+   	,ft.id proj_projn_fee_temp_id, ft.name proj_projn_fee_temp_name, ft.sort proj_projn_fee_temp_sort, ft.flag proj_projn_fee_temp_flag
     from process proc 
     left join project proj on proj.process_id=proc.id
 <!--     left join process_node procn on procn.process_id=proc.id -->

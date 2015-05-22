@@ -32,6 +32,7 @@
 		<!--路径导航-->
 		<div class="choose">
         	<div class="btn-group" role="group" aria-label="" id="process_btn">
+              <button type="button" class="btn btn-default active">全部</button>
         	<c:forEach items="${procList}" var="process">
               <button type="button" class="btn btn-default">${process.name }</button>
             </c:forEach>
@@ -50,8 +51,8 @@
 		<div class="panel panel-default">
 		<div class="panel-body">
 			<table class="table tb1">
-				<tbody>
 				<c:forEach items="${process.projList}" var="proj">
+				<tbody proj_id="${proj.id}" proj_releaseline="${proj.releaseLine}">
                 	<tr>
                     	<th width="100"></th>
                     	<c:forEach items="${proj.projNodeList}" var="projNode">
@@ -112,8 +113,8 @@
 		                    </c:if>
 	                    </c:if>
                     </c:forEach>
-                    </c:forEach>
-				</tbody>
+					</tbody>
+                 </c:forEach>
 			</table>
 		</div>
 		</div>
@@ -126,22 +127,31 @@
 <script>
 $('th').wrapInner("<b></b>");
 //process_btn
+
 $('#process_btn button').click(function(){
-	if($(this).hasClass('active')){
-		$('#process_btn button').removeClass('active');
-		$('.panel').css('display','block');
-	}
-	else{
+	if(!$(this).hasClass('active')){
 		$('#process_btn button').removeClass('active');
 		$(this).addClass('active');
-		$('.panel').css('display','none');
-		$('body').find('.panel').eq($(this).index()).css('display','block');
-	};
+		if('全部'==$(this).text()){
+			$('.panel').show();
+		}else{
+			$('.panel').hide();
+			$('body').find('.panel').eq($(this).index()-1).show();
+		}
+	}
 });
 //line_btn
 $('#line_btn button').click(function(){
-	$('#line_btn button').removeClass('active');
-	$(this).addClass('active');
+	if(!$(this).hasClass('active')){
+		$('#line_btn button').removeClass('active');
+		$(this).addClass('active');
+		if('全部'==$(this).text()){
+			$('.panel').find("tbody").show();
+		}else{
+			$('.panel').find("tbody").hide();
+			$('.panel').find("tbody[proj_releaseline='"+$(this).text()+"']").show();
+		}
+	}
 });
 $(function (){$("[data-toggle='popover']").popover({html : true});});
 $(function (){$('.pop_show').popover('show');});
