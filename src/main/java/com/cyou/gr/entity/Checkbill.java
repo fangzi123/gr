@@ -6,6 +6,7 @@ public class Checkbill {
     private Integer proNodeId;
 
     private Integer checkbillTemplateId;
+    private CheckbillTemplate checkbillTemplate;
 
     private Boolean isqualified;
 
@@ -60,4 +61,12 @@ public class Checkbill {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public CheckbillTemplate getCheckbillTemplate() {
+		return checkbillTemplate;
+	}
+
+	public void setCheckbillTemplate(CheckbillTemplate checkbillTemplate) {
+		this.checkbillTemplate = checkbillTemplate;
+	}
 }

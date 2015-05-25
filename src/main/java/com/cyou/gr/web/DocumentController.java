@@ -53,8 +53,8 @@ public class DocumentController extends _BaseController{
 			HttpServletResponse response) throws  Exception {
 		ModelMap mm=new ModelMap();
 		Integer projectId=this.findIntegerParameterValue(request, "projectId");
-		ProNode proNode=projectNodeService.selectProjNodeList(projectId);
-        mm.addAttribute("proNode", proNode);
+		List<ProNode> proNodeList=projectNodeService.selectProjNodeList(projectId);
+        mm.addAttribute("proNodeList", proNodeList);
 		return mm;
 	}
 }

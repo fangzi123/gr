@@ -10,11 +10,93 @@
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ProVoResultMap" type="com.cyou.gr.entity.vo.ProjectVo" extends="BaseResultMap">
-	<association property="process" javaType="com.cyou.gr.entity.Process">
-		    <id property="id" column="ps_id"/>
-		    <result property="name" column="ps_name"/>
-		    <result property="flag" column="ps_flag"/>
+	<association property="process" javaType="com.cyou.gr.entity.Process" columnPrefix="pc_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+		    <result property="flag" column="flag"/>
 	</association>
+  </resultMap>
+  <resultMap id="ProjectResultMap_" type="com.cyou.gr.entity.vo.ProjectVo" extends="BaseResultMap">
+      <collection property="projNodeList" ofType="com.cyou.gr.entity.ProNode" columnPrefix="pjn_">
+		    <id property="id" column="id"/>
+		    <result property="projectId" column="project_id"/>
+		    <result property="processNodeId" column="process_node_id"/>
+		    <result property="status" column="status" />
+			<result property="isNormal" column="is_normal"/>
+			<result property="currentProgressDesc" column="cp_desc"/>
+			<result column="start_time" property="startTime"/>
+		    <result column="end_time" property="endTime"/>
+		    <result column="review_time" property="reviewTime"/>
+		    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+			    <id property="id" column="id"/>
+			    <result property="name" column="name"/>
+			    <result property="processType" column="process_type"/>
+			    <result property="timeType" column="time_type"/>
+			    <result property="flag" column="flag"/>
+			    <result property="hasFee" column="has_fee"/>
+			    <result property="hasManpower" column="has_manPower"  />
+			    <result property="hasTaskbook" column="has_taskBook"  />
+			    <result property="hasCheckbill" column="has_checkBill"  />
+			    <result  property="hasDocument" column="has_document"  />
+			</association>
+			<collection property="feeList" ofType="com.cyou.gr.entity.Fee" columnPrefix="fee_">
+				<id property="id" column="id"/>
+			    <result column="pro_node_id" property="proNodeId"/>
+			    <result column="fee_template_id" property="feeTemplateId"/>
+			    <result column="money" property="money"/>
+			    <result column="display" property="display"/>
+			    <association property="feeTemplate" javaType="com.cyou.gr.entity.FeeTemplate" columnPrefix="temp_">
+				    <id property="id" column="id"/>
+				    <result property="name" column="name"/>
+				    <result property="sort" column="sort"/>
+				    <result property="flag" column="flag"/>
+				</association>
+			</collection>
+			<collection property="manpowerList" ofType="com.cyou.gr.entity.Manpower" columnPrefix="man_">
+				<id property="id" column="id"/>
+			    <result column="pro_node_id" property="proNodeId"/>
+			    <result column="manpower_template_id" property="manpowerTemplateId"/>
+			    <result column="core_man" property="coreMan"/>
+			    <association property="manpowerTemplate" javaType="com.cyou.gr.entity.ManpowerTemplate" columnPrefix="temp_">
+				    <id property="id" column="id"/>
+				    <result property="projectTeam" column="project_team"/>
+				    <result property="standardModel" column="standard_model"/>
+				    <result property="sort" column="sort"/>
+				    <result property="flag" column="flag"/>
+				</association>
+			</collection>
+			<collection property="taskbookList" ofType="com.cyou.gr.entity.TaskBook" columnPrefix="task_">
+				<id property="id" column="id"/>
+			    <result column="pro_node_id" property="proNodeId"/>
+			    <result column="task_book_template_id" property="taskBookTemplateId"/>
+			    <result column="quota_num" property="quotaNum" />
+			    <result column="quota_num_real" property="quotaNumReal" />
+			    <association property="taskBookTemplate" javaType="com.cyou.gr.entity.TaskBookTemplate" columnPrefix="temp_">
+				    <id property="id" column="id"/>
+				    <result column="quota_name" property="quotaName" />
+   					<result column="quota_type" property="quotaType" />
+				    <result property="sort" column="sort"/>
+				    <result property="flag" column="flag"/>
+				</association>
+			</collection>
+			<collection property="checkbillList" ofType="com.cyou.gr.entity.Checkbill" columnPrefix="check_">
+				<id property="id" column="id"/>
+			    <result column="pro_node_id" property="proNodeId"/>
+			    <result column="checkbill_template_id" property="checkbillTemplateId"/>
+			    <result column="isqualified" property="isqualified"/>
+			    <result column="check_item" property="checkItem"/>
+			    <result column="remark" property="remark"/>
+			    <association property="checkbillTemplate" javaType="com.cyou.gr.entity.CheckbillTemplate" columnPrefix="temp_">
+				    <id property="id" column="id"/>
+				    <result column="check_item" property="checkItem"/>
+				    <result column="check_item_property" property="checkItemProperty" />
+				    <result column="remark" property="remark" />
+				    <result column="isqualified" property="isqualified"  />
+				    <result property="sort" column="sort"/>
+				    <result property="flag" column="flag"/>
+				</association>
+			</collection>
+  		</collection>
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -112,9 +194,9 @@
 
    <select id="selectProList" resultMap="ProVoResultMap">
     select pt.*
-    ,ps.id ps_id,ps.name ps_name,ps.flag ps_flag
+    ,pc.id pc_id,pc.name pc_name,pc.flag pc_flag
     from project pt 
-    left join process ps on ps.id=pt.process_id
+    left join process pc on pc.id=pt.process_id
     <if test="flag != null" >
         where pt.flag = #{flag,jdbcType=BIT}
     </if>
@@ -124,9 +206,32 @@
     select IFNULL(max(sort)+1,0) from project
   </select>
   
-   <select id="selectProjectRelatedById" resultMap="ProVoResultMap">
-    select *
-    from project
-    where id = #{id,jdbcType=INTEGER} and flag=1
+   <select id="selectProjectRelatedById" resultMap="ProjectResultMap_">
+    select p.*
+    ,pjn.id pjn_id ,pjn.project_id pjn_project_id ,pjn.process_node_id pjn_process_node_id,pjn.status pjn_status,pjn.is_normal pjn_is_normal,pjn.current_progress_desc pjn_cp_desc
+   	,pjn.start_time pjn_start_time,pjn.end_time pjn_end_time,pjn.review_time pjn_review_time
+   	,pcn.id pjn_pcn_id,pcn.name pjn_pcn_name,pcn.process_type pjn_pcn_process_type,pcn.time_type pjn_pcn_time_type
+   	,pcn.has_manPower pjn_pcn_has_manPower,pcn.has_fee pjn_pcn_has_fee,pcn.has_taskBook pjn_pcn_has_taskBook,pcn.has_checkBill pjn_pcn_has_checkBill,pcn.has_document pjn_pcn_has_document
+    ,f.id pjn_fee_id, f.pro_node_id pjn_fee_pro_node_id, f.fee_template_id pjn_fee_fee_template_id,f.money pjn_fee_money, f.display pjn_fee_display
+   	,ft.id pjn_fee_temp_id, ft.name pjn_fee_temp_name, ft.sort pjn_fee_temp_sort, ft.flag pjn_fee_temp_flag
+   	,man.id pjn_man_id,man.core_man pjn_man_core_man
+   	,mant.id pjn_man_temp_id,mant.project_team pjn_man_temp_project_team,mant.standard_model pjn_man_temp_standard_model,mant.sort pjn_man_temp_sort,mant.flag pjn_man_temp_flag
+   	,task.id pjn_task_id,task.quota_num pjn_task_quota_num,task.quota_num_real pjn_task_quota_num_real
+   	,taskt.id pjn_task_temp_id,taskt.quota_name pjn_task_temp_quota_name,taskt.quota_type pjn_task_temp_quota_type
+   	,cb.id pjn_check_id,cb.isqualified pjn_check_isqualified,cb.check_item pjn_check_check_item,cb.remark pjn_check_remark
+   	,cbt.id pjn_check_temp_id,cbt.check_item pjn_check_temp_check_item,cbt.check_item_property pjn_check_temp_check_item_property,cbt.remark pjn_check_temp_remark,cbt.isqualified pjn_check_temp_isqualified
+    from project p
+    left join pro_node pjn on pjn.project_id=p.id
+    left join process_node pcn on pcn.id=pjn.process_node_id
+    left join fee f on f.pro_node_id=pjn.id
+    left join fee_template ft on ft.id=f.fee_template_id
+    left join manpower man on man.pro_node_id=pjn.id
+    left join manpower_template mant on mant.id=man.manpower_template_id
+    left join task_book task on task.pro_node_id=pjn.id
+    left join task_book_template taskt on taskt.id=task.task_book_template_id
+    left join checkbill cb on cb.pro_node_id=pjn.id
+    left join checkbill_template cbt on cbt.id=cb.checkbill_template_id
+    where p.id = #{id,jdbcType=INTEGER} and p.flag=1
+    order by pcn.sort,ft.sort,mant.sort,taskt.sort,cbt.sort
   </select>
 </mapper>

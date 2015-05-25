@@ -1,9 +1,11 @@
 package com.cyou.gr.service;
 
+import java.util.List;
+
 import com.cyou.gr.entity.ProNode;
 
 public interface ProjectNodeService {
 
-	ProNode selectProjNodeList(Integer projectId);
+	List<ProNode> selectProjNodeList(Integer projectId);
 
 }

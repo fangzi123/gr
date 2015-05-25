@@ -12,6 +12,11 @@
     <result column="is_normal" property="isNormal" jdbcType="CHAR" />
     <result column="current_progress_desc" property="currentProgressDesc" jdbcType="VARCHAR" />
     <result column="additional_desc" property="additionalDesc" jdbcType="VARCHAR" />
+	<association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+		    <result property="flag" column="flag"/>
+	</association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, project_id, process_node_id, status, start_time, end_time, review_time, is_normal, 
@@ -150,4 +155,11 @@
       additional_desc = #{additionalDesc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectProjNodeList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select pn.* 
+  ,pcn.id pcn_id,pcn.name pcn_name,pcn.flag pcn_flag
+  from pro_node pn
+  left join process_node pcn on pcn.id=pn.process_node_id
+  where  pcn.flag=1 and pn.project_id = #{projectId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -106,28 +106,37 @@ public class ProcessNode {
 		this.hasFee = hasFee;
 	}
 
-	public Boolean getHasManPower() {
+
+	public String getNodesOverview() {
+		return nodesOverview;
+	}
+
+	public void setNodesOverview(String nodesOverview) {
+		this.nodesOverview = nodesOverview;
+	}
+
+	public Boolean getHasManpower() {
 		return hasManpower;
 	}
 
-	public void setHasManPower(Boolean hasManPower) {
-		this.hasManpower = hasManPower;
+	public void setHasManpower(Boolean hasManpower) {
+		this.hasManpower = hasManpower;
 	}
 
-	public Boolean getHasTaskBook() {
+	public Boolean getHasTaskbook() {
 		return hasTaskbook;
 	}
 
-	public void setHasTaskBook(Boolean hasTaskBook) {
-		this.hasTaskbook = hasTaskBook;
+	public void setHasTaskbook(Boolean hasTaskbook) {
+		this.hasTaskbook = hasTaskbook;
 	}
 
-	public Boolean getHasCheckBill() {
+	public Boolean getHasCheckbill() {
 		return hasCheckbill;
 	}
 
-	public void setHasCheckBill(Boolean hasCheckBill) {
-		this.hasCheckbill = hasCheckBill;
+	public void setHasCheckbill(Boolean hasCheckbill) {
+		this.hasCheckbill = hasCheckbill;
 	}
 
 	public Boolean getHasDocument() {
@@ -136,13 +145,5 @@ public class ProcessNode {
 
 	public void setHasDocument(Boolean hasDocument) {
 		this.hasDocument = hasDocument;
-	}
-
-	public String getNodesOverview() {
-		return nodesOverview;
-	}
-
-	public void setNodesOverview(String nodesOverview) {
-		this.nodesOverview = nodesOverview;
 	}
 }

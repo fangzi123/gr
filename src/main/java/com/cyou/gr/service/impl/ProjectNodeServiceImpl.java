@@ -1,5 +1,7 @@
 package com.cyou.gr.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,7 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 	private ProNodeMapper proNodeMapper;
 
 	@Override
-	public ProNode selectProjNodeList(Integer projectId) {
+	public List<ProNode> selectProjNodeList(Integer projectId) {
 		return proNodeMapper.selectProjNodeList(projectId);
 	}
 

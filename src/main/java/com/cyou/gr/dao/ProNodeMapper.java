@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.ProNode;
 
 public interface ProNodeMapper {
@@ -15,5 +17,5 @@ public interface ProNodeMapper {
 
     int updateByPrimaryKey(ProNode record);
 
-	ProNode selectProjNodeList(Integer projectId);
+	List<ProNode> selectProjNodeList(Integer projectId);
 }

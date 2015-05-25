@@ -5,17 +5,18 @@ import java.util.List;
 import com.cyou.gr.entity.Document;
 
 public interface DocumentMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Document record);
+	int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(Document record);
+	int insert(Document record);
 
-    Document selectByPrimaryKey(Integer id);
+	int insertSelective(Document record);
 
-    int updateByPrimaryKeySelective(Document record);
+	Document selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(Document record);
+	int updateByPrimaryKeySelective(Document record);
+
+	int updateByPrimaryKey(Document record);
 
 	List<Document> selectDocList();
 }

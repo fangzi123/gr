@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String contextPath = pageContext.getServletContext().getContextPath();
 %>
@@ -16,7 +17,7 @@
 <link href="<%=contextPath%>/resources/css/project.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/project.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/project.js"></script>
 </head>
 
 <body>
@@ -43,124 +44,67 @@
 		<div class="panel-body">
 			<table class="table tb1">
             	<tbody>
-				<tr>
+					<tr>
                     	<th width="100"></th>
-                        <th>GR0</th>
-                        <th>报审</th>
-                        <th>GR1</th>
-                        <th>用研</th>
-                        <th>MR1</th>
-                        <th>启宣</th>
-                        <th>TR1</th>
-                        <th>GR2</th>
-                        <th>CCB1</th>
-                        <th>CCB2</th>
-                        <th>MR2</th>
-                        <th>TR2</th>
-                        <th>GR3</th>
-                        <th>版号</th>
-                        <th>CB</th>
-                        <th>OB</th>
-                        <th>运营</th>
-                        <th>停运</th>
-                    </tr>
-					<tr id="gr">
-						<td align="center"><a href="porject.shtml">海战世界</a></td>
-						<td class="over"><q></q><a href="#gr0" data-toggle="tab" data-nav="gr0"><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></a></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><a href="#gr1" data-toggle="tab" data-nav="gr1"><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></a></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="cr"></em><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr id="cr">
-						<td align="center">CR</td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="cr"></em><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
-					<tr id="mr">
-						<td align="center">MR</td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="over"><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td class="now"><em class="cr"></em><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="2015-03-19"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="mr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><q></q><i class="cr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-						<td><i class="gr" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="有提示内容"></i></td>
-					</tr>
+                    	<c:forEach items="${project.projNodeList}" var="pjn">
+                        	<th>${pjn.processNode.name}</th>
+                        </c:forEach>
+               		</tr>
+               		<c:forEach items="${pcTypeSet}" var="type">
+	   					<c:set var="type0" value="${fn:toLowerCase(type)}"/>
+						<c:set var="type1" value="${fn:substring(type0, fn:length(type0)-2, fn:length(type0))}"/>
+						<tr id="${type1}">
+							<td align="center">${type}</td>
+		               		<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
+		               				<c:set var="pcType0" value="${fn:toLowerCase(pjn.processNode.processType)}"/>
+									<c:set var="pcType" value="${fn:substring(pcType0, fn:length(pcType0)-2, fn:length(pcType0))}"/>
+									<c:set var="feeVar" value=""/>
+									<c:forEach items="${pjn.feeList}" var="fee">
+										<c:set var="fee_i" value="${fee.feeTemplate.name}:${fee.money}"/>
+										<c:set var="feeVar" value="${feeVar}${fee_i} "/>
+									</c:forEach>
+		                   			<c:choose>
+										<c:when test="${'已完成' eq pjn.status}">
+											<td class="over"><c:if test="${!status.last}"><q></q></c:if>
+												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
+													<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
+												</a>
+											</td>
+										</c:when>
+										<c:when test="${'进行中' eq pjn.status}">
+											<td class="now"><em class="${pcType}"></em><c:if test="${!status.last}"><q></q></c:if>
+												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
+													<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
+												</a>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td><c:if test="${!status.last}"><q></q></c:if><a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
+												<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i></a>
+											</td>
+										</c:otherwise>
+									</c:choose>
+		                    </c:forEach>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		</div>
 		<!--进度-->
 		<ul class="nav nav-tabs" id="nav_gr">
-			<li class="gr0"><a href="#gr0" data-toggle="tab">GR0</a></li>
-			<li class="bs"><a href="#bs" data-toggle="tab">报审</a></li>
-			<li class="gr1"><a href="#gr1" data-toggle="tab">GR1</a></li>
-			<li><a href="#yy" data-toggle="tab">用研</a></li>
-			<li><a href="#mr1" data-toggle="tab">MR1</a></li>
-			<li><a href="#qx" data-toggle="tab">启宣</a></li>
-			<li><a href="#tr1" data-toggle="tab">TR1</a></li>
-			<li><a href="#gr2" data-toggle="tab">GR2</a></li>
-			<li><a href="#ccb1" data-toggle="tab">CCB1</a></li>
-			<li><a href="#ccb2" data-toggle="tab">CCB2</a></li>
-			<li><a href="#mr2" data-toggle="tab">MR2</a></li>
-			<li><a href="#tr2" data-toggle="tab">TR2</a></li>
-			<li><a href="#gr3" data-toggle="tab">GR3</a></li>
-			<li><a href="#bh" data-toggle="tab">版号</a></li>
-			<li><a href="#cb" data-toggle="tab">CB</a></li>
-			<li><a href="#ob" data-toggle="tab">OB</a></li>
-			<li><a href="#yy" data-toggle="tab">运营</a></li>
-			<li><a href="#ty" data-toggle="tab">停运</a></li>
+			<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
+				<li class="${pjn.processNode.name}"><a href="#${pjn.processNode.name}" data-toggle="tab">${pjn.processNode.name}</a></li>
+			</c:forEach>
 		</ul>
 		<div class="panel panel-default panel_tabs">
 		<div class="panel-body tab-content">
-        	<div id="gr0" class="tab-pane fade in">内容111</div>
-        	<div id="bs" class="tab-pane fade in">内2222容</div>
-        	<div id="gr1" class="tab-pane fade in">
-            	<h3>开始时间：2015/12/12&nbsp;-&nbsp;结束时间：2012/12/12</h3>
+		<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
+        	<div id="${pjn.processNode.name}" class="tab-pane fade in">
+        		<c:if test="${'时间段' eq pjn.processNode.timeType}"><h3>开始时间：<fmt:formatDate  value="${pjn.startTime}" type="both" pattern="yyyy-MM-dd"/>&nbsp;-&nbsp;结束时间：<fmt:formatDate  value="${pjn.endTime}" type="both" pattern="yyyy-MM-dd"/></h3></c:if>
+        		<c:if test="${'时间点' eq pjn.processNode.timeType}"><h3>评审时间：<fmt:formatDate  value="${pjn.reviewTime}" type="both" pattern="yyyy-MM-dd"/></h3></c:if>
                	<hr>
-            	<h3>评审时间：2015/12/12</h3>
-               	<hr>
+               	<c:if test="${pjn.processNode.hasFee}">
                 <h3>费用</h3>
                 <table class="table table-condensed table-striped table-hover pass">
                     <thead>
@@ -170,18 +114,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${pjn.feeList}" var="fee">
                         <tr>
-                        <td>签约金$</td>
-                        <td>12,123,000$</td>
+                        <td>${fee.feeTemplate.name}</td>
+                        <td>${fee.money}</td>
                         </tr>
-                        <tr>
-                        <td>本地化包￥</td>
-                        <td>121,000￥</td>
-                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
-                <h3>人力</h3>
-                
+                </c:if>
+                <c:if test="${pjn.processNode.hasManpower}">
+                <h3>人力 </h3>
                 <table class="table table-condensed table-striped table-hover pass">
                     <thead>
                         <tr>
@@ -191,28 +134,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${pjn.manpowerList}" var="man">
                         <tr>
-                        <td>产品技术中心</td>
-                        <td>5</td>
-                        <td>7</td>
-                        </tr>
-                        <tr>
-                        <td>视觉创意中心-网站</td>
-                        <td>3</td>
-                        <td>3</td>
-                        </tr>
-                        <tr>
-                        <td>市场中心-媒介</td>
-                        <td>1</td>
-                        <td>2</td>
-                        </tr>
-                        <tr>
-                        <td>市场中心-品牌</td>
-                        <td>1</td>
-                        <td>0.5</td>
-                        </tr>
+                        <td>${man.manpowerTemplate.projectTeam }</td>
+                        <td>${man.coreMan }</td>
+                        <td>${man.manpowerTemplate.standardModel }</td>
+                        </tr></c:forEach>
                     </tbody>
                 </table>
+                </c:if>
+                <c:if test="${pjn.processNode.hasTaskbook}">
                 <h3>任务书</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -224,155 +155,55 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${pjn.taskbookList}" var="taskbook">
                         <tr>
-                        <td>新增有效率</td>
-                        <td>辅助参考</td>
-                        <td>55%</td>
-                        <td><span class="label label-success">53%</span></td>
+                        <td>${taskbook.taskBookTemplate.quotaName }</td>
+                        <td>
+                        	<c:if test="${'关键指标' eq taskbook.taskBookTemplate.quotaType }"><strong>${taskbook.taskBookTemplate.quotaType }</strong></c:if>
+                        	<c:if test="${'关键指标' ne taskbook.taskBookTemplate.quotaType }">${taskbook.taskBookTemplate.quotaType }</c:if>
+                        </td>
+                        <td><fmt:formatNumber value="${taskbook.quotaNum}" pattern="#,#00.00#%"/></td>
+                        <td><span class="label label-success"><fmt:formatNumber value="${taskbook.quotaNumReal}" pattern="#,#00.00#%"/></span></td>
                         </tr>
-                        <tr>
-                        <td>次日留存率</td>
-                        <td>辅助参考</td>
-                        <td>70%</td>
-                        <td><span class="label label-danger">53%</span></td>
-                        </tr>
-                        <tr>
-                        <td>7日留存率</td>
-                        <td><strong>关键指标</strong></td>
-                        <td>70%</td>
-                        <td><span class="label label-success">75.75%</span></td>
-                        </tr>
+                    </c:forEach>
                     </tbody>
-                </table>
-                <h3>检查单</h3>
-                <table class="table table-condensed table-striped table-hover">
-				  <thead><tr>
-					<th>检查项</th>
-					<th>检查项属性</th>
-					<th>是否合格</th>
-					<th>备注</th>
-				  </tr></thead>
-				  <tr>
-					<td>CCB2测试数据</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2测试目的/目标</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2测试目的/目标的验证结果</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2测试反馈的产品问题</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2测试反馈问题的解决方案</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2用户反馈</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>TR2评审结果</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2技术验证报告</td>
-					<td>必须</td>
-					<td><span class="label label-danger">X</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CCB2营销验证报告</td>
-					<td>必须</td>
-					<td><span class="label label-danger">X</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CB/OB运营计划</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CB/OB版本计划</td>
-					<td>必须</td>
-					<td><span class="label label-danger">X</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CB/OB营销计划</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CB/OB渠道计划</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>TR3评审结果（可选）</td>
-					<td>建议</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>CB/OB测试目标任务书（产品/技术/营销）</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-					<td>财务模型</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>依据CCB2数据结果及CB/OB预期，编制财务模型。</td>
-				  </tr>
-				  <tr>
-					<td>验证期人力资源计划（标配+非标配）</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>GR0-GR1期间资源需求，含标配人力，及该项目特殊人力需求。</td>
-				  </tr>
-				  <tr>
-					<td>费用资源计划（复盘及计划）</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>针对天使包A、天使包B费用使用情况复盘。</td>
-				  </tr>
-				  <tr>
-					<td>发行期总预算</td>
-					<td>必须</td>
-					<td><span class="label label-success">√</span></td>
-					<td>发行期总预算审批。</td>
-				  </tr>
-				  <tr>
-					<td>XXX</td>
-					<td>特殊增项</td>
-					<td><span class="label label-success">√</span></td>
-					<td>特殊需要增加评审项说明。</td>
-				  </tr>
-		 		</table>
+                </table></c:if>
+                <c:if test="${pjn.processNode.hasCheckbill}">
+	                <h3>检查单</h3>
+	                <table class="table table-condensed table-striped table-hover">
+					  <thead><tr>
+						<th>检查项</th>
+						<th>检查项属性</th>
+						<th>是否合格</th>
+						<th>备注</th>
+					  </tr></thead>
+					  <c:forEach items="${pjn.checkbillList}" var="cb">
+					  <tr>
+						  <c:choose>
+							  <c:when test="${'特殊增项' eq cb.checkbillTemplate.checkItemProperty }">
+							  		<td>${cb.checkItem}</td>
+									<td>特殊增项</td>
+									<td>
+										<c:if test="${cb.isqualified}"><span class="label label-success">√</span></c:if>
+										<c:if test="${!cb.isqualified}"><span class="label label-danger">X</span></c:if>
+									</td>
+									<td>${cb.remark}</td>
+							  </c:when>
+							  <c:otherwise>
+									<td>${cb.checkbillTemplate.checkItem}</td>
+									<td>${cb.checkbillTemplate.checkItemProperty }</td>
+									<td>
+										<c:if test="${cb.isqualified}"><span class="label label-success">√</span></c:if>
+										<c:if test="${!cb.isqualified}"><span class="label label-danger">X</span></c:if>
+									</td>
+									<td>${cb.checkbillTemplate.remark}</td>
+							  </c:otherwise>
+						  </c:choose>
+					  </tr>
+					  </c:forEach>
+			 		</table>
+		 		</c:if>
+		 		<c:if test="${pjn.processNode.hasDocument}">
                 <h3>文档管理</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -388,13 +219,9 @@
                             <td>胡婧博&nbsp;<span class="badge">2015/12/12</span></td>
                             <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
                         </tr>
-                        <tr>
-                            <td><a href="#">【A项目】财务测算模型-V1 3版.exl</a></td>
-                            <td>胡婧博&nbsp;<span class="badge">2015/12/12</span></td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
-                        </tr>
                     </tbody>
                 </table>
+		 		</c:if>
                 <h3>当前进展概述</h3>
                 <p>【正常】【2015/12/12】：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件
     
@@ -402,7 +229,7 @@
                 <p class="text-danger">【异常】【2015/12/12】：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件
     
     这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。。</p>
-             </div>
+             </div></c:forEach>
 		</div>
 		</div>
 		<!--GR-->
@@ -427,7 +254,7 @@ $(function (){$("[data-toggle='popover']").popover();});
 $(function (){$('.pop_show').popover('show');});
 //tabs
 $(function () {
-	$('#nav_gr li:eq(2) a').tab('show');
+	$('#nav_gr li:eq(3) a').tab('show');
 	$('#nav_cleck li:eq(2) a').tab('show');
 });
 </script>

@@ -55,9 +55,9 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 			obj.setSort(processNodeMapper.selectMaxSort());
 			obj.setFlag(true);
 			obj.setHasFee(false);
-			obj.setHasManPower(false);
-			obj.setHasTaskBook(false);
-			obj.setHasCheckBill(false);
+			obj.setHasManpower(false);
+			obj.setHasTaskbook(false);
+			obj.setHasCheckbill(false);
 			obj.setHasDocument(false);
 			processNodeMapper.insert(obj);
 		}else{//修改
@@ -89,7 +89,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 				}
 			}
 			//添加人力模板
-			if(obj.getHasManPower()!=null&&obj.getHasManPower()){
+			if(obj.getHasManpower()!=null&&obj.getHasManpower()){
 				for(Byte i=0;i<obj.getProjectTeam().length;i++){
 					boolean isnew=false;
 					if(obj.getManpowertId()==null){//新增
@@ -114,7 +114,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 				}
 			}
 			//添加任务书模板
-			if(obj.getHasTaskBook()!=null&&obj.getHasTaskBook()){
+			if(obj.getHasTaskbook()!=null&&obj.getHasTaskbook()){
 				for(Byte i=0;i<obj.getQuotaName().length;i++){
 					boolean isnew=false;
 					if(obj.getTaskbooktId()==null){//新增
@@ -139,7 +139,7 @@ public class ProcessNodeServiceImpl implements ProcessNodeService {
 				}
 			}
 			//添加检查单模板
-			if(obj.getHasCheckBill()!=null&&obj.getHasCheckBill()){
+			if(obj.getHasCheckbill()!=null&&obj.getHasCheckbill()){
 				for(Byte i=0;i<obj.getCheckItem().length;i++){
 					boolean isnew=false;
 					if(obj.getCheckbilltId()==null){//新增

@@ -26,6 +26,13 @@ public class ProNode {
     private String additionalDesc;
 
     private List<Fee> feeList;
+    
+    private List<Manpower> manpowerList;
+    
+    private List<TaskBook> taskbookList;
+    
+    private List<Checkbill> checkbillList;
+    
     public Integer getId() {
         return id;
     }
@@ -120,5 +127,29 @@ public class ProNode {
 
 	public void setFeeList(List<Fee> feeList) {
 		this.feeList = feeList;
+	}
+
+	public List<Manpower> getManpowerList() {
+		return manpowerList;
+	}
+
+	public void setManpowerList(List<Manpower> manpowerList) {
+		this.manpowerList = manpowerList;
+	}
+
+	public List<TaskBook> getTaskbookList() {
+		return taskbookList;
+	}
+
+	public void setTaskbookList(List<TaskBook> taskbookList) {
+		this.taskbookList = taskbookList;
+	}
+
+	public List<Checkbill> getCheckbillList() {
+		return checkbillList;
+	}
+
+	public void setCheckbillList(List<Checkbill> checkbillList) {
+		this.checkbillList = checkbillList;
 	}
 }

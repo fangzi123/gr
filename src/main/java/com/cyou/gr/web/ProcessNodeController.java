@@ -117,15 +117,15 @@ public class ProcessNodeController extends _BaseController {
 			List<FeeTemplate> feets=feeTemplateService.selectFeeTemplatesByprocNodeId(obj.getId());
 			model.addAttribute("feets", feets);
 		}
-		if(procNode.getHasManPower()){
+		if(procNode.getHasManpower()){
 			List<ManpowerTemplate> manpowerts=manPowerTemplateService.selectManpowerTemplatesByprocNodeId(obj.getId());
 			model.addAttribute("manpowerts", manpowerts);
 		}
-		if(procNode.getHasTaskBook()){
+		if(procNode.getHasTaskbook()){
 			List<TaskBookTemplate> taskbookts=taskBookTemplateService.selectTaskbooktsByProcNodeId(obj.getId());
 			model.addAttribute("taskbookts", taskbookts);
 		}
-		if(procNode.getHasCheckBill()){
+		if(procNode.getHasCheckbill()){
 			List<CheckbillTemplate> checkbillTs=checkbillTemplateService.selectCheckbillTsByProcNodeId(obj.getId());
 			model.addAttribute("checkbillTs", checkbillTs);
 		}

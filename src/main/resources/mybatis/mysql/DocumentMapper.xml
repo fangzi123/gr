@@ -9,13 +9,15 @@
     <result column="proc_node_id" property="procNodeId" jdbcType="INTEGER" />
     <result column="pro_node_id" property="proNodeId" jdbcType="INTEGER" />
     <result column="release_line" property="releaseLine" jdbcType="CHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP" />
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, process_id, project_id, proc_node_id, pro_node_id, release_line, author, 
-    upload_time, flag
+    id, name, process_id, project_id, proc_node_id, pro_node_id, release_line, filename, 
+    url, author, upload_time, flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -30,12 +32,14 @@
   <insert id="insert" parameterType="com.cyou.gr.entity.Document" >
     insert into document (id, name, process_id, 
       project_id, proc_node_id, pro_node_id, 
-      release_line, author, upload_time, 
-      flag)
+      release_line, filename, url, 
+      author, upload_time, flag
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{processId,jdbcType=INTEGER}, 
       #{projectId,jdbcType=INTEGER}, #{procNodeId,jdbcType=INTEGER}, #{proNodeId,jdbcType=INTEGER}, 
-      #{releaseLine,jdbcType=CHAR}, #{author,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}, 
-      #{flag,jdbcType=BIT})
+      #{releaseLine,jdbcType=CHAR}, #{filename,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.Document" >
     insert into document
@@ -60,6 +64,12 @@
       </if>
       <if test="releaseLine != null" >
         release_line,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
       <if test="author != null" >
         author,
@@ -93,6 +103,12 @@
       <if test="releaseLine != null" >
         #{releaseLine,jdbcType=CHAR},
       </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
       <if test="author != null" >
         #{author,jdbcType=VARCHAR},
       </if>
@@ -125,6 +141,12 @@
       <if test="releaseLine != null" >
         release_line = #{releaseLine,jdbcType=CHAR},
       </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
       <if test="author != null" >
         author = #{author,jdbcType=VARCHAR},
       </if>
@@ -145,12 +167,14 @@
       proc_node_id = #{procNodeId,jdbcType=INTEGER},
       pro_node_id = #{proNodeId,jdbcType=INTEGER},
       release_line = #{releaseLine,jdbcType=CHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       upload_time = #{uploadTime,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectDocList" resultMap="BaseResultMap">
+   <select id="selectDocList" resultMap="BaseResultMap">
   	select * from document
   </select>
 </mapper>

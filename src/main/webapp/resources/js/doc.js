@@ -14,8 +14,8 @@ $(function(){
                 async:false,
                 dataType : 'json',
                 success : function(data) {
-                    $.each(data, function (index, node) {
-                        var optionHTML="<option value='"+node.id+"'>"+node.name+"</option>";
+                    $.each(data.proNodeList, function (index, node) {
+                        var optionHTML="<option value='"+node.id+"'>"+node.processNode.name+"</option>";
                         dom.append($(optionHTML));
                     })
                 }

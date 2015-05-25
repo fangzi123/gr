@@ -1,6 +1,8 @@
 package com.cyou.gr.web;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cyou.gr.entity.ProNode;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.Process;
 import com.cyou.gr.entity.vo.ProjectVo;
@@ -95,7 +98,12 @@ public class ProjectController extends _BaseController {
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
 		ProjectVo project = projectService.selectProjectRelatedById(id);
+		Set<Object> pcTypeSet=new HashSet<Object>();
+		for(ProNode pn:project.getProjNodeList()){
+			pcTypeSet.add(pn.getProcessNode().getProcessType());
+		}
 		model.addAttribute("project", project);
+		model.addAttribute("pcTypeSet", pcTypeSet);
 		return "project";
 	}
 	

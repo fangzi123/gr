@@ -8,6 +8,7 @@ public class TaskBook {
     private Integer proNodeId;
 
     private Integer taskBookTemplateId;
+    private TaskBookTemplate taskBookTemplate;
 
     private BigDecimal quotaNum;
 
@@ -52,4 +53,12 @@ public class TaskBook {
     public void setQuotaNumReal(BigDecimal quotaNumReal) {
         this.quotaNumReal = quotaNumReal;
     }
+
+	public TaskBookTemplate getTaskBookTemplate() {
+		return taskBookTemplate;
+	}
+
+	public void setTaskBookTemplate(TaskBookTemplate taskBookTemplate) {
+		this.taskBookTemplate = taskBookTemplate;
+	}
 }

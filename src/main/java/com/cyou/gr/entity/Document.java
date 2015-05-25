@@ -5,101 +5,122 @@ import java.util.Date;
 public class Document {
     private Integer id;
 
-    private String name;
+	private String name;
 
-    private Integer processId;
+	private Integer processId;
 
-    private Integer projectId;
+	private Integer projectId;
 
-    private Integer procNodeId;
+	private Integer procNodeId;
 
-    private Integer proNodeId;
+	private Integer proNodeId;
 
-    private String releaseLine;
+	private String releaseLine;
 
-    private String author;
+	private String filename;
 
-    private Date uploadTime;
+	private String url;
 
-    private Boolean flag;
+	private String author;
 
-    public Integer getId() {
-        return id;
-    }
+	private Date uploadTime;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Boolean flag;
 
-    public String getName() {
-        return name;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getProcessId() {
-        return processId;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setProcessId(Integer processId) {
-        this.processId = processId;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getProjectId() {
-        return projectId;
-    }
+	public Integer getProcessId() {
+		return processId;
+	}
 
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
+	public void setProcessId(Integer processId) {
+		this.processId = processId;
+	}
 
-    public Integer getProcNodeId() {
-        return procNodeId;
-    }
+	public Integer getProjectId() {
+		return projectId;
+	}
 
-    public void setProcNodeId(Integer procNodeId) {
-        this.procNodeId = procNodeId;
-    }
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
+	}
 
-    public Integer getProNodeId() {
-        return proNodeId;
-    }
+	public Integer getProcNodeId() {
+		return procNodeId;
+	}
 
-    public void setProNodeId(Integer proNodeId) {
-        this.proNodeId = proNodeId;
-    }
+	public void setProcNodeId(Integer procNodeId) {
+		this.procNodeId = procNodeId;
+	}
 
-    public String getReleaseLine() {
-        return releaseLine;
-    }
+	public Integer getProNodeId() {
+		return proNodeId;
+	}
 
-    public void setReleaseLine(String releaseLine) {
-        this.releaseLine = releaseLine;
-    }
+	public void setProNodeId(Integer proNodeId) {
+		this.proNodeId = proNodeId;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public String getReleaseLine() {
+		return releaseLine;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public void setReleaseLine(String releaseLine) {
+		this.releaseLine = releaseLine;
+	}
 
-    public Date getUploadTime() {
-        return uploadTime;
-    }
+	public String getFilename() {
+		return filename;
+	}
 
-    public void setUploadTime(Date uploadTime) {
-        this.uploadTime = uploadTime;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
-    public Boolean getFlag() {
-        return flag;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public Date getUploadTime() {
+		return uploadTime;
+	}
+
+	public void setUploadTime(Date uploadTime) {
+		this.uploadTime = uploadTime;
+	}
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
+
 }
