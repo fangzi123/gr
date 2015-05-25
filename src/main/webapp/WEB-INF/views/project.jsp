@@ -214,11 +214,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${pjn.documentList}" var="doc">
                         <tr>
-                            <td><a href="#">【幻想神域项目】GR3评审报告.ppt</a></td>
-                            <td>胡婧博&nbsp;<span class="badge">2015/12/12</span></td>
+                            <td><a href="#">【${project.name}】${doc.filename}</a></td>
+                            <td>${doc.author }&nbsp;<span class="badge"><fmt:formatDate  value="${doc.uploadTime}" type="both" pattern="yyyy-MM-dd"/></span></td>
                             <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
-                        </tr>
+                        </tr></c:forEach>
                     </tbody>
                 </table>
 		 		</c:if>

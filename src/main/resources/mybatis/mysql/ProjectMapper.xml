@@ -96,6 +96,20 @@
 				    <result property="flag" column="flag"/>
 				</association>
 			</collection>
+			<collection property="documentList" ofType="com.cyou.gr.entity.Document" columnPrefix="doc_">
+				<id property="id" column="id"/>
+			    <result column="name" property="name"/>
+			    <result column="process_id" property="processId" />
+			    <result column="project_id" property="projectId" />
+			    <result column="proc_node_id" property="procNodeId"  />
+			    <result column="pro_node_id" property="proNodeId" />
+			    <result column="release_line" property="releaseLine" />
+			    <result column="filename" property="filename" />
+			    <result column="url" property="url" />
+			    <result column="author" property="author"/>
+			    <result column="upload_time" property="uploadTime" />
+			    <result column="flag" property="flag" />
+			</collection>
   		</collection>
   </resultMap>
   
@@ -220,6 +234,7 @@
    	,taskt.id pjn_task_temp_id,taskt.quota_name pjn_task_temp_quota_name,taskt.quota_type pjn_task_temp_quota_type
    	,cb.id pjn_check_id,cb.isqualified pjn_check_isqualified,cb.check_item pjn_check_check_item,cb.remark pjn_check_remark
    	,cbt.id pjn_check_temp_id,cbt.check_item pjn_check_temp_check_item,cbt.check_item_property pjn_check_temp_check_item_property,cbt.remark pjn_check_temp_remark,cbt.isqualified pjn_check_temp_isqualified
+   	,doc.id pjn_doc_id,doc.filename pjn_doc_filename,doc.author pjn_doc_author,doc.url pjn_doc_url,doc.upload_time pjn_doc_upload_time
     from project p
     left join pro_node pjn on pjn.project_id=p.id
     left join process_node pcn on pcn.id=pjn.process_node_id
@@ -231,6 +246,7 @@
     left join task_book_template taskt on taskt.id=task.task_book_template_id
     left join checkbill cb on cb.pro_node_id=pjn.id
     left join checkbill_template cbt on cbt.id=cb.checkbill_template_id
+    left join document doc on doc.pro_node_id=pjn.id
     where p.id = #{id,jdbcType=INTEGER} and p.flag=1
     order by pcn.sort,ft.sort,mant.sort,taskt.sort,cbt.sort
   </select>

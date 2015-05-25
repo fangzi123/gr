@@ -33,6 +33,8 @@ public class ProNode {
     
     private List<Checkbill> checkbillList;
     
+    private List<Document> documentList;
+    
     public Integer getId() {
         return id;
     }
@@ -151,5 +153,13 @@ public class ProNode {
 
 	public void setCheckbillList(List<Checkbill> checkbillList) {
 		this.checkbillList = checkbillList;
+	}
+
+	public List<Document> getDocumentList() {
+		return documentList;
+	}
+
+	public void setDocumentList(List<Document> documentList) {
+		this.documentList = documentList;
 	}
 }
