@@ -15,6 +15,7 @@ import com.cyou.gr.entity.User;
 import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.util.Constants;
+import com.cyou.gr.util.FileUtils;
 @WebAppConfiguration
 public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
@@ -26,6 +27,11 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
 	private ProjectMapper projectMapper;
 
+	@Test
+	public void download() throws Exception {
+//		FileUtils.download("E:/文档/Shiro教程.pdf", response);
+		System.out.println(8);
+	}
 	@Test
 	public void eeee() throws Exception {
 		ProjectVo vo=projectMapper.selectProjectRelatedById(8);

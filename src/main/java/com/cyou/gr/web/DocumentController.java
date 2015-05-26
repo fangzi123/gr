@@ -19,6 +19,7 @@ import com.cyou.gr.entity.Project;
 import com.cyou.gr.service.DocumentService;
 import com.cyou.gr.service.ProjectNodeService;
 import com.cyou.gr.service.ProjectService;
+import com.cyou.gr.util.FileUtils;
 import com.cyou.gr.web.comm._BaseController;
 
 @RequestMapping("/doc")
@@ -57,4 +58,13 @@ public class DocumentController extends _BaseController{
         mm.addAttribute("proNodeList", proNodeList);
 		return mm;
 	}
+	
+	@RequestMapping(value = "/download")
+	public void download(HttpServletRequest request,
+			HttpServletResponse response) throws  Exception {
+		String path=this.findStringParameterValue(request, "path");
+		FileUtils.download(path, response);
+	}
+	
+	
 }

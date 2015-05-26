@@ -94,7 +94,7 @@
 		<!--进度-->
 		<ul class="nav nav-tabs" id="nav_gr">
 			<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
-				<li class="${pjn.processNode.name}"><a href="#${pjn.processNode.name}" data-toggle="tab">${pjn.processNode.name}</a></li>
+				<li class="${pjn.processNode.name}" status="${pjn.status}"><a href="#${pjn.processNode.name}" data-toggle="tab" >${pjn.processNode.name}</a></li>
 			</c:forEach>
 		</ul>
 		<div class="panel panel-default panel_tabs">
@@ -214,31 +214,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${pjn.documentList}" var="doc">
-                        <tr>
-                            <td><a href="#">【${project.name}】${doc.filename}</a></td>
+                    <c:forEach items="${pjn.documentList}" var="doc" varStatus="status">
+	                    <form action="<%=contextPath%>/doc/download" method="post" name="form${doc.id}">  
+                        	<tr>
+	                        <input name="path" value="${doc.url}" type="hidden">
+                            <td><a href="javascript:document.form${doc.id}.submit()">【${project.name}】${doc.filename}</a></td>
                             <td>${doc.author }&nbsp;<span class="badge"><fmt:formatDate  value="${doc.uploadTime}" type="both" pattern="yyyy-MM-dd"/></span></td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
-                        </tr></c:forEach>
+                            <td><button type="button" class="btn btn-default" onclick="javascript:document.form${doc.id}.submit()"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
+                        	</tr>
+                        </form> 
+                    </c:forEach>
                     </tbody>
                 </table>
 		 		</c:if>
                 <h3>当前进展概述</h3>
-                <p>【正常】【2015/12/12】：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件
-    
-    这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。。</p>
-                <p class="text-danger">【异常】【2015/12/12】：这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件
-    
-    这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）这是一个抽象的样式，用以构建不同类型的组件，这些组件都具有在文本内容的左或右侧对齐的图片（就像博客评论或 Twitter 消息等）。。</p>
-             </div></c:forEach>
+                <p <c:if test="${'异常' eq pjn.isNormal}">class="text-danger"</c:if>>【${pjn.isNormal}】：${pjn.currentProgressDesc}</p>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+			        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <strong>说明：</strong>${pjn.processNode.nodesOverview}
+		        </div>
+             </div>
+             </c:forEach>
 		</div>
 		</div>
-		<!--GR-->
-        <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>说明：</strong>这里可添加文字说明。
-        </div>
-		<!--readme-->
 	</div>
 	<!--right_box-->
 </div>
@@ -253,11 +251,6 @@ $('.tb1 a').click(function (){
 //popover
 $(function (){$("[data-toggle='popover']").popover();});
 $(function (){$('.pop_show').popover('show');});
-//tabs
-$(function () {
-	$('#nav_gr li:eq(3) a').tab('show');
-	$('#nav_cleck li:eq(2) a').tab('show');
-});
 </script>
 </body>
 </html>

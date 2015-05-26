@@ -38,6 +38,7 @@
 			    <result property="hasTaskbook" column="has_taskBook"  />
 			    <result property="hasCheckbill" column="has_checkBill"  />
 			    <result  property="hasDocument" column="has_document"  />
+			    <result  property="nodesOverview" column="nodes_overview"  />
 			</association>
 			<collection property="feeList" ofType="com.cyou.gr.entity.Fee" columnPrefix="fee_">
 				<id property="id" column="id"/>
@@ -223,8 +224,8 @@
    <select id="selectProjectRelatedById" resultMap="ProjectResultMap_">
     select p.*
     ,pjn.id pjn_id ,pjn.project_id pjn_project_id ,pjn.process_node_id pjn_process_node_id,pjn.status pjn_status,pjn.is_normal pjn_is_normal,pjn.current_progress_desc pjn_cp_desc
-   	,pjn.start_time pjn_start_time,pjn.end_time pjn_end_time,pjn.review_time pjn_review_time
-   	,pcn.id pjn_pcn_id,pcn.name pjn_pcn_name,pcn.process_type pjn_pcn_process_type,pcn.time_type pjn_pcn_time_type
+   	,pjn.start_time pjn_start_time,pjn.end_time pjn_end_time,pjn.review_time pjn_review_time  
+   	,pcn.id pjn_pcn_id,pcn.name pjn_pcn_name,pcn.process_type pjn_pcn_process_type,pcn.time_type pjn_pcn_time_type,pcn.nodes_overview pjn_pcn_nodes_overview
    	,pcn.has_manPower pjn_pcn_has_manPower,pcn.has_fee pjn_pcn_has_fee,pcn.has_taskBook pjn_pcn_has_taskBook,pcn.has_checkBill pjn_pcn_has_checkBill,pcn.has_document pjn_pcn_has_document
     ,f.id pjn_fee_id, f.pro_node_id pjn_fee_pro_node_id, f.fee_template_id pjn_fee_fee_template_id,f.money pjn_fee_money, f.display pjn_fee_display
    	,ft.id pjn_fee_temp_id, ft.name pjn_fee_temp_name, ft.sort pjn_fee_temp_sort, ft.flag pjn_fee_temp_flag

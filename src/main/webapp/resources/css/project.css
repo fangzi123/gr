@@ -1,13 +1,22 @@
-#gr i.mr,#gr i.cr,#gr em.mr,#gr em.cr{display:none;}					
+#gr i,#gr em{display:none;}
+#gr i.gr,#gr em.gr{display:block;}	
 
 #cr q {height:2px;}
-#cr i.gr,#cr i.mr,#cr i.gr {display:none;}
 #cr td.over q {background:#43B3CB;}
-#cr em {display:none;}
-#cr em.cr {display:block;}
+#cr em,#cr i {display:none;}
+#cr em.cr,#cr i.cr {display:block;}
 
 #mr q {height:2px;}
-#mr i.gr,#mr i.cr,#mr i.gr {display:none;}
 #mr td.over q {background:#B5C90F;}
-#mr em {display:none;}
-#mr em.mr {display:block;}
+#mr em,#mr i {display:none;}
+#mr em.mr,#mr i.mr {display:block;}
+
+#tr q {height:2px;}
+#tr td.over q {background:#FBAB4A;}
+#tr em,#tr i {display:none;}
+#tr em.tr,#tr i.tr {display:block;}
+
+#ob q {height:2px;}
+#ob td.over q {background:#B0606D;}
+#ob em,#ob i {display:none;}
+#ob em.ob,#ob i.ob {display:block;}
