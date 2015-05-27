@@ -12,7 +12,15 @@
     <result column="is_normal" property="isNormal" jdbcType="CHAR" />
     <result column="current_progress_desc" property="currentProgressDesc" jdbcType="VARCHAR" />
     <result column="additional_desc" property="additionalDesc" jdbcType="VARCHAR" />
-	<association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+  </resultMap>
+  <resultMap type="com.cyou.gr.entity.ProNode" id="pjnRelatedResultMap" extends="BaseResultMap">
+  	<association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+		    <result property="flag" column="flag"/>
+		    <result property="endType" column="end_type"/>
+	</association>
+  	<association property="project" javaType="com.cyou.gr.entity.Project" columnPrefix="proj_">
 		    <id property="id" column="id"/>
 		    <result property="name" column="name"/>
 		    <result property="flag" column="flag"/>
@@ -155,11 +163,22 @@
       additional_desc = #{additionalDesc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectProjNodeList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectProjNodeList" parameterType="java.lang.Integer" resultMap="pjnRelatedResultMap">
   select pn.* 
   ,pcn.id pcn_id,pcn.name pcn_name,pcn.flag pcn_flag
   from pro_node pn
   left join process_node pcn on pcn.id=pn.process_node_id
   where  pcn.flag=1 and pn.project_id = #{projectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectProjectNodeRelatedById" parameterType="java.lang.Integer" resultMap="pjnRelatedResultMap">
+  select 
+  		pn.* 
+	  	,pcn.id pcn_id,pcn.name pcn_name,pcn.flag pcn_flag,pcn.end_type pcn_end_type 
+	  	,proj.id proj_id,proj.name proj_name,proj.flag proj_flag
+  from pro_node pn
+  left join process_node pcn on pcn.id=pn.process_node_id
+  left join project proj on proj.id=pn.project_id
+  where  
+  		pcn.flag=1 and pn.id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

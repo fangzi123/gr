@@ -1,8 +1,6 @@
 package com.cyou.gr.web;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cyou.gr.entity.ProNode;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.Process;
-import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.ProcessService;
 import com.cyou.gr.service.ProjectService;
 import com.cyou.gr.web.comm._BaseController;
@@ -92,19 +88,4 @@ public class ProjectController extends _BaseController {
         mm.addAttribute("success", true);
 		return mm;
 	}
-	/********************评审进度模块***************************/
-	@RequestMapping(value = "/view")
-	public String view(HttpServletRequest request,
-			HttpServletResponse response,Model model) throws Exception {
-		Integer id=this.findIntegerParameterValue(request, "id");
-		ProjectVo project = projectService.selectProjectRelatedById(id);
-		Set<Object> pcTypeSet=new HashSet<Object>();
-		for(ProNode pn:project.getProjNodeList()){
-			pcTypeSet.add(pn.getProcessNode().getProcessType());
-		}
-		model.addAttribute("project", project);
-		model.addAttribute("pcTypeSet", pcTypeSet);
-		return "project";
-	}
-	
 }

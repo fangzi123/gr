@@ -61,7 +61,7 @@
                         </c:forEach>
                     </tr>
 					<tr>
-						<td align="center"><a href="<%=contextPath%>/project/view?id=${proj.id}">${proj.name }</a>&nbsp;<a href="#" class="msg">
+						<td align="center"><a href="<%=contextPath%>/gr/projview?id=${proj.id}">${proj.name }</a>&nbsp;<a href="#" class="msg">
 							<c:forEach items="${proj.projNodeList}" var="projNode">
 								<c:if test="${'进行中' eq projNode.status}">
 								<span class="glyphicon <c:if test="${'正常' eq projNode.isNormal}">glyphicon-ok-circle</c:if><c:if test="${'异常' eq projNode.isNormal}">glyphicon-exclamation-sign</c:if>"></span>

@@ -1,3 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,29 +12,28 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/daterangepicker-bs3.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/projnode_edit.js"></script>
 </head>
 
 <body>
 
-<!--#include file="inc/nav.html"-->
+<%@ include file="inc/nav.jsp"%>
 <!--nav-->
 <div id="content">
-	<!--#include file="inc/left_box.html"-->
+<jsp:include page="inc/left_box.jsp" flush="true"/> 
 	<!--left_box-->
 	<div id="right_box">
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="index.shtml">首页</a></li>
-                    <li><a href="index.shtml">评审进度查询</a></li>
-                    <li><a href="porject.shtml">海战世界</a></li>
-                    <li><a href="porject.shtml">GR0</a></li>
-                    <li class="active">编辑内容</li>
+                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>">评审进度查询</a></li>
+                    <li><a href="<%=contextPath%>/gr/projview?id=${projNode.projectId}">${projNode.project.name}</a></li>
+                    <li class="active">${projNode.processNode.name}</li>
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
@@ -37,41 +43,46 @@
 		<!--路径导航-->
 		<!--进度-->
 		<div class="panel panel-default">
-		<div class="panel-heading">GR1</div>
+		<div class="panel-heading">${projNode.processNode.name}</div>
 		<div class="panel-body">
                 <div class="form-inline">
                   <div class="form-group">
                     <label for="">当前状态：</label>
                     <select name="" class="form-control" id="status">
-                          <option value="soon">未开启</option>
-                          <option value="now">进行中</option>
-                          <option value="stop">未通过</option>
-                          <option value="over">已完成</option>
-                          <!--如类型为邮件完结则无【已完成】选项，须通过邮件完结此节点-->
-                          <option value="pass">跳过</option>
+                          <option value="soon" <c:if test="${'未开启 ' eq projNode.status}">selected</c:if>>未开启</option>
+                          <option value="now" <c:if test="${'进行中' eq projNode.status }">selected</c:if>>进行中</option>
+                          <option value="stop" <c:if test="${'未通过 ' eq projNode.status}">selected</c:if>>未通过</option>
+                          <c:if test="${'手动完结' eq projNode.processNode.endType}">
+                          <option value="over" <c:if test="${'已完成 ' eq projNode.status}">selected</c:if>>已完成</option></c:if>
+                          <option value="pass" <c:if test="${'跳过 ' eq projNode.status}">selected</c:if>>跳过</option>
                         </select>
                   </div>
                 <hr>
                 </div>
-                <div class="form-inline pass">
-                  <div class="form-group">
-                    <label for="exampleInputName2">开始时间：</label>
-                    <input type="date" class="form-control" id="" placeholder="" >
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail2">结束时间：</label>
-                    <input type="date" class="form-control" id="" placeholder="" >
-                  </div>
-               	<hr>
-                </div>
-                <!--时间类型为：时间段则使用上段代码-->
-                <div class="form-inline pass">
-                  <div class="form-group">
-                    <label for="exampleInputName2">评审时间：</label>
-                    <input type="date" class="form-control" id="" placeholder="" >
-                  </div>
-                <hr>
-				</div>
+                <c:choose>
+	                <c:when test="${'时间点' eq projNode.processNode.timeType}">
+		                <div class="form-inline pass">
+		                  <div class="form-group">
+		                    <label for="exampleInputName2">开始时间：</label>
+		                    <input type="date" class="form-control" id="" placeholder="" value="<fmt:formatDate  value="${projNode.startTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                  </div>
+		                  <div class="form-group">
+		                    <label for="exampleInputEmail2">结束时间：</label>
+		                    <input type="date" class="form-control" id="" placeholder="" value="<fmt:formatDate  value="${projNode.endTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                  </div>
+		               	<hr>
+		                </div>
+	                </c:when>
+	                <c:otherwise>
+		                <div class="form-inline pass">
+		                  <div class="form-group">
+		                    <label for="exampleInputName2">评审时间：</label>
+		                    <input type="date" class="form-control" id="" placeholder="" value="<fmt:formatDate  value="${projNode.reviewTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                  </div>
+		                <hr>
+						</div>
+					</c:otherwise> 
+				</c:choose>
                 <!--时间类型为：时间点则使用上段代码-->
                 <h3 class="pass">费用</h3>
                 <table class="table table-condensed table-striped table-hover pass">

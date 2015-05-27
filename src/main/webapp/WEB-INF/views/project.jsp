@@ -36,7 +36,7 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='porject_edit.shtml'">编辑内容</button>
+        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='<%=contextPath%>/gr/projnview?id=37'">编辑内容</button>
             </div>
         </div>
 		<!--路径导航-->

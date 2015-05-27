@@ -8,4 +8,6 @@ public interface ProjectNodeService {
 
 	List<ProNode> selectProjNodeList(Integer projectId);
 
+	ProNode selectProjectNodeRelatedById(Integer id);
+
 }

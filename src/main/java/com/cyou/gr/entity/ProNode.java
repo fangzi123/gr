@@ -7,6 +7,7 @@ public class ProNode {
     private Integer id;
 
     private Integer projectId;
+    private Project project;
 
     private Integer processNodeId;
     private ProcessNode processNode;
@@ -161,5 +162,13 @@ public class ProNode {
 
 	public void setDocumentList(List<Document> documentList) {
 		this.documentList = documentList;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }

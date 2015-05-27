@@ -20,4 +20,9 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 		return proNodeMapper.selectProjNodeList(projectId);
 	}
 
+	@Override
+	public ProNode selectProjectNodeRelatedById(Integer id) {
+		return proNodeMapper.selectProjectNodeRelatedById(id);
+	}
+
 }

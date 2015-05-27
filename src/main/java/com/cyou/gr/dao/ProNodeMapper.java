@@ -18,4 +18,6 @@ public interface ProNodeMapper {
     int updateByPrimaryKey(ProNode record);
 
 	List<ProNode> selectProjNodeList(Integer projectId);
+
+	ProNode selectProjectNodeRelatedById(Integer id);
 }
