@@ -178,9 +178,9 @@
 						<th>备注</th>
 					  </tr></thead>
 					  <c:forEach items="${pjn.checkbillList}" var="cb">
-					  <tr>
 						  <c:choose>
 							  <c:when test="${'特殊增项' eq cb.checkbillTemplate.checkItemProperty }">
+							  		<tr>
 							  		<td>${cb.checkItem}</td>
 									<td>特殊增项</td>
 									<td>
@@ -188,8 +188,10 @@
 										<c:if test="${!cb.isqualified}"><span class="label label-danger">X</span></c:if>
 									</td>
 									<td>${cb.remark}</td>
+									</tr>
 							  </c:when>
 							  <c:otherwise>
+									<tr>
 									<td>${cb.checkbillTemplate.checkItem}</td>
 									<td>${cb.checkbillTemplate.checkItemProperty }</td>
 									<td>
@@ -197,9 +199,9 @@
 										<c:if test="${!cb.isqualified}"><span class="label label-danger">X</span></c:if>
 									</td>
 									<td>${cb.checkbillTemplate.remark}</td>
+									</tr>
 							  </c:otherwise>
 						  </c:choose>
-					  </tr>
 					  </c:forEach>
 			 		</table>
 		 		</c:if>

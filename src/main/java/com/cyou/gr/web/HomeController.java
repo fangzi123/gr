@@ -20,6 +20,7 @@ import com.cyou.gr.service.ProjectNodeService;
 import com.cyou.gr.service.ProjectService;
 import com.cyou.gr.entity.ProNode;
 import com.cyou.gr.entity.Process;
+import com.cyou.gr.entity.vo.ProNodeVo;
 import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.web.comm._BaseController;
@@ -72,7 +73,14 @@ public class HomeController extends _BaseController{
 		model.addAttribute("pcTypeSet", pcTypeSet);
 		return "project";
 	}
-	
+	/**
+	 * 项目节点查看页
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/gr/projnview")
 	public String projnview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
@@ -80,6 +88,23 @@ public class HomeController extends _BaseController{
 		ProNode projNode = projectNodeService.selectProjectNodeRelatedById(id);
 		model.addAttribute("projNode", projNode);
 		return "porject_edit";
+	}
+	/**
+	 * 项目节点保存
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/gr/pjnedit" ,method = RequestMethod.POST)
+	public String pjnedit(HttpServletRequest request,
+			HttpServletResponse response,Model model,ProNodeVo vo) throws Exception {
+
+		projectNodeService.updateProjectNode(vo);
+		
+		Integer projectId=this.findIntegerParameterValue(request, "projectId");
+		return "redirect:/gr/projview?id="+projectId;
 	}
 	
 }

@@ -47,9 +47,9 @@
         <input type="hidden" value="${procNode.id}" name="id">
         <input type="hidden" value="${procNode.processId}" name="processId" id="processId">
         <input type="hidden" value="${procNode.hasFee}" name="hasFee">
-        <input type="hidden" value="${procNode.hasManPower}" name="hasManPower">
-        <input type="hidden" value="${procNode.hasTaskBook }" name="hasTaskBook">
-        <input type="hidden" value="${procNode.hasCheckBill }" name="hasCheckBill">
+        <input type="hidden" value="${procNode.hasManpower}" name="hasManpower">
+        <input type="hidden" value="${procNode.hasTaskbook }" name="hasTaskbook">
+        <input type="hidden" value="${procNode.hasCheckbill }" name="hasCheckbill">
         <input type="hidden" value="${procNode.hasDocument }" name="hasDocument">
 		<div class="panel-body">
                 <div class="form-inline">
@@ -118,7 +118,7 @@
                     </tbody>
                 </table>
                 </div>
-                <div id="hasManPower_box" style="<c:if test="${!procNode.hasManPower}">display:none</c:if>">
+                <div id="hasManpower_box" style="<c:if test="${!procNode.hasManpower}">display:none</c:if>">
                 <h3>人力</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -163,7 +163,7 @@
                     </tbody>
                 </table>
                 </div>
-                <div id="hasTaskBook_box" style="<c:if test="${!procNode.hasTaskBook}">display:none</c:if>">
+                <div id="hasTaskbook_box" style="<c:if test="${!procNode.hasTaskbook}">display:none</c:if>">
                 <h3>任务书</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -223,7 +223,7 @@
                     </tbody>
                 </table>
                 </div>
-                <div id="hasCheckBill_box" style="<c:if test="${!procNode.hasCheckBill}">display:none</c:if>">
+                <div id="hasCheckbill_box" style="<c:if test="${!procNode.hasCheckbill}">display:none</c:if>">
                 <h3>检查单</h3>
                 <table class="table table-condensed table-striped table-hover">
                     <thead>
@@ -331,9 +331,9 @@
       <div class="modal-body">
         <form id="module">
         <div class="checkbox"><label><input type="checkbox" value="hasFee"       <c:if test="${procNode.hasFee }">checked</c:if>>费用模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasManPower"  <c:if test="${procNode.hasManPower }">checked</c:if>>人力模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasTaskBook"  <c:if test="${procNode.hasTaskBook }">checked</c:if>>任务书模块</label></div>
-        <div class="checkbox"><label><input type="checkbox" value="hasCheckBill" <c:if test="${procNode.hasCheckBill }">checked</c:if>>检查单模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasManpower"  <c:if test="${procNode.hasManpower }">checked</c:if>>人力模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasTaskbook"  <c:if test="${procNode.hasTaskbook }">checked</c:if>>任务书模块</label></div>
+        <div class="checkbox"><label><input type="checkbox" value="hasCheckbill" <c:if test="${procNode.hasCheckbill }">checked</c:if>>检查单模块</label></div>
         <div class="checkbox"><label><input type="checkbox" value="hasDocument"  <c:if test="${procNode.hasDocument }">checked</c:if>>文档管理模块</label></div>
         </form>
       <div class="modal-footer">
