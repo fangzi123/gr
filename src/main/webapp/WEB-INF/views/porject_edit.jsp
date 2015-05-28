@@ -168,12 +168,14 @@
 						  <c:choose>
 							  <c:when test="${'特殊增项' eq cb.checkbillTemplate.checkItemProperty }">
 								  <tr>
+								  	<input type="hidden" name="checkbillId" value="${cb.id}">
 									<td><input type="text" class="form-control" name="checkItem" placeholder="特殊增项" value="${cb.checkItem}"></td>
 									<td>特殊增项</td>
 									<td>
 				                    	<div class="btn-group switch" role="group">
 				                          <button type="button" class="btn btn-success ${cb.isqualified?'active':''}">YES</button>
 				                          <button type="button" class="btn btn-danger  ${cb.isqualified?'':'active'}">NO</button>
+				                          <input type="hidden" name="isqualified" value="${cb.isqualified}">
 				                        </div>
 				                    </td>
 									<td><input type="text" class="form-control" name="remark" placeholder="特殊需要增加评审项说明。" value="${cb.remark}"></td>
@@ -181,12 +183,16 @@
 				 			  </c:when>
 							  <c:otherwise>
 								  <tr>
+								  	<input type="hidden" name="checkbillId" value="${cb.id}">
+								  	<input type="hidden" name="checkItem" value="">
+								  	<input type="hidden" name="remark" value="">
 									<td>${cb.checkbillTemplate.checkItem}</td>
 									<td>${cb.checkbillTemplate.checkItemProperty }</td>
 									<td>
 				                    	<div class="btn-group switch" role="group">
 				                          <button type="button" class="btn btn-success ${cb.isqualified?'active':''}">YES</button>
 				                          <button type="button" class="btn btn-danger  ${cb.isqualified?'':'active'}">NO</button>
+				                          <input type="hidden" name="isqualified" value="${cb.isqualified}">
 				                        </div>
 				                    </td>
 									<td>${cb.checkbillTemplate.remark}</td>
@@ -253,11 +259,7 @@ $('#status').change(function(){
 		$('.pass').css('display','block');
 	};		
 }) 
-//switch
-$('.switch .btn').click(function(){
-	$(this).parent().find('button').removeClass('active');
-	$(this).addClass('active');
-});
+
 //+-
 $('.glyphicon-plus').parent().click(function(){
 	$(this).parent().parent().clone(true).insertAfter($(this).parent().parent());

@@ -36,7 +36,14 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='<%=contextPath%>/gr/projnview?id=37'">编辑内容</button>
+        		<c:set var="pjnId" value=""/>
+        		<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
+        			<c:if test="${status.first}"><c:set var="pjnId" value="${pjn.id}"/></c:if>
+        			<c:if test="${'进行中' eq pjn.status}">
+        				<c:set var="pjnId" value="${pjn.id}"/>
+        			</c:if>
+                </c:forEach>
+        		<button type="button" class="btn btn-danger btn-block" id="btn-edit" data-pjnid="${pjnId}">编辑内容</button>
             </div>
         </div>
 		<!--路径导航-->
@@ -66,21 +73,23 @@
 		                   			<c:choose>
 										<c:when test="${'已完成' eq pjn.status}">
 											<td class="over"><c:if test="${!status.last}"><q></q></c:if>
-												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
+												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}" data-pjnid="${pjn.id}">
 													<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
 												</a>
 											</td>
 										</c:when>
 										<c:when test="${'进行中' eq pjn.status}">
 											<td class="now"><em class="${pcType}"></em><c:if test="${!status.last}"><q></q></c:if>
-												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
+												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}" data-pjnid="${pjn.id}">
 													<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
 												</a>
 											</td>
 										</c:when>
 										<c:otherwise>
-											<td><c:if test="${!status.last}"><q></q></c:if><a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}">
-												<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i></a>
+											<td><c:if test="${!status.last}"><q></q></c:if>
+												<a href="#${pjn.processNode.name}" data-toggle="tab" data-nav="${pjn.processNode.name}" data-pjnid="${pjn.id}">
+													<i class="${pcType}" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="${feeVar}"></i>
+												</a>
 											</td>
 										</c:otherwise>
 									</c:choose>
@@ -94,7 +103,7 @@
 		<!--进度-->
 		<ul class="nav nav-tabs" id="nav_gr">
 			<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
-				<li class="${pjn.processNode.name}" status="${pjn.status}"><a href="#${pjn.processNode.name}" data-toggle="tab" >${pjn.processNode.name}</a></li>
+				<li class="${pjn.processNode.name}" status="${pjn.status}"><a href="#${pjn.processNode.name}" data-toggle="tab" data-pjnid="${pjn.id}">${pjn.processNode.name}</a></li>
 			</c:forEach>
 		</ul>
 		<div class="panel panel-default panel_tabs">
@@ -244,12 +253,6 @@
 </div>
 <!--content-->
 <script>
-//tab1
-$('.tb1 a').click(function (){
-	$('#nav_gr li').removeClass('active');
-	var cls = '.'+$(this).data('nav');
-	$('#nav_gr').children(cls).addClass('active');
-});
 //popover
 $(function (){$("[data-toggle='popover']").popover();});
 $(function (){$('.pop_show').popover('show');});

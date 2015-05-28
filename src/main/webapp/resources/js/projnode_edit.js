@@ -4,6 +4,19 @@ $(function(){
 			$("#form_edit").submit();
 		}
 	})
+	
+	//switch
+	$('.switch .btn').click(function(){
+		$(this).parent().find('button').removeClass('active');
+		$(this).addClass('active');
+		if($(this).hasClass('btn-success')){
+			$(this).siblings('input').val(true);
+		}else{
+			$(this).siblings('input').val(false);
+		}
+	});
+	
+	
 })
 
 function isDisplay(obj){

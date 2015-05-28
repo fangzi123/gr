@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cyou.gr.dao.CheckbillMapper;
 import com.cyou.gr.dao.FeeMapper;
 import com.cyou.gr.dao.ManpowerMapper;
 import com.cyou.gr.dao.ProNodeMapper;
 import com.cyou.gr.dao.TaskBookMapper;
+import com.cyou.gr.entity.Checkbill;
 import com.cyou.gr.entity.Fee;
 import com.cyou.gr.entity.Manpower;
 import com.cyou.gr.entity.ProNode;
@@ -28,6 +30,8 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 	private ManpowerMapper manpowerMapper;
 	@Autowired
 	private TaskBookMapper taskBookMapper;
+	@Autowired
+	private CheckbillMapper checkbillMapper;
 
 	@Override
 	public List<ProNode> selectProjNodeList(Integer projectId) {
@@ -71,6 +75,15 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 			tb.setQuotaNum(vo.getQuotaNum()[i]);
 			tb.setQuotaNumReal(vo.getQuotaNumReal()[i]);
 			taskBookMapper.updateByPrimaryKeySelective(tb);
+		}
+		
+		for(int i=0;i<vo.getCheckbillId().length;i++){
+			Checkbill cb=new Checkbill();
+			cb.setId(vo.getCheckbillId()[i]);
+			cb.setCheckItem(vo.getCheckItem()[i]);
+			cb.setRemark(vo.getRemark()[i]);
+			cb.setIsqualified(vo.getIsqualified()[i]);
+			checkbillMapper.updateByPrimaryKeySelective(cb);
 		}
 	}
 

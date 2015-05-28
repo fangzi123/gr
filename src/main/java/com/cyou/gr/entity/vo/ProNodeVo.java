@@ -24,6 +24,10 @@ public class ProNodeVo {
 	private BigDecimal[] quotaNum;
 	private BigDecimal[] quotaNumReal;
 	
+	private Boolean[] isqualified;
+	private String[] checkItem;
+	private String[] remark;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -166,6 +170,30 @@ public class ProNodeVo {
 
 	public void setQuotaNumReal(BigDecimal[] quotaNumReal) {
 		this.quotaNumReal = quotaNumReal;
+	}
+
+	public Boolean[] getIsqualified() {
+		return isqualified;
+	}
+
+	public void setIsqualified(Boolean[] isqualified) {
+		this.isqualified = isqualified;
+	}
+
+	public String[] getCheckItem() {
+		return checkItem;
+	}
+
+	public void setCheckItem(String[] checkItem) {
+		this.checkItem = checkItem;
+	}
+
+	public String[] getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String[] remark) {
+		this.remark = remark;
 	}
 
 
