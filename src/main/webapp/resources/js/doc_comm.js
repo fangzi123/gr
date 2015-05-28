@@ -25,20 +25,24 @@ function ajaxFileUpload() {
         secureuri : false,  
         fileElementId : 'fileToUpload',// 上传控件的id  
         dataType : 'json',  
-        data : {id : $("input[name='id']").val()}, // 其它请求参数  
-        success : function(data, status) {  
-        	console.log(data);
-            if(data.success) {  
-                alert(data.success);  
-            }  
+        data : {
+	        	id : $("input[name='id']").val(),
+	        	projectId : $("input[name='projectId']").val()
+        	}, // 其它请求参数  
+        success : function(data, status) {
+        	uploadEnd(data);
         },  
         error : function(data, status, e) {  
-        	console.log(data);
-        	console.log(status);
             alert('上传出错');  
         }  
     })  
-
     return false;  
-
-} 
+}
+function uploadEnd(doc,obj){
+	var docHTML  = "<tr>"
+			     + "<td>【"+$("#projectName").val()+"】"+doc.filename+"</td>"
+			     + '<td>'+doc.author+'&nbsp;<span class="badge">'+doc.uploadTime+'</span></td>'
+			     + '<td><button type="button" class="btn btn-default" name="btn_del" data-docid='+doc.id+'><span class="glyphicon glyphicon-trash"></span></button></td>'
+			     + '</tr>';
+	$(docHTML).insertBefore($("#fileToUpload").parent().parent());
+}

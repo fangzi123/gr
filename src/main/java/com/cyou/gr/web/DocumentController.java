@@ -109,7 +109,6 @@ public class DocumentController extends _BaseController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public void upload(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(value = "doc", required = false) MultipartFile file) throws Exception {
-		ModelMap mm = new ModelMap();
 		String filePath = "";
 		if (file.getSize() == 0){
 		}else{
@@ -123,7 +122,6 @@ public class DocumentController extends _BaseController {
 		doc.setProNodeId(id);
 		doc.setProjectId(projectId);
 		documentService.saveOrUpdate(doc);
-		mm.addAttribute("success", true);
-		this.returnJson(response, JsonUtils.map2JsonString(mm));
+		this.returnJson(response, JsonUtils.obj2JsonString(doc));
 	}
 }

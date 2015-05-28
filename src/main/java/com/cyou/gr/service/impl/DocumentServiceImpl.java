@@ -11,7 +11,6 @@ import com.cyou.gr.dao.DocumentMapper;
 import com.cyou.gr.entity.Document;
 import com.cyou.gr.service.DocumentService;
 import com.cyou.gr.util.ShiroHelper;
-import com.cyou.gr.util.oauth2.OAuth2Realm.ShiroUser;
 @Service
 @Transactional
 public class DocumentServiceImpl implements DocumentService {

@@ -218,7 +218,7 @@
                         <tr>
                             <td>【${projNode.project.name}】${doc.filename}</td>
                             <td>${doc.author }&nbsp;<span class="badge"><fmt:formatDate  value="${doc.uploadTime}" type="both" pattern="yyyy-MM-dd"/></span></td>
-                            <td><button type="button" class="btn btn-default" data-docid="${doc.id}"><span class="glyphicon glyphicon-trash"></span></button></td>
+                            <td><button type="button" class="btn btn-default" data-docid="${doc.id}" name="btn_del"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                         </c:forEach>
                         <tr>
@@ -256,6 +256,7 @@
 	<!--right_box-->
 </div>
 <!--content-->
+<input id="projectName" type="hidden" value="${projNode.project.name}">
 <script>
 //status
 $('#status').change(function(){

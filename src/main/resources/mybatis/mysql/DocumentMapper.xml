@@ -41,7 +41,7 @@
       #{author,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cyou.gr.entity.Document" >
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.Document" useGeneratedKeys="true" keyProperty="id">
     insert into document
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

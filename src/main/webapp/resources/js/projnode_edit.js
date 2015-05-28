@@ -16,7 +16,7 @@ $(function(){
 		}
 	});
 	
-	$('.glyphicon-trash').parent().on('click',function(){
+	$('.panel-body').on('click','button[name="btn_del"]',function(){
 		var obj={id:$(this).data('docid')};
 		del(obj);
 		if(status){
@@ -24,7 +24,7 @@ $(function(){
 		}
 	});
 	
-	$('input[name="doc"]').on('change',function(){
+	$('.panel-body').on('change','input[name="doc"]',function(){
 //		document.form_edit.action=ctx+'/doc/upload';
 //		document.form_edit.submit();
 		ajaxFileUpload();
