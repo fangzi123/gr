@@ -15,9 +15,11 @@
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery-html5Validate.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/ajaxfileupload.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery-html5Validate.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/projnode_edit.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/doc_comm.js"></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
 		<!--进度-->
 		<div class="panel panel-default">
 		<div class="panel-heading">${projNode.processNode.name}</div>
-		<form id="form_edit" name="form_edit" method="post" action="<%=contextPath%>/gr/pjnedit">
+		<form id="form_edit" name="form_edit" method="post" action="<%=contextPath%>/gr/pjnedit" enctype="multipart/form-data">
 		<input name="projectId" type="hidden" value="${projNode.projectId}">
 		<input name="id" type="hidden" value="${projNode.id}">
 		<div class="panel-body">
@@ -216,12 +218,17 @@
                         <tr>
                             <td>【${projNode.project.name}】${doc.filename}</td>
                             <td>${doc.author }&nbsp;<span class="badge"><fmt:formatDate  value="${doc.uploadTime}" type="both" pattern="yyyy-MM-dd"/></span></td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></td>
+                            <td><button type="button" class="btn btn-default" data-docid="${doc.id}"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                         </c:forEach>
                         <tr>
-                            <td colspan="2"><input type="file" id="exampleInputFile" name="doc"></td>
-                            <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>&nbsp;<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button></td>
+                            <td colspan="2">
+                           		<input type="file"  name="doc" id="fileToUpload">
+                            </td>
+<!--                             <td> -->
+<!-- 	                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>&nbsp; -->
+<!-- 	                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button> -->
+<!--                             </td> -->
                         </tr>
                     </tbody>
                 </table>
@@ -269,7 +276,7 @@ $('.glyphicon-minus').parent().click(function(){
 	if (tr_length>2){$(this).parent().parent().remove();}
 	else {alert('最后一行无法删除！')};
 });
-
+var ctx='<%=contextPath%>';
 </script>
 </body>
 </html>

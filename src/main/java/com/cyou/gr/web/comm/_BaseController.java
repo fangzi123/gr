@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.util.Locale;
 
@@ -87,4 +88,10 @@ public abstract class _BaseController extends MultiActionController {
 	public void setCandidateDatePatterns(String[] candidateDatePatterns) {
 		this.candidateDatePatterns = candidateDatePatterns;
 	}
+	
+	protected void returnJson(HttpServletResponse response, String json)
+            throws Exception {
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().print(json);
+    }
 }

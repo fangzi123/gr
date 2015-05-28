@@ -8,4 +8,8 @@ public interface DocumentService {
 
 	List<Document> selectDocList();
 
+	void deleteDocById(Integer id);
+
+	void saveOrUpdate(Document doc);
+
 }

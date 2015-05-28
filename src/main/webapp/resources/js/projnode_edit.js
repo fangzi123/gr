@@ -16,7 +16,19 @@ $(function(){
 		}
 	});
 	
+	$('.glyphicon-trash').parent().on('click',function(){
+		var obj={id:$(this).data('docid')};
+		del(obj);
+		if(status){
+			$(this).parent().parent().remove();
+		}
+	});
 	
+	$('input[name="doc"]').on('change',function(){
+//		document.form_edit.action=ctx+'/doc/upload';
+//		document.form_edit.submit();
+		ajaxFileUpload();
+	});
 })
 
 function isDisplay(obj){
@@ -26,3 +38,4 @@ function isDisplay(obj){
 		 $(obj).next().val(false);
 	 }
 	}
+
