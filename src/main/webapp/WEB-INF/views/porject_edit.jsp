@@ -40,7 +40,7 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='mail.shtml'">发送邮件</button>
+        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='<%=contextPath%>/gr/mail?id=${projNode.id}'">发送邮件</button>
             </div>
         </div>
 		<!--路径导航-->

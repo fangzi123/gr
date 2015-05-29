@@ -1,8 +1,10 @@
 package com.cyou.gr.web;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -106,5 +108,44 @@ public class HomeController extends _BaseController{
 		Integer projectId=this.findIntegerParameterValue(request, "projectId");
 		return "redirect:/gr/projview?id="+projectId;
 	}
-	
+	/**
+	 * 邮件页
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/gr/mail")
+	public String mail(HttpServletRequest request,
+			HttpServletResponse response,Model model) throws Exception {
+		Integer id=this.findIntegerParameterValue(request, "id");
+		ProNode projNode = projectNodeService.selectProjectNodeRelatedById(id);
+		model.addAttribute("projNode", projNode);
+		return "mail";
+	}
+	/**
+	 * 邮件发送
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/gr/sendmail",method = RequestMethod.POST)
+	public String sendmail(HttpServletRequest request,
+			HttpServletResponse response,Model model) throws Exception {
+		Integer id=this.findIntegerParameterValue(request, "id");
+		Integer projectId=this.findIntegerParameterValue(request, "projectId");
+		String to=this.findStringParameterValue(request, "to");
+		String title=this.findStringParameterValue(request, "title");
+		String contents=this.findStringParameterValue(request, "contents");
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("to", to);
+		map.put("title", title);
+		map.put("contents", contents);
+		projectNodeService.sendEmailToPersonService(map);
+		return "redirect:/gr/projview?id="+projectId;
+	}
 }

@@ -1,7 +1,10 @@
 package com.cyou.gr.service.impl;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +21,9 @@ import com.cyou.gr.entity.ProNode;
 import com.cyou.gr.entity.TaskBook;
 import com.cyou.gr.entity.vo.ProNodeVo;
 import com.cyou.gr.service.ProjectNodeService;
+import com.cyou.gr.util.ConfigUtil;
 import com.cyou.gr.util.DateUtil;
+import com.cyou.gr.util.EmailUtil;
 @Transactional
 @Service
 public class ProjectNodeServiceImpl implements ProjectNodeService {
@@ -87,4 +92,25 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 		}
 	}
 
+	public boolean sendEmailToPersonService(Map<String, Object> map) throws Exception {
+		String subject;
+		String message;
+		String[] emails = { (String) map.get("to") };
+		try {
+			ProNode pjn=new ProNode();
+			pjn.setId((Integer) map.get("id"));
+			pjn.setStatus("已完成");
+			proNodeMapper.updateByPrimaryKeySelective(pjn);
+			//发送邮件
+			subject = ConfigUtil.getConfig("mail.template.employee.subject");
+			message = ConfigUtil.getConfig("mail.template.employee.message");
+			EmailUtil.sendHtmlEmail(
+					MessageFormat.format(subject, map.get("title")),
+					MessageFormat.format(message, map.get("contents")),
+					emails);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }
