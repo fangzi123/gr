@@ -55,6 +55,7 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 		pjn.setStatus(vo.getStatus());
 		pjn.setStartTime(DateUtil.getDate(vo.getStartTime(), "yyyy-MM-dd"));
 		pjn.setEndTime(DateUtil.getDate(vo.getEndTime(), "yyyy-MM-dd"));
+		pjn.setReviewTime(DateUtil.getDate(vo.getReviewTime(),"yyyy-MM-dd"));
 		pjn.setIsNormal(vo.getIsNormal());
 		pjn.setCurrentProgressDesc(vo.getCurrentProgressDesc());
 		proNodeMapper.updateByPrimaryKeySelective(pjn);

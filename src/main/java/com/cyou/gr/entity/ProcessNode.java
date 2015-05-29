@@ -1,5 +1,7 @@
 package com.cyou.gr.entity;
 
+import java.util.List;
+
 public class ProcessNode {
 
 	private Integer id;
@@ -25,6 +27,15 @@ public class ProcessNode {
 	private Boolean hasCheckbill;
 	private Boolean hasDocument;
 	private String nodesOverview;
+	
+	private List<FeeTemplate> feetList;
+	
+	private List<ManpowerTemplate> mantList;
+
+	private List<TaskBookTemplate> tbtList;
+
+	private List<CheckbillTemplate> cbtList;
+
 
 	public Integer getId() {
 		return id;
@@ -106,7 +117,6 @@ public class ProcessNode {
 		this.hasFee = hasFee;
 	}
 
-
 	public String getNodesOverview() {
 		return nodesOverview;
 	}
@@ -145,5 +155,37 @@ public class ProcessNode {
 
 	public void setHasDocument(Boolean hasDocument) {
 		this.hasDocument = hasDocument;
+	}
+
+	public List<FeeTemplate> getFeetList() {
+		return feetList;
+	}
+
+	public void setFeetList(List<FeeTemplate> feetList) {
+		this.feetList = feetList;
+	}
+
+	public List<ManpowerTemplate> getMantList() {
+		return mantList;
+	}
+
+	public void setMantList(List<ManpowerTemplate> mantList) {
+		this.mantList = mantList;
+	}
+
+	public List<TaskBookTemplate> getTbtList() {
+		return tbtList;
+	}
+
+	public void setTbtList(List<TaskBookTemplate> tbtList) {
+		this.tbtList = tbtList;
+	}
+
+	public List<CheckbillTemplate> getCbtList() {
+		return cbtList;
+	}
+
+	public void setCbtList(List<CheckbillTemplate> cbtList) {
+		this.cbtList = cbtList;
 	}
 }

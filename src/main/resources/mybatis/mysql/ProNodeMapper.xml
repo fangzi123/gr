@@ -129,7 +129,7 @@
       #{reviewTime,jdbcType=TIMESTAMP}, #{isNormal,jdbcType=CHAR}, #{currentProgressDesc,jdbcType=VARCHAR}, 
       #{additionalDesc,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cyou.gr.entity.ProNode" >
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.ProNode" useGeneratedKeys="true" keyProperty="id">
     insert into pro_node
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

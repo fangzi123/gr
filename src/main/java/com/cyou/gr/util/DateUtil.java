@@ -9,8 +9,8 @@ import java.util.TimeZone;
 
 /**
  * @Description: 日期时间工具类
- * @author 
- * @create 
+ * @author
+ * @create
  */
 public class DateUtil {
 
@@ -32,21 +32,24 @@ public class DateUtil {
 	public static String getDate() {
 		return getCurrentDate("yyyyMMdd");
 	}
-	
+
 	/**
 	 * 
 	 * 功能描述：根据给定的格式将str转化为Date类型
+	 * 
 	 * @param dateStr
 	 * @param format
 	 * @return
 	 */
-	public static Date getDate(String dateStr,String format){
+	public static Date getDate(String dateStr, String format) {
 		DateFormat formater = new SimpleDateFormat(format);
 		Date result;
 		try {
+			if (null == dateStr)
+				return null;
 			result = formater.parse(dateStr);
 		} catch (ParseException e) {
-			throw new RuntimeException(e.getMessage(),e);
+			throw new RuntimeException(e.getMessage(), e);
 		}
 		return result;
 	}
@@ -149,7 +152,8 @@ public class DateUtil {
 	 * @param @return 目标日期字符串
 	 * @throws ParseException
 	 */
-	public static String getFmtDate(String source, String infmt, String outfmt) throws ParseException {
+	public static String getFmtDate(String source, String infmt, String outfmt)
+			throws ParseException {
 		// 输入格式
 		DateFormat informater = new SimpleDateFormat(infmt);
 		// 输出格式
@@ -167,7 +171,8 @@ public class DateUtil {
 	 * @param @return 目标日期字符串
 	 * @throws ParseException
 	 */
-	public static String getFmtDateStr(String source, String infmt, String outfmt) {
+	public static String getFmtDateStr(String source, String infmt,
+			String outfmt) {
 		String result = "";
 		try {
 			// 输入格式
@@ -220,29 +225,30 @@ public class DateUtil {
 		calendar.set(Calendar.DAY_OF_YEAR, day + interval);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * @Description:日期转化为字符串
-	 * @param date  日期
-	 * @param format  日期格式
-	 * @return  日期字符串
+	 * @param date
+	 *            日期
+	 * @param format
+	 *            日期格式
+	 * @return 日期字符串
 	 */
-	public static String getDateStr(Date date,String format) {
+	public static String getDateStr(Date date, String format) {
 		DateFormat dateformat = new SimpleDateFormat(format);
 		return dateformat.format(date);
 	}
-	
-	public static String  secondsToHourMinute(long sTime){
+
+	public static String secondsToHourMinute(long sTime) {
 		String format;
-		if(sTime>=3600){
-			format="H小时m分钟";
-		}else{
-			format="m分钟";
+		if (sTime >= 3600) {
+			format = "H小时m分钟";
+		} else {
+			format = "m分钟";
 		}
-		SimpleDateFormat formatter = new SimpleDateFormat(format);//初始化Formatter的转换格式。  
-		long ms=sTime*1000;
-		return formatter.format(ms- TimeZone.getDefault().getRawOffset());  
+		SimpleDateFormat formatter = new SimpleDateFormat(format);// 初始化Formatter的转换格式。
+		long ms = sTime * 1000;
+		return formatter.format(ms - TimeZone.getDefault().getRawOffset());
 	}
-	
 
 }

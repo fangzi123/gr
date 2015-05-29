@@ -20,6 +20,7 @@
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery-html5Validate.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/projnode_edit.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/doc_comm.js"></script>
+<c:set var="sysDate" value="<%=new java.util.Date()%>"></c:set>
 </head>
 
 <body>
@@ -70,11 +71,11 @@
 		                <div class="form-inline pass">
 		                  <div class="form-group">
 		                    <label for="exampleInputName2">开始时间：</label>
-		                    <input type="date" class="form-control" name="startTime" placeholder="" value="<fmt:formatDate  value="${projNode.startTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                    <input type="date" class="form-control" name="startTime" placeholder="" value="<fmt:formatDate  value="${empty projNode.endTime?sysDate:projNode.startTime}" type="both" pattern="yyyy-MM-dd"/>">
 		                  </div>
 		                  <div class="form-group">
 		                    <label for="exampleInputEmail2">结束时间：</label>
-		                    <input type="date" class="form-control" name="endTime" placeholder="" value="<fmt:formatDate  value="${projNode.endTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                    <input type="date" class="form-control" name="endTime" placeholder="" value="<fmt:formatDate  value="${empty projNode.endTime?sysDate:projNode.endTime}" type="both" pattern="yyyy-MM-dd"/>">
 		                  </div>
 		               	<hr>
 		                </div>
@@ -83,7 +84,7 @@
 		                <div class="form-inline pass">
 		                  <div class="form-group">
 		                    <label for="exampleInputName2">评审时间：</label>
-		                    <input type="date" class="form-control" name="reviewTime" placeholder="" value="<fmt:formatDate  value="${projNode.reviewTime}" type="both" pattern="yyyy-MM-dd"/>">
+		                    <input type="date" class="form-control" name="reviewTime" placeholder="" value="<fmt:formatDate  value="${empty projNode.reviewTime?sysDate:projNode.reviewTime}" type="both" pattern="yyyy-MM-dd"/>">
 		                  </div>
 		                <hr>
 						</div>
@@ -108,7 +109,7 @@
 		                        <input type="hidden" name="display" value="${fee.display}">
 		                        </td>
 		                        <td>${fee.feeTemplate.name}</td>
-		                        <td><input type="text" class="form-control"  placeholder="" name="money" value="${fee.money}"></td>
+		                        <td><input type="text" class="form-control"  placeholder="" name="money" value="${fee.money}" required></td>
 		                        </tr>
 	                        </c:forEach>
 	                    </tbody>
@@ -127,9 +128,9 @@
                     <tbody>
                     	<c:forEach items="${projNode.manpowerList}" var="man">
 	                        <tr>
-	                        <input type="hidden" name="manpowerId" value="${man.id}">
+	                        <input type="hidden" name="manpowerId" value="${man.id}" required>
 	                        <td>${man.manpowerTemplate.projectTeam }</td>
-	                        <td><input type="text" class="form-control" name="coreMan" placeholder="" value="${man.coreMan }"></td>
+	                        <td><input type="text" class="form-control" name="coreMan" placeholder="" value="${man.coreMan }" required></td>
 	                        <td>${man.manpowerTemplate.standardModel }</td>
 	                        </tr>
                         </c:forEach>

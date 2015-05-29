@@ -21,6 +21,42 @@
 			<result column="pname" jdbcType="VARCHAR" property="name" />
 	</association>
   </resultMap>
+  
+  <resultMap id="pnResultMap" type="com.cyou.gr.entity.ProcessNode" extends="BaseResultMap">
+  		<collection property="feetList" ofType="com.cyou.gr.entity.FeeTemplate" columnPrefix="ft_">
+		    <id property="id" column="id"/>
+		    <result column="process_node_id" property="processNodeId"/>
+		    <result property="name" column="name"/>
+		    <result property="sort" column="sort"/>
+		    <result property="flag" column="flag"/>
+		</collection>
+  		<collection property="mantList" ofType="com.cyou.gr.entity.ManpowerTemplate" columnPrefix="mant_">
+		   	<id column="id" property="id"  />
+		    <result column="process_node_id" property="processNodeId"  />
+		    <result column="project_team" property="projectTeam"  />
+		    <result column="standard_model" property="standardModel"  />
+		    <result column="sort" property="sort"  />
+	     	<result column="flag" property="flag" />
+		</collection>
+  		<collection property="tbtList" ofType="com.cyou.gr.entity.TaskBookTemplate" columnPrefix="tbt_">
+  		 	<id column="id" property="id"  />
+		    <result column="process_node_id" property="processNodeId"  />
+		    <result column="quota_name" property="quotaName"  />
+		    <result column="quota_type" property="quotaType"/>
+		    <result column="sort" property="sort"  />
+		    <result column="flag" property="flag" />
+		</collection>
+  		<collection property="cbtList" ofType="com.cyou.gr.entity.CheckbillTemplate" columnPrefix="cbt_">
+			<id column="id" property="id"  />
+		    <result column="process_node_id" property="processNodeId"  />
+		    <result column="check_item" property="checkItem"  />
+		    <result column="check_item_property" property="checkItemProperty" />
+		    <result column="remark" property="remark"  />
+		    <result column="isqualified" property="isqualified"  />
+		    <result column="sort" property="sort"  />
+		    <result column="flag" property="flag" />
+		</collection>
+  </resultMap>
   <sql id="Base_Column_List">
     id, name, process_id, sort, process_type, end_type, time_type, flag, has_fee, has_manPower, 
     has_taskBook, has_checkBill, has_document, nodes_overview
@@ -202,11 +238,21 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-	<select id="selectProcNodeListByProcId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	<select id="selectProcNodeListByProcId" parameterType="java.lang.Integer" resultMap="pnResultMap">
 		select
-		<include refid="Base_Column_List" />
-		from process_node
-		where process_id = #{procId,jdbcType=INTEGER} order by sort
+	    	pcn.*
+	    	,ft.id   ft_id
+	    	,mant.id mant_id
+	    	,tbt.id  tbt_id
+	    	,cbt.id  cbt_id
+		from process_node pcn
+			left join fee_template       ft   on ft.process_node_id=pcn.id   and ft.flag=1
+			left join manpower_template  mant on mant.process_node_id=pcn.id and mant.flag=1
+			left join task_book_template tbt  on tbt.process_node_id=pcn.id  and tbt.flag=1
+			left join checkbill_template cbt  on cbt.process_node_id=pcn.id  and cbt.flag=1
+		where pcn.process_id = #{procId,jdbcType=INTEGER} 
+			  and pcn.flag=1
+			  order by pcn.sort,ft.sort,mant.sort,tbt.sort,cbt.sort
 	</select>
 	<select id="selectMaxSort" resultType="java.lang.Integer">
 		select IFNULL(max(sort)+1,0) from process_node

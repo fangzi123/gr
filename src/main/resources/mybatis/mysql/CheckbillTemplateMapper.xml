@@ -30,7 +30,7 @@
       sort,flag)
     values (#{id,jdbcType=INTEGER}, #{processNodeId,jdbcType=INTEGER}, #{checkItem,jdbcType=VARCHAR}, 
       #{checkItemProperty,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{isqualified,jdbcType=BIT}, 
-      #{sort,jdbcType=TINYINT}, #{sort,jdbcType=BIT})
+      #{sort,jdbcType=TINYINT}, #{flag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cyou.gr.entity.CheckbillTemplate" >
     insert into checkbill_template
@@ -79,11 +79,11 @@
       <if test="isqualified != null" >
         #{isqualified,jdbcType=BIT},
       </if>
-      <if test="flag != null" >
-        #{flag,jdbcType=BIT},
-      </if>
       <if test="sort != null" >
         #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
       </if>
     </trim>
   </insert>
