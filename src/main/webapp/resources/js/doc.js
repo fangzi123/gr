@@ -1,5 +1,6 @@
 $(function(){
-    $("#project").on("change",function(){
+   //添加文档 项目-节点联动
+	$("#projectId").on("change",function(){
         var obj=$(this);
         var projectId=obj.find("option:selected").val();
         obj.parent().next().find("select").empty().append("<option value=''>选择节点</option>");
@@ -21,7 +22,37 @@ $(function(){
                 }
             });
         }
-       
     })
-	
+	//删除赋值
+    $(".glyphicon-trash").parent().on('click',function(){
+    	$("#docId").val($(this).data('docid'));
+    })
+    //删除
+    $(".glyphicon-remove").parent().on('click',function(){
+    	var obj={};
+    	obj.id=$("#docId").val();
+    	del(obj);
+    	if(status=true){
+    		window.location.href='index';
+    	}
+    })
+    //上传
+    $('.glyphicon-floppy-saved').parent().on('click',function(){
+    	form=$('#form_upload');
+    	data={
+	        	id : $("#id").val(),
+	        	projectId : $("#projectId").val()
+     	}
+    	if($.html5Validate.isAllpass(form)){
+    		if($("#fileToUpload").val()){
+    			ajaxFileUpload(form,data,uploadEnd);
+    		}else{
+    			alert("请选择文件");
+    		}
+		}
+    })
 })
+
+function uploadEnd(data){
+	window.location.href='index';
+}

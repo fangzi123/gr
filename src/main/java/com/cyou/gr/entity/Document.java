@@ -14,6 +14,7 @@ public class Document {
 	private Integer procNodeId;
 
 	private Integer proNodeId;
+	private ProNode proNode;
 
 	private String releaseLine;
 
@@ -121,6 +122,14 @@ public class Document {
 
 	public void setFlag(Boolean flag) {
 		this.flag = flag;
+	}
+
+	public ProNode getProNode() {
+		return proNode;
+	}
+
+	public void setProNode(ProNode proNode) {
+		this.proNode = proNode;
 	}
 
 }

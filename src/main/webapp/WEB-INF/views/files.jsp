@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String contextPath = pageContext.getServletContext().getContextPath();
 %>
@@ -13,7 +14,10 @@
 <link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/ajaxfileupload.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery-html5Validate.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/doc_comm.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/doc.js"></script>
 </head>
 
@@ -83,17 +87,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td><a href="#">xxxxxxx.doc</a></td>
-                        <td>大中华发行线</td>
-                        <td>天龙八部</td>
-                        <td>GR3</td>
-                        <td>胡婧博</td>
-                        <td>2015/12/12</td>
-                        <td>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-trash"></span></button>
-                        </td>
-                        </tr>
+                    	<c:forEach items="${docList }" var="doc">
+                    	<form action="<%=contextPath%>/doc/download" method="post" name="form${doc.id}"> 
+	                        <tr>
+	                        <input name="path" value="${doc.url}" type="hidden">
+	                        <td><a href="javascript:document.form${doc.id}.submit()">${doc.filename }</a></td>
+	                        <td>${doc.proNode.project.releaseLine}</td>
+	                        <td>${doc.proNode.project.name }</td>
+	                        <td>${doc.proNode.processNode.name }</td>
+	                        <td>${doc.author}</td>
+	                        <td><fmt:formatDate value="${doc.uploadTime}" pattern="yyyy-MM-dd"/> </td>
+	                        <td>
+	                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-docid="${doc.id}"><span class="glyphicon glyphicon-trash"></span></button>
+	                        </td>
+	                        </tr>
+	                    </form>
+                        </c:forEach>
                     </tbody>
                     </tbody>
                 </table>
@@ -113,9 +122,9 @@
         <h4 class="modal-title" id="exampleModalLabel">添加文档</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="form_upload" method="post" action="<%=contextPath%>/doc/upload" enctype="multipart/form-data">
           <div class="form-group">
-            <select class="form-control" id="project">
+            <select class="form-control" id="projectId" name="projectId" required>
               <option value="">选择项目</option>
               <c:forEach items="${projList}" var="proj">
              	 <option value="${proj.id}">${proj.name}</option>
@@ -123,12 +132,12 @@
             </select>
           </div>
           <div class="form-group">
-            <select class="form-control">
+            <select class="form-control" name="id" id="id" required>
               <option value="">选择节点</option>
             </select>
           </div>
           <div class="form-group">
-            <input type="file" class="form-control">
+            <input type="file" class="form-control" name="doc" id="fileToUpload">
           </div>
         </form>
       </div>
@@ -151,6 +160,7 @@
       <div class="modal-body">
       <p>确定删除此文档内容吗？</p>
       <p>PS：删除后不可恢复哦，请三思！</p>
+      <input type="hidden" id="docId" value="">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -160,5 +170,8 @@
   </div>
 </div>
 <!--弹窗结束-->
+<script type="text/javascript">
+var ctx='<%=contextPath%>';
+</script>
 </body>
 </html>

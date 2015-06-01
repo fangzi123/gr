@@ -25,11 +25,23 @@ $(function(){
 	});
 	
 	$('.panel-body').on('change','input[name="doc"]',function(){
-//		document.form_edit.action=ctx+'/doc/upload';
-//		document.form_edit.submit();
-		ajaxFileUpload();
+		form=$("#form_edit");
+		data={
+	        	id : $("input[name='id']").val(),
+	        	projectId : $("input[name='projectId']").val()
+     	}
+		ajaxFileUpload(form,data,uploadEnd);
 	});
 })
+
+function uploadEnd(doc){
+	var docHTML  = "<tr>"
+			     + "<td>【"+$("#projectName").val()+"】"+doc.filename+"</td>"
+			     + '<td>'+doc.author+'&nbsp;<span class="badge">'+doc.uploadTime+'</span></td>'
+			     + '<td><button type="button" class="btn btn-default" name="btn_del" data-docid='+doc.id+'><span class="glyphicon glyphicon-trash"></span></button></td>'
+			     + '</tr>';
+	$(docHTML).insertBefore($("#fileToUpload").parent().parent());
+}
 
 function isDisplay(obj){
 	 if($(obj).attr("checked")==true){

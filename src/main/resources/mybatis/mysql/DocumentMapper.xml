@@ -15,6 +15,22 @@
     <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP" />
     <result column="flag" property="flag" jdbcType="BIT" />
   </resultMap>
+  <resultMap type="com.cyou.gr.entity.Document" id="docResultMap" extends="BaseResultMap">
+  	<association property="proNode" javaType="com.cyou.gr.entity.ProNode" columnPrefix="pjn_">
+  	  	<id property="id" column="id"/>
+	    <result property="projectId" column="project_id"/>
+	    <result property="processNodeId" column="process_node_id"/>
+	    <association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+		</association>
+		<association property="project" javaType="com.cyou.gr.entity.Project" columnPrefix="pj_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+		    <result property="releaseLine" column="release_line"/>
+		</association>
+  	</association>
+  </resultMap>
   <sql id="Base_Column_List" >
     id, name, process_id, project_id, proc_node_id, pro_node_id, release_line, filename, 
     url, author, upload_time, flag
@@ -174,7 +190,14 @@
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-   <select id="selectDocList" resultMap="BaseResultMap">
-  	select * from document
+   <select id="selectDocList" resultMap="docResultMap">
+  	select doc.*
+  	,pjn.id pjn_id
+  	,pj.id  pjn_pj_id,pj.name  pjn_pj_name,pj.release_line  pjn_pj_releaseLine
+  	,pcn.id pjn_pcn_id,pcn.name pjn_pcn_name
+  	from document doc
+  	left join pro_node pjn on pjn.id=doc.pro_node_id
+  	left join project pj on pj.id=pjn.project_id	
+  	left join process_node pcn on pcn.id=pjn.process_node_id	
   </select>
 </mapper>

@@ -13,8 +13,8 @@ function del(obj){
 		}
 	});
 }
-function ajaxFileUpload() {  
-    $("#form_edit").ajaxStart(function() {  
+function ajaxFileUpload(form,data,callback) {  
+	form.ajaxStart(function() {  
         $(this).show();  
     }).ajaxComplete(function() {  
         $(this).hide();  
@@ -25,12 +25,9 @@ function ajaxFileUpload() {
         secureuri : false,  
         fileElementId : 'fileToUpload',// 上传控件的id  
         dataType : 'json',  
-        data : {
-	        	id : $("input[name='id']").val(),
-	        	projectId : $("input[name='projectId']").val()
-        	}, // 其它请求参数  
+        data :data, // 其它请求参数  
         success : function(data, status) {
-        	uploadEnd(data);
+        	callback(data);
         },  
         error : function(data, status, e) {  
             alert('上传出错');  
@@ -38,11 +35,5 @@ function ajaxFileUpload() {
     })  
     return false;  
 }
-function uploadEnd(doc,obj){
-	var docHTML  = "<tr>"
-			     + "<td>【"+$("#projectName").val()+"】"+doc.filename+"</td>"
-			     + '<td>'+doc.author+'&nbsp;<span class="badge">'+doc.uploadTime+'</span></td>'
-			     + '<td><button type="button" class="btn btn-default" name="btn_del" data-docid='+doc.id+'><span class="glyphicon glyphicon-trash"></span></button></td>'
-			     + '</tr>';
-	$(docHTML).insertBefore($("#fileToUpload").parent().parent());
-}
+
+
