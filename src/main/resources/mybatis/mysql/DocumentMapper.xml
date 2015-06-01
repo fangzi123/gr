@@ -198,6 +198,13 @@
   	from document doc
   	left join pro_node pjn on pjn.id=doc.pro_node_id
   	left join project pj on pj.id=pjn.project_id	
-  	left join process_node pcn on pcn.id=pjn.process_node_id	
+  	left join process_node pcn on pcn.id=pjn.process_node_id
+  	<where>
+  	<if test="filename !=null and filename!=''">and doc.filename like CONCAT('%',#{filename,jdbcType=VARCHAR},'%')</if>
+  	<if test="projectId !=null">and pj.id=#{projectId,jdbcType=INTEGER}</if>
+  	<if test="processId !=null">and pj.process_id=#{processId,jdbcType=INTEGER}</if>
+  	<if test="procNodeId !=null">and pcn.id=#{procNodeId,jdbcType=INTEGER}</if>
+  	</where>
+  		
   </select>
 </mapper>

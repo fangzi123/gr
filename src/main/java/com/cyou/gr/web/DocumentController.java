@@ -17,14 +17,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cyou.gr.entity.Document;
 import com.cyou.gr.entity.ProNode;
+import com.cyou.gr.entity.ProcessNode;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.service.DocumentService;
+import com.cyou.gr.service.ProcessNodeService;
+import com.cyou.gr.service.ProcessService;
 import com.cyou.gr.service.ProjectNodeService;
 import com.cyou.gr.service.ProjectService;
 import com.cyou.gr.service.UploadService;
 import com.cyou.gr.util.FileUtils;
 import com.cyou.gr.util.JsonUtils;
 import com.cyou.gr.web.comm._BaseController;
+import com.cyou.gr.entity.Process;
 
 @RequestMapping("/doc")
 @Controller
@@ -38,13 +42,20 @@ public class DocumentController extends _BaseController {
 	private ProjectNodeService projectNodeService;
 	@Autowired
 	private UploadService uploadService;
+	@Autowired
+	private ProcessService processService;
+	@Autowired
+	private ProcessNodeService processNodeService;
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String home(Model model) {
-		List<Document> docList = documentService.selectDocList();
+	@RequestMapping(value = "/index")
+	public String home(HttpServletRequest request, HttpServletResponse response,Model model,Document doc) {
+		List<Document> docList = documentService.selectDocList(doc);
 		model.addAttribute("docList", docList);
 		List<Project> projList = projectService.selectProjectList(true);
 		model.addAttribute("projList", projList);
+		List<Process> processList=processService.selectProcessList(true);
+		model.addAttribute("processList", processList);
+		model.addAttribute("search", doc);
 		return "files";
 	}
 
@@ -64,6 +75,19 @@ public class DocumentController extends _BaseController {
 		List<ProNode> proNodeList = projectNodeService
 				.selectProjNodeList(projectId);
 		mm.addAttribute("proNodeList", proNodeList);
+		return mm;
+	}
+	@RequestMapping(value = "/projectAndNode", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelMap projectAndNode(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelMap mm = new ModelMap();
+		Integer processId = this
+				.findIntegerParameterValue(request, "processId");
+		List<Project> pjList = projectService.selectProjListByProcId(processId);
+		mm.addAttribute("pjList", pjList);
+		List<ProcessNode> pcnList = processNodeService.selectProcNodeListByProcId(processId);
+		mm.addAttribute("pcnList", pcnList);
 		return mm;
 	}
 

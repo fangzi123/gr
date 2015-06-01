@@ -18,5 +18,5 @@ public interface DocumentMapper {
 
 	int updateByPrimaryKey(Document record);
 
-	List<Document> selectDocList();
+	List<Document> selectDocList(Document doc);
 }

@@ -4,7 +4,7 @@
 	<div class="col-xs-2"><h1>Git Review</h1></div>
 	<div class="col-xs-2 col-xs-offset-6">
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search for files">
+			<input type="text" class="form-control" placeholder="Search for files" id="globalSearch" value=""> 
 			<span class="input-group-btn">
 			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 			</span>
@@ -24,3 +24,8 @@
 		</div>
 	</div>
 </div>
+<script>
+$('.glyphicon-search').parent().on('click',function(){
+	window.location.href='<%=contextPath%>/doc/index?filename='+$('#globalSearch').val();
+})
+</script>

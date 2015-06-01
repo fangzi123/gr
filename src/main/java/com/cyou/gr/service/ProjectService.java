@@ -16,4 +16,6 @@ public interface ProjectService {
 
 	ProjectVo selectProjectRelatedById(Integer id);
 
+	List<Project> selectProjListByProcId(Integer processId);
+
 }

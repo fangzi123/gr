@@ -40,31 +40,28 @@
         </div>
 		<!--路径导航-->
 		<div class="choose">
-		<form class="form-inline" role="form">
+		<input type="hidden" name="s_projectId" value="${search.projectId}">
+		<input type="hidden" name="s_procNodeId" value="${search.procNodeId}">
+		<form class="form-inline" role="form" method="post" action="<%=contextPath%>/doc/index">
 		  <div class="form-group">
-            <input type="text" class="form-control" id="recipient-name" placeholder="文档名称">
+            <input type="text" class="form-control" id="recipient-name" placeholder="文档名称" name="filename" value="${search.filename}">
 		  </div>
 		  <div class="form-group">
-				<select class="form-control">
-				  <option>流程</option>
-				  <option>端游GR流程</option>
-				  <option>手游GR流程</option>
+				<select class="form-control" name="processId" id="processId">
+				  <option value="">流程</option>
+				  <c:forEach items="${processList}" var="pc">
+				  	<option value="${pc.id}" <c:if test="${pc.id eq search.processId}">selected</c:if>>${pc.name}</option>
+				  </c:forEach>
 				</select>
 		  </div>
 		  <div class="form-group">
-				<select class="form-control">
-				  <option>节点</option>
-				  <option>GR0</option>
-				  <option>GR1</option>
-				  <option>GR2</option>
-				  <option>GR3</option>
+				<select class="form-control" name="projectId" id="s_projectId">
+				  <option value="">项目</option>
 				</select>
 		  </div>
 		  <div class="form-group">
-				<select class="form-control">
-				  <option>项目</option>
-				  <option>游戏A</option>
-				  <option>幻想神域</option>
+				<select class="form-control" name="procNodeId" id="s_procNodeId">
+				  <option value="">节点</option>
 				</select>
 		  </div>
 		  <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search">&nbsp;</span>搜索</button>

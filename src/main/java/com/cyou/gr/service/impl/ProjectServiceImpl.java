@@ -131,4 +131,9 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 	}
 
+	@Override
+	public List<Project> selectProjListByProcId(Integer processId) {
+		return projectMapper.selectProjListByProcId(processId);
+	}
+
 }

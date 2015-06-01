@@ -251,4 +251,8 @@
     where p.id = #{id,jdbcType=INTEGER} and p.flag=1
     order by pcn.sort,ft.sort,mant.sort,taskt.sort,cbt.sort
   </select>
+  
+  <select id="selectProjListByProcId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  		select * from project where flag=1 and process_id=#{process_id,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -17,8 +17,8 @@ public class DocumentServiceImpl implements DocumentService {
 	@Autowired
 	private DocumentMapper documentMapper;
 	@Override
-	public List<Document> selectDocList() {
-		return documentMapper.selectDocList();
+	public List<Document> selectDocList(Document doc) {
+		return documentMapper.selectDocList(doc);
 	}
 	@Override
 	public void deleteDocById(Integer id) {

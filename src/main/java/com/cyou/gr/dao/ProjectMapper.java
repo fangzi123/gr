@@ -25,4 +25,6 @@ public interface ProjectMapper {
 	Integer selectMaxSort();
 
 	ProjectVo selectProjectRelatedById(Integer id);
+
+	List<Project> selectProjListByProcId(Integer processId);
 }
