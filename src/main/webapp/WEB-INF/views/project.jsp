@@ -43,7 +43,7 @@
         				<c:set var="pjnId" value="${pjn.id}"/>
         			</c:if>
                 </c:forEach>
-        		<button type="button" class="btn btn-danger btn-block" id="btn-edit" data-pjnid="${pjnId}">编辑内容</button>
+        		<button type="button" class="btn btn-danger btn-block" id="btn-edit" data-pjnid="${empty pjnid?pjnId:pjnid}">编辑内容</button>
             </div>
         </div>
 		<!--路径导航-->
@@ -251,6 +251,7 @@
 	</div>
 	<!--right_box-->
 </div>
+<input type="hidden" name="pjnid" value="${pjnid}">
 <!--content-->
 <script>
 //popover

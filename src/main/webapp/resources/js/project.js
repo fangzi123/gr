@@ -7,7 +7,12 @@ $(function(){
 		$('#btn-edit').data('pjnid',$(this).data('pjnid'));
 	});
 	//tabs 
-	$('#nav_gr li[status="进行中"] a').tab('show');
+	var pjnid=$("input[name='pjnid']").val()
+	if(pjnid){
+		$('#nav_gr li a[data-pjnid="'+pjnid+'"]').tab('show');
+	}else{
+		$('#nav_gr li[status="进行中"] a').tab('show');
+	}
 	
 	$('#btn-edit').on('click',function(){
 		window.location.href='projnview?id='+$(this).data('pjnid');

@@ -66,6 +66,7 @@ public class HomeController extends _BaseController{
 	public String projview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
+		Integer pjnid=this.findIntegerParameterValue(request, "pjnid");
 		ProjectVo project = projectService.selectProjectRelatedById(id);
 		Set<Object> pcTypeSet=new HashSet<Object>();
 		for(ProNode pn:project.getProjNodeList()){
@@ -73,6 +74,7 @@ public class HomeController extends _BaseController{
 		}
 		model.addAttribute("project", project);
 		model.addAttribute("pcTypeSet", pcTypeSet);
+		model.addAttribute("pjnid", pjnid);
 		return "project";
 	}
 	/**
