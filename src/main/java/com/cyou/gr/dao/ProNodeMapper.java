@@ -20,4 +20,6 @@ public interface ProNodeMapper {
 	List<ProNode> selectProjNodeList(Integer projectId);
 
 	ProNode selectProjectNodeRelatedById(Integer id);
+
+	List<ProNode> selectPjnListForCalendar();
 }

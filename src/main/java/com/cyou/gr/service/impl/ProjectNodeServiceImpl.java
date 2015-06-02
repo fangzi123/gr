@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -113,5 +112,10 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<ProNode> selectPjnListForCalendar() {
+		return proNodeMapper.selectPjnListForCalendar();
 	}
 }

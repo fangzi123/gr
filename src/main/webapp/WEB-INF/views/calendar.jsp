@@ -18,83 +18,7 @@
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/moment.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/fullcalendar.min.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/resources/js/comm/zh-cn.js"></script>
-<script>
-
-	$(document).ready(function() {
-		var bh = $('body').height()-250;
-		$('#calendar').fullCalendar({
-			height: bh,
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek'
-			},
-			lang:'zh-cn',
-			editable: false,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2015-02-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2015-02-07',
-					end: '2015-02-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2015-02-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2015-02-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2015-02-11',
-					end: '2015-02-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2015-02-12T10:30:00',
-					end: '2015-02-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2015-02-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2015-02-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2015-02-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2015-02-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2015-02-13T07:00:00'
-				},
-				{
-					title: '海战世界：GR3',
-					url: '/porject.shtml',
-					start: '2015-04-28'
-				}
-			]
-		});
-	$('#calendar').addClass('panel panel-default');
-	$('.fc-toolbar').wrap("<div class='panel-heading'></div>");
-	$('.fc-view-container').wrap("<div class='panel-body'></div>");
-	});
-
-</script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/calendar.js"></script>
 </head>
 
 <body>
@@ -122,5 +46,6 @@
 	<!--right_box-->
 </div>
 <!--content-->
+<input type="hidden" value='${list}' id="data">
 </body>
 </html>

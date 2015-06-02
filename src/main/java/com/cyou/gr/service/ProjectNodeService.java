@@ -16,4 +16,6 @@ public interface ProjectNodeService {
 
 	boolean sendEmailToPersonService(Map<String, Object> map) throws Exception;
 
+	List<ProNode> selectPjnListForCalendar();
+
 }

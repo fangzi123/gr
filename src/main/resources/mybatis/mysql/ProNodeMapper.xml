@@ -105,6 +105,18 @@
 			    <result column="flag" property="flag" />
 			</collection>
   </resultMap>
+    <resultMap type="com.cyou.gr.entity.ProNode" id="pjnListForCalendarMap" extends="BaseResultMap">
+  	<association property="processNode" javaType="com.cyou.gr.entity.ProcessNode" columnPrefix="pcn_">
+		     	<id property="id" column="id"/>
+			    <result property="name" column="name"/>
+			    <result property="processType" column="process_type"/>
+			    <result property="timeType" column="time_type"/>
+	</association>
+  	<association property="project" javaType="com.cyou.gr.entity.Project" columnPrefix="pj_">
+		    <id property="id" column="id"/>
+		    <result property="name" column="name"/>
+	</association>
+	</resultMap>
   <sql id="Base_Column_List" >
     id, project_id, process_node_id, status, start_time, end_time, review_time, is_normal, 
     current_progress_desc, additional_desc
@@ -278,5 +290,16 @@
       left join document doc on doc.pro_node_id=pjn.id
   where  
   	  pcn.flag=1 and pjn.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectPjnListForCalendar" resultMap="pjnListForCalendarMap">
+  	select 
+  		pjn.*
+  		,pcn.id pcn_id,pcn.name pcn_name
+  		,pj.id pj_id,pj.name pj_name
+  	from 
+  		pro_node pjn
+  		left join process_node pcn on pcn.id=pjn.process_node_id
+	    left join project pj on pj.id=pjn.project_id
+	where pj.flag=1 and pcn.flag=1
   </select>
 </mapper>

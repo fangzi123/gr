@@ -236,7 +236,7 @@ public class DateUtil {
 	 */
 	public static String getDateStr(Date date, String format) {
 		DateFormat dateformat = new SimpleDateFormat(format);
-		return dateformat.format(date);
+		return null==date?"null":dateformat.format(date);
 	}
 
 	public static String secondsToHourMinute(long sTime) {
