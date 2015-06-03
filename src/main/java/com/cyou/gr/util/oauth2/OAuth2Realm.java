@@ -71,6 +71,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         try {
         	User u=userService.selectUserByName(shiroUser.getUsername());
         	authorizationInfo.addRole(Constants.ROLEZH.equals(u.getType())?Constants.ROLEEH:Constants.ROLEEH);
+        	authorizationInfo.setStringPermissions(userService.selectPermissions(u.getId()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

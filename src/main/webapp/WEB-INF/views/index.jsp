@@ -53,6 +53,7 @@
 		<div class="panel-body">
 			<table class="table tb1">
 				<c:forEach items="${process.projList}" var="proj">
+				<shiro:hasPermission name="view:${proj.id}">
 				<tbody proj_id="${proj.id}" proj_releaseline="${proj.releaseLine}">
                 	<tr>
                     	<th width="100"></th>
@@ -114,7 +115,7 @@
 		                    </c:if>
 	                    </c:if>
                     </c:forEach>
-					</tbody>
+					</tbody></shiro:hasPermission>
                  </c:forEach>
 			</table>
 		</div>

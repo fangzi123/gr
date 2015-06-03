@@ -118,4 +118,8 @@
       flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectUser2projectsByUserid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  		select * from user2project
+  		where user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

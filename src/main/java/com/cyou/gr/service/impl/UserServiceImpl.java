@@ -1,11 +1,14 @@
 package com.cyou.gr.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.cyou.gr.dao.User2projectMapper;
 import com.cyou.gr.dao.UserMapper;
@@ -78,6 +81,21 @@ public class UserServiceImpl implements UserService {
 		u.setId(userId);
 		u.setFlag(false);
 		userMapper.updateByPrimaryKeySelective(u);
+	}
+
+	@Override
+	public Set<String> selectPermissions(Integer userid) {
+		Set<String> permissions = new HashSet<String>();
+		List<User2project> u2pList =user2projectMapper.selectUser2projectsByUserid(userid);
+	        for(User2project u2p : u2pList) {
+	            if(u2p != null) {
+	                permissions.add("view:"+u2p.getProjectId());
+	                if(u2p.getIsEdit()){
+	                	permissions.add("edit"+u2p.getProjectId());
+	                }
+	            }
+	        }
+	   return permissions;
 	}
 
 }

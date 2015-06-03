@@ -1,5 +1,7 @@
 package com.cyou.gr.dao;
 
+import java.util.List;
+
 import com.cyou.gr.entity.User2project;
 
 public interface User2projectMapper {
@@ -16,4 +18,6 @@ public interface User2projectMapper {
     int updateByPrimaryKey(User2project record);
 
 	void deleteAllByUserId(Integer userId);
+
+	List<User2project> selectUser2projectsByUserid(Integer userId);
 }
