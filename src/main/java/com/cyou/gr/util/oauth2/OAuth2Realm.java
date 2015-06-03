@@ -17,7 +17,12 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cyou.gr.entity.User;
+import com.cyou.gr.service.UserService;
+import com.cyou.gr.util.ApplicationContextUtil;
+import com.cyou.gr.util.Constants;
 import com.cyou.gr.util.JsonUtils;
 
 /**
@@ -32,7 +37,8 @@ public class OAuth2Realm extends AuthorizingRealm {
     private String accessTokenUrl;
     private String userInfoUrl;
     private String redirectUrl;
-
+    @Autowired
+    private UserService userService;
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
@@ -61,6 +67,13 @@ public class OAuth2Realm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        ShiroUser shiroUser = (ShiroUser) principals.fromRealm(getName()).iterator().next();
+        try {
+        	User u=userService.selectUserByName(shiroUser.getUsername());
+        	authorizationInfo.addRole(Constants.ROLEZH.equals(u.getType())?Constants.ROLEEH:Constants.ROLEEH);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         return authorizationInfo;
     }
 
@@ -107,7 +120,15 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
     }
     
-    /**
+    public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	/**
 	 * 自定义Authentication对象，使得Subject除了携带用户的登录名外还可以携带更多信息.
 	 */
 	public static class ShiroUser implements Serializable {

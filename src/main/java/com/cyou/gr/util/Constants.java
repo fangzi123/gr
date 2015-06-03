@@ -11,5 +11,11 @@ public class Constants {
     public static final String CHECKBILLTID = "checkbilltId";
     
     public static final String UPLOADPATH = "E:";
+    
+    public static final String ROLEZH = "管理员";
+    public static final String ROLEEH = "admin";
+    
+    public static final String GUESTZH = "普通用户";
+    public static final String GUESTEH = "guest";
 
 }

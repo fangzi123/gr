@@ -5,6 +5,6 @@
     <title></title>
 </head>
 <body>
-     GR系统无此用户,请联系管理员，添加后再尝试。
+     未授权!
 </body>
 </html>

@@ -100,6 +100,7 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="http://ldapproxy.cyou-inc.com/oauth/auth?client_id=54d7293dce&amp;response_type=code&amp;redirect_uri=http://10.12.20.14:8080/gr/index"/>
         <property name="successUrl" value="/"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
         <property name="filters">
             <util:map>
                 <entry key="oauth2Authc" value-ref="oAuth2AuthenticationFilter"/>
@@ -111,6 +112,10 @@
                 /refuse.jsp = anon
                 /index = oauth2Authc
                 /logout = anon
+                /rights/**=user,roles[admin]
+                /quota/**=user,roles[admin]
+                /project/**=user,roles[admin]
+                /process/**=user,roles[admin]
                 /** = user
             </value>
         </property>
