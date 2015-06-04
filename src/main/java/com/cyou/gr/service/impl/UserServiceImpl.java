@@ -61,15 +61,17 @@ public class UserServiceImpl implements UserService {
 		    userMapper.updateByPrimaryKeySelective(u);
 		    String porIdsView = uv.getPorIdsView();
 			String porIdsEdit = uv.getPorIdsEdit();
-			String[] porIds = porIdsView.split(",");
-			for (int i = 0; i < porIds.length; i++) {
-				User2project up = new User2project();
-				up.setUserId(u.getId());
-				up.setProjectId(Integer.valueOf(porIds[i]));
-				if (porIdsEdit.contains(porIds[i])) {
-					up.setIsEdit(true);
+			if(porIdsView!=null){
+				String[] porIds = porIdsView.split(",");
+				for (int i = 0; i < porIds.length; i++) {
+					User2project up = new User2project();
+					up.setUserId(u.getId());
+					up.setProjectId(Integer.valueOf(porIds[i]));
+					if (porIdsEdit!=null&&porIdsEdit.contains(porIds[i])) {
+						up.setIsEdit(true);
+					}
+					user2projectMapper.insertSelective(up);
 				}
-				user2projectMapper.insertSelective(up);
 			}
 		}
 
