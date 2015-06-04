@@ -38,7 +38,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			User u = userService.selectUserByName(shiroUser.getUsername());
 			authorizationInfo
 					.addRole(Constants.ROLEZH.equals(u.getType()) ? Constants.ROLEEH
-							: Constants.ROLEEH);
+							: Constants.GUESTEH);
 			authorizationInfo.setStringPermissions(userService
 					.selectPermissions(u.getId()));
 		} catch (Exception e) {
