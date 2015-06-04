@@ -70,7 +70,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         ShiroUser shiroUser = (ShiroUser) principals.fromRealm(getName()).iterator().next();
         try {
         	User u=userService.selectUserByName(shiroUser.getUsername());
-        	authorizationInfo.addRole(Constants.ROLEZH.equals(u.getType())?Constants.ROLEEH:Constants.ROLEEH);
+        	authorizationInfo.addRole(Constants.ROLEZH.equals(u.getType())?Constants.ROLEEH:Constants.GUESTEH);
         	authorizationInfo.setStringPermissions(userService.selectPermissions(u.getId()));
 		} catch (Exception e) {
 			e.printStackTrace();
