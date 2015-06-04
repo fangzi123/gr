@@ -35,6 +35,7 @@
                     <li class="active">${project.name}</li>
                 </ol>
             </div>
+            <shiro:hasPermission name="edit:${project.id}">
         	<div class="col-xs-2 text-right">
         		<c:set var="pjnId" value=""/>
         		<c:forEach items="${project.projNodeList}" var="pjn" varStatus="status">
@@ -45,6 +46,7 @@
                 </c:forEach>
         		<button type="button" class="btn btn-danger btn-block" id="btn-edit" data-pjnid="${empty pjnid?pjnId:pjnid}">编辑内容</button>
             </div>
+            </shiro:hasPermission>
         </div>
 		<!--路径导航-->
 		<div class="panel panel-default">

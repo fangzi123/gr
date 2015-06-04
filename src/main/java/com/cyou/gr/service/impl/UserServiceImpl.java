@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	            if(u2p != null) {
 	                permissions.add("view:"+u2p.getProjectId());
 	                if(u2p.getIsEdit()){
-	                	permissions.add("edit"+u2p.getProjectId());
+	                	permissions.add("edit:"+u2p.getProjectId());
 	                }
 	            }
 	        }
