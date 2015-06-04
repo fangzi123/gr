@@ -31,8 +31,8 @@
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="<%=contextPath%>">首页</a></li>
-                    <li><a href="<%=contextPath%>">评审进度查询</a></li>
+                    <li><a href="<%=contextPath%>/gr/index">首页</a></li>
+                    <li><a href="<%=contextPath%>/gr/index">评审进度查询</a></li>
                     <li><a href="<%=contextPath%>/gr/projview?id=${projNode.projectId}">${projNode.project.name}</a></li>
                     <li><a href="<%=contextPath%>/gr/projnview?id=${projNode.id}">${projNode.processNode.name}</a></li>
                     <li class="active">邮件</li>

@@ -28,7 +28,7 @@
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>/gr/index">首页</a></li>
                     <li class="active">项目</li>
                 </ol>
             </div>

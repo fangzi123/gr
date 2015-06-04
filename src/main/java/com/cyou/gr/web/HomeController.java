@@ -1,6 +1,5 @@
 package com.cyou.gr.web;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,8 +9,6 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.httpclient.HttpException;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +25,7 @@ import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.web.comm._BaseController;
 
-
+@RequestMapping("/gr")
 @Controller
 public class HomeController extends _BaseController{
 	
@@ -40,18 +37,11 @@ public class HomeController extends _BaseController{
 	private ProjectService projectService;
 	@Autowired
 	private ProjectNodeService projectNodeService;
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Process> procList=processService.selectProcessRelatedList();
 		model.addAttribute("procList", procList);
 		return "index";
-	}
-	
-	//退出
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws HttpException, IOException {
-	        String url = "http://ldapproxy.cyou-inc.com/oauth/logout?client_id=54d7293dce&redirect_uri=http://10.12.20.14:8080/gr/index";
-		    return "redirect:"+url;
 	}
 	
 	/********************评审进度模块***************************/

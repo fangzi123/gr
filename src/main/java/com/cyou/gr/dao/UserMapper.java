@@ -6,7 +6,8 @@ import com.cyou.gr.entity.User;
 import com.cyou.gr.entity.vo.UserVo;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+
+	int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 

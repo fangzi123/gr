@@ -30,7 +30,7 @@
     	<div class="row">
         	<div class="col-xs-10">
                 <ol class="breadcrumb">
-                    <li><a href="<%=contextPath%>">首页</a></li>
+                    <li><a href="<%=contextPath%>/gr/index">首页</a></li>
                     <li><a href="<%=contextPath%>/process/index">流程</a></li>
                     <li><a href="<%=contextPath%>/process/procNode/index?procId=${procNode.processId}">${procNode.process.name }</a></li>
                     <li class="active">${procNode.name}</li>

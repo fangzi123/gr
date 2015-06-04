@@ -1,3 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String contextPath = pageContext.getServletContext().getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,35 +10,34 @@
 <title>GR评审系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Web Layout:Silence">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/daterangepicker-bs3.css" rel="stylesheet">
-<link href="css/css.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="<%=contextPath%>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=contextPath%>/resources/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/jquery.min.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/resources/js/comm/bootstrap.min.js"></script>
 </head>
 
 <body class="login">
 
 <div id="login">
 	<h2>Git Review</h2> 
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="<%=contextPath%>/login" method="post" id="form_login">
       <div class="form-group">
         <label for="inputEmail3" class="col-xs-3 control-label text-right">Email</label>
         <div class="col-xs-9">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="name@cyou-inc.com">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="name@cyou-inc.com" name="name">
         </div>
       </div>
       <div class="form-group">
         <label for="inputPassword3" class="col-xs-3 control-label  text-right">Password</label>
         <div class="col-xs-9">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="password">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="password" name="password">
         </div>
       </div>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-9">
           <div class="checkbox">
             <label>
-              <input type="checkbox" checked>Remember me
+              <input type="checkbox" checked name="rememberme">Remember me
             </label>
           </div>
         </div>
@@ -49,8 +53,7 @@
     </form>
 </div>
 <footer>
-	<p>系统意见反馈请联系 TEL：927674 MAIL：xiaoqiangshi@cyou-inc.com</p>
-    <p>系统不再对IE进行支持，请使用非IE内核浏览器浏览本站！</p>
+	<p>系统意见反馈请联系 TEL：927674 MAIL：wangfangfang_yy@cyou-inc.com</p>
 </footer>
 <script>
 </script>

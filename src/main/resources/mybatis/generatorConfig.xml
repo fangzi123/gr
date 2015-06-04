@@ -13,7 +13,7 @@
   	<!-- oracle.jdbc.driver.OracleDriver  jdbc:oracle:thin:@112.124.69.93:1521:xe -->
     <jdbcConnection 
         driverClass="com.mysql.jdbc.Driver" 
-        connectionURL="jdbc:mysql://localhost:3306/gr" 
+        connectionURL="jdbc:mysql://localhost:3306/gr1" 
         userId="root" password="123456" />
    	<!-- 测试用 -->
    	<!-- 
@@ -28,7 +28,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="com.cyou.gr.dao"  targetProject="gr/src/main/java">
         <property name="enableSubPackages" value="false" />
     </javaClientGenerator>
-    <table schema="" tableName="document" 
+    <table schema="" tableName="user" 
     	enableCountByExample="false" enableUpdateByExample="false" 
     	enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>

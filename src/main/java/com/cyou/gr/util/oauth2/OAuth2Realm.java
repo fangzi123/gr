@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cyou.gr.entity.User;
 import com.cyou.gr.service.UserService;
-import com.cyou.gr.util.ApplicationContextUtil;
 import com.cyou.gr.util.Constants;
 import com.cyou.gr.util.JsonUtils;
 

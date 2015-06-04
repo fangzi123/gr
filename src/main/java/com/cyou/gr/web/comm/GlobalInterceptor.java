@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.cyou.gr.entity.User;
 import com.cyou.gr.service.UserService;
-import com.cyou.gr.util.oauth2.OAuth2Realm.ShiroUser;
+import com.cyou.gr.web.shiro.ShiroDbRealm.ShiroUser;
 
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
 

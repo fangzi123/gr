@@ -5,7 +5,7 @@
 %>
 	<div id="left_box">
 		<ul>
-			<li class="n1"><a href="<%=contextPath%>"><span class="glyphicon glyphicon-align-left"></span><b>评审进度</b></a></li>
+			<li class="n1"><a href="<%=contextPath%>/gr/index"><span class="glyphicon glyphicon-align-left"></span><b>评审进度</b></a></li>
 			<li class="n2"><a href="<%=contextPath%>/calendar/index"><span class="glyphicon glyphicon-calendar"></span><b>日历</b></a></li>
 			<li class="n3"><a href="<%=contextPath%>/doc/index"><span class="glyphicon glyphicon-paperclip"></span><b>文档管理</b></a></li>
 			<shiro:hasRole name="admin">

@@ -1,86 +1,107 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cyou.gr.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="CHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyou.gr.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.cyou.gr.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="flag" jdbcType="BIT" property="flag" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, type
+  <sql id="Base_Column_List">
+    id, name, password, type, flag
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where name = #{name,jdbcType=VARCHAR} and flag=1
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cyou.gr.entity.User" keyProperty="id" useGeneratedKeys="true">
-    insert into user (id, name, type,flag)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{flag,jdbcType=BIT})
+  <insert id="insert" keyProperty="id" parameterType="com.cyou.gr.entity.User" useGeneratedKeys="true">
+    insert into user (id, name, password, 
+      type, flag)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{type,jdbcType=CHAR}, #{flag,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cyou.gr.entity.User" >
+  <insert id="insertSelective" parameterType="com.cyou.gr.entity.User">
     insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="type != null" >
+      <if test="password != null">
+        password,
+      </if>
+      <if test="type != null">
         type,
       </if>
+      <if test="flag != null">
+        flag,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
         #{type,jdbcType=CHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyou.gr.entity.User">
     update user
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
         type = #{type,jdbcType=CHAR},
       </if>
-      <if test="flag != null" >
+      <if test="flag != null">
         flag = #{flag,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.User" >
+  <update id="updateByPrimaryKey" parameterType="com.cyou.gr.entity.User">
     update user
     set name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=CHAR}
+      password = #{password,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      flag = #{flag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <resultMap id="UserVoResultMap" type="com.cyou.gr.entity.vo.UserVo" extends="BaseResultMap">
-    <collection property="proList" ofType="ProjectVo">
-    <id property="id" column="proId"/>
-    <result property="name" column="proName"/>
-    <result property="isView" column="isView"/>
-    <result property="isEdit" column="isEdit"/>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where name = #{name,jdbcType=VARCHAR} and flag=1
+  </select>
+  <resultMap extends="BaseResultMap" id="UserVoResultMap" type="com.cyou.gr.entity.vo.UserVo">
+    <collection ofType="ProjectVo" property="proList">
+    <id column="proId" property="id" />
+    <result column="proName" property="name" />
+    <result column="isView" property="isView" />
+    <result column="isEdit" property="isEdit" />
   </collection>
   </resultMap>
   <select id="selectUserList" resultMap="UserVoResultMap">
