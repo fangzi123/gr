@@ -1,16 +1,9 @@
 package com.cyou.gr.web;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.httpclient.HttpException;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -54,13 +47,6 @@ public class LoginController extends _BaseController{
 		}
 		// 已通过身份验证
 		return "redirect:/gr/index";
-	}
-	
-	//退出
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws HttpException, IOException {
-		SecurityUtils.getSubject().logout();
-		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)

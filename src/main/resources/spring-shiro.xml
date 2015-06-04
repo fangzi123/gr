@@ -100,7 +100,7 @@
                 /refuse.jsp = anon
                 / = anon
                 /login = anon
-                /logout = anon
+                /logout = logout
                 /rights/**=user,roles[admin]
                 /quota/**=user,roles[admin]
                 /project/**=user,roles[admin]
