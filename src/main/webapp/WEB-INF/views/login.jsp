@@ -33,7 +33,18 @@
           <input type="password" class="form-control" id="inputPassword3" placeholder="password" name="password" required>
         </div>
       </div>
-      <div class="form-group"></div>
+      <div class="form-group">
+	    <%-- jcaptchaEbabled 在JCaptchaValidateFilter设置 --%>
+	    <c:if test="${jcaptchaEbabled}">
+	     	<label for="inputJcaptchaCode" class="col-xs-3 control-label  text-right">Code</label>
+	        <div class="col-xs-9">
+		        <input type="text" name="jcaptchaCode" required>
+		        <img class="jcaptcha-btn jcaptcha-img" src="<%=contextPath%>/jcaptcha.jpg" title="点击更换验证码">
+		        <a class="jcaptcha-btn" href="javascript:;">换一张</a>
+	        </div>
+	        <br/>
+	    </c:if>
+      </div>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-9">
           <div class="checkbox">
@@ -59,6 +70,11 @@
 	<p>系统意见反馈请联系 TEL：927674 MAIL：wangfangfang_yy@cyou-inc.com</p>
 </footer>
 <script>
+    $(function() {
+        $(".jcaptcha-btn").click(function() {
+            $(".jcaptcha-img").attr("src", '<%=contextPath%>/jcaptcha.jpg?'+new Date().getTime());
+        });
+    });
 </script>
 </body>
 </html>
