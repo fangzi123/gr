@@ -2,7 +2,8 @@ package com.cyou.gr.util;
 
 import org.apache.shiro.SecurityUtils;
 
-import com.cyou.gr.util.oauth2.OAuth2Realm.ShiroUser;
+import com.cyou.gr.web.shiro.ShiroDbRealm.ShiroUser;
+
 
 
 
