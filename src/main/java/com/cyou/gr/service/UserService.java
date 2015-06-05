@@ -8,7 +8,7 @@ import com.cyou.gr.entity.vo.UserVo;
 
 
 public interface UserService {
-    public User selectUserByName(String name) throws Exception;
+    public User selectUserByName(String name);
     /**
      * 查询用户列表
      * @return

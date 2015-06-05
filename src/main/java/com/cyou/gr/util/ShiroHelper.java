@@ -1,7 +1,6 @@
 package com.cyou.gr.util;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 
 import com.cyou.gr.util.oauth2.OAuth2Realm.ShiroUser;
 
@@ -30,4 +29,7 @@ public class ShiroHelper {
 		return ShiroUser.class.cast(SecurityUtils.getSubject().getPrincipal());
 	}
 	
+	public static boolean isAuth(){
+		return SecurityUtils.getSubject().isAuthenticated();
+	}
 }

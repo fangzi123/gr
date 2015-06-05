@@ -20,31 +20,33 @@
 
 <div id="login">
 	<h2>Git Review</h2> 
-    <form class="form-horizontal" action="<%=contextPath%>/login" method="post" id="form_login">
+    <form class="form-horizontal" action="" method="post">
       <div class="form-group">
         <label for="inputEmail3" class="col-xs-3 control-label text-right">Email</label>
         <div class="col-xs-9">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="name@cyou-inc.com" name="name">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="name@cyou-inc.com" name="name" required>
         </div>
       </div>
       <div class="form-group">
         <label for="inputPassword3" class="col-xs-3 control-label  text-right">Password</label>
         <div class="col-xs-9">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="password" name="password">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="password" name="password" required>
         </div>
       </div>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-9">
           <div class="checkbox">
             <label>
-              <input type="checkbox" checked name="rememberme">Remember me
+              <input type="checkbox" checked name="rememberMe">Remember me
             </label>
           </div>
         </div>
       </div>
+      <c:if test="${not empty error}">
       <div class="form-group">
-        <div class="col-xs-offset-3 col-sm-9"><p><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;账号密码错误！</p></div>
+        <div class="col-xs-offset-3 col-sm-9"><p><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;${error}</p></div>
       </div>
+      </c:if>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-9">
           <button type="submit" class="btn btn-danger btn-block">Sign in</button>

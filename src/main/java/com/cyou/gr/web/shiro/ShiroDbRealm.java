@@ -50,18 +50,16 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
+		AuthenticationInfo authenticationInfo = null;
 		ShiroUser shiroUser = new ShiroUser();
-		try {
 			User u = userService.selectUserByName(token.getPrincipal().toString());
-			shiroUser.setUsername(u.getName());
-			shiroUser.setPassword(u.getPassword());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-				shiroUser, shiroUser.getPassword(), getName());
-
-		return authenticationInfo;
+			if(u!=null){
+				shiroUser.setUsername(u.getName());
+				shiroUser.setPassword(u.getPassword());
+				authenticationInfo = new SimpleAuthenticationInfo(
+						shiroUser, shiroUser.getPassword(), getName());
+			}
+			return authenticationInfo;
 	}
 
 	public UserService getUserService() {

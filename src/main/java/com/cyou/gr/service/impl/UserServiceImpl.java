@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.cyou.gr.dao.User2projectMapper;
 import com.cyou.gr.dao.UserMapper;
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	private User2projectMapper user2projectMapper;
 
 	@Override
-	public User selectUserByName(String name) throws Exception {
+	public User selectUserByName(String name){
 		return userMapper.selectByName(name);
 	}
 
