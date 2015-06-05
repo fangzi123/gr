@@ -33,6 +33,7 @@
           <input type="password" class="form-control" id="inputPassword3" placeholder="password" name="password" required>
         </div>
       </div>
+      <div class="form-group"></div>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-9">
           <div class="checkbox">
