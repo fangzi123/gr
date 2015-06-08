@@ -21,6 +21,7 @@ import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.util.Constants;
 import com.cyou.gr.util.FileUtils;
+import com.cyou.gr.util.JedisUtil;
 @WebAppConfiguration
 public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
@@ -36,6 +37,12 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 	@Autowired
     private SessionDAO sessionDAO;
 	
+	@Test
+	public void redis() throws Exception {
+		JedisUtil.set("1","33");
+		String a=(String) JedisUtil.get("1");
+		System.out.println(a+"------------");
+	}
 	@Test
 	public void session() throws Exception {
 		 Collection<Session> sessions =sessionDAO.getActiveSessions();
