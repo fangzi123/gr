@@ -1,7 +1,12 @@
 package com.cyou.gr;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -26,7 +31,21 @@ public class HomeTest extends AbstractSpringContextTestSupport{
 	private FeeMapper feeMapper;
 	@Autowired
 	private ProjectMapper projectMapper;
-
+	@Autowired
+	private CacheManager cacheManager;
+	@Autowired
+    private SessionDAO sessionDAO;
+	
+	@Test
+	public void session() throws Exception {
+		 Collection<Session> sessions =sessionDAO.getActiveSessions();
+		System.out.println(8);
+	}
+	@Test
+	public void cache() throws Exception {
+        Cache c=cacheManager.getCache("shiro-activeSessionCache");
+		System.out.println(8);
+	}
 	@Test
 	public void download() throws Exception {
 //		FileUtils.download("E:/文档/Shiro教程.pdf", response);

@@ -1,6 +1,10 @@
 package com.cyou.gr.web.shiro.filter;
 
 
+import java.util.Set;
+
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -20,6 +24,8 @@ import javax.servlet.ServletResponse;
 public class ForceLogoutFilter extends AccessControlFilter {
 	@Autowired
     private SessionDAO sessionDAO;
+	@Autowired
+	private CacheManager cacheManager;
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Session session = getSubject(request, response).getSession(false);

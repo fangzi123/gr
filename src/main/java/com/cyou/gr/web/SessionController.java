@@ -1,5 +1,7 @@
 package com.cyou.gr.web;
 
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ import java.util.Collection;
 public class SessionController {
     @Autowired
     private SessionDAO sessionDAO;
+    @Autowired
+	private CacheManager cacheManager;
     @RequestMapping()
     public String list(Model model) {
         Collection<Session> sessions =  sessionDAO.getActiveSessions();
