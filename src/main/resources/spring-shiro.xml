@@ -108,6 +108,8 @@
         <property name="jcaptchaParam" value="jcaptchaCode"/>
         <property name="failureKeyAttribute" value="shiroLoginFailure"/>
     </bean>
+    <!-- 在线会话管理 -->
+    <bean id="forceLogoutFilter" class="com.cyou.gr.web.shiro.filter.ForceLogoutFilter"/>
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
@@ -120,6 +122,7 @@
 				<entry key="ssl" value-ref="sslFilter"/>
 				<entry key="kickout" value-ref="kickoutSessionControlFilter"/>
 				<entry key="jCaptchaValidate" value-ref="jCaptchaValidateFilter"/>
+				<entry key="forceLogout" value-ref="forceLogoutFilter"/>
             </map>
         </property>
         <property name="filterChainDefinitions">
@@ -134,7 +137,7 @@
                 /quota/**=user,roles[admin]
                 /project/**=user,roles[admin]
                 /process/**=user,roles[admin]
-                /** = kickout,user
+                /** = forceLogout,kickout,user
             </value>
         </property>
     </bean>

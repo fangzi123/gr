@@ -40,18 +40,21 @@ public class UserServiceImpl implements UserService {
 		if (uv.getId() == null) {//新增
 			User u = new User();
 			BeanUtils.copyProperties(uv, u);
+			u.setFlag(true);
 			userMapper.insert(u);
 			String porIdsView = uv.getPorIdsView();
 			String porIdsEdit = uv.getPorIdsEdit();
-			String[] porIds = porIdsView.split(",");
-			for (int i = 0; i < porIds.length; i++) {
-				User2project up = new User2project();
-				up.setUserId(u.getId());
-				up.setProjectId(Integer.valueOf(porIds[i]));
-				if (porIdsEdit.contains(porIds[i])) {
-					up.setIsEdit(true);
-				} 
-				user2projectMapper.insertSelective(up);
+			if(porIdsEdit!=null){
+				String[] porIds = porIdsView.split(",");
+				for (int i = 0; i < porIds.length; i++) {
+					User2project up = new User2project();
+					up.setUserId(u.getId());
+					up.setProjectId(Integer.valueOf(porIds[i]));
+					if (porIdsEdit.contains(porIds[i])) {
+						up.setIsEdit(true);
+					} 
+					user2projectMapper.insertSelective(up);
+				}
 			}
 		} else {//修改
 			user2projectMapper.deleteAllByUserId(uv.getId());

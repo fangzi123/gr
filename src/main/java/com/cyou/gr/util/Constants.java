@@ -18,4 +18,6 @@ public class Constants {
     public static final String GUESTZH = "普通用户";
     public static final String GUESTEH = "guest";
 
+	public static final String SESSION_FORCE_LOGOUT_KEY = "session.force.logout";
+
 }
