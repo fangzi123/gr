@@ -131,7 +131,7 @@
                 /jcaptcha.jpg = anon
                 /oauth2Failure.jsp = anon
                 /unauthorized.jsp = anon
-                / = ssl,jCaptchaValidate,authc
+                / = jCaptchaValidate,authc
                 /logout = logout
                 /rights/**=user,roles[admin]
                 /quota/**=user,roles[admin]
