@@ -1,9 +1,6 @@
 package com.cyou.gr.web.shiro.filter;
 
 
-import java.util.Set;
-
-import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
