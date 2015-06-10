@@ -58,30 +58,31 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 		pjn.setIsNormal(vo.getIsNormal());
 		pjn.setCurrentProgressDesc(vo.getCurrentProgressDesc());
 		proNodeMapper.updateByPrimaryKeySelective(pjn);
-		
-		for(int i=0;i<vo.getFeeId().length;i++){
-			Fee fee=new Fee();
-			fee.setId(vo.getFeeId()[i]);
-			fee.setDisplay(vo.getDisplay()[i]);
-			fee.setMoney(vo.getMoney()[i]);
-			feeMapper.updateByPrimaryKeySelective(fee); 
+		if(vo.getFeeId()!=null){
+			for(int i=0;i<vo.getFeeId().length;i++){
+				Fee fee=new Fee();
+				fee.setId(vo.getFeeId()[i]);
+				fee.setDisplay(vo.getDisplay()[i]);
+				fee.setMoney(vo.getMoney()[i]);
+				feeMapper.updateByPrimaryKeySelective(fee); 
+			}		
 		}
-		
+		if(vo.getManpowerId()!=null){
 		for(int i=0;i<vo.getManpowerId().length;i++){
 			Manpower man=new Manpower();
 			man.setId(vo.getManpowerId()[i]);
 			man.setCoreMan(vo.getCoreMan()[i]);
 			manpowerMapper.updateByPrimaryKeySelective(man);
-		}
-		
+		}}
+		if(vo.getManpowerId()!=null){
 		for(int i=0;i<vo.getTaskbookId().length;i++){
 			TaskBook tb=new TaskBook();
 			tb.setId(vo.getTaskbookId()[i]);
 			tb.setQuotaNum(vo.getQuotaNum()[i]);
 			tb.setQuotaNumReal(vo.getQuotaNumReal()[i]);
 			taskBookMapper.updateByPrimaryKeySelective(tb);
-		}
-		
+		}}
+		if(vo.getCheckbillId()!=null){
 		for(int i=0;i<vo.getCheckbillId().length;i++){
 			Checkbill cb=new Checkbill();
 			cb.setId(vo.getCheckbillId()[i]);
@@ -89,7 +90,7 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 			cb.setRemark(vo.getRemark()[i]);
 			cb.setIsqualified(vo.getIsqualified()[i]);
 			checkbillMapper.updateByPrimaryKeySelective(cb);
-		}
+		}}
 	}
 
 	public boolean sendEmailToPersonService(Map<String, Object> map) throws Exception {

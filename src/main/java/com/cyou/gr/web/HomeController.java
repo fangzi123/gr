@@ -63,7 +63,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gr/projview")
+	@RequestMapping(value = "/projview")
 	public String projview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -86,7 +86,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gr/projnview")
+	@RequestMapping(value = "/projnview")
 	public String projnview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -102,7 +102,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gr/pjnedit" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/pjnedit" ,method = RequestMethod.POST)
 	public String pjnedit(HttpServletRequest request,
 			HttpServletResponse response,Model model,ProNodeVo vo) throws Exception {
 
@@ -119,7 +119,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gr/mail")
+	@RequestMapping(value = "/mail")
 	public String mail(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -135,7 +135,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gr/sendmail",method = RequestMethod.POST)
+	@RequestMapping(value = "/sendmail",method = RequestMethod.POST)
 	public String sendmail(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
