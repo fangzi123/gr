@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.httpclient.HttpException;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +27,7 @@ import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.web.comm._BaseController;
 
-
+@RequestMapping("/gr")
 @Controller
 public class HomeController extends _BaseController{
 	
