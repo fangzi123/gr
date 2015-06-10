@@ -27,7 +27,7 @@ import com.cyou.gr.entity.vo.ProjectVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.web.comm._BaseController;
 
-@RequestMapping("/gr")
+@RequestMapping("")
 @Controller
 public class HomeController extends _BaseController{
 	
@@ -62,7 +62,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/projview")
+	@RequestMapping(value = "/gr/projview")
 	public String projview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -85,7 +85,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/projnview")
+	@RequestMapping(value = "/gr/projnview")
 	public String projnview(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -101,7 +101,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/pjnedit" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/gr/pjnedit" ,method = RequestMethod.POST)
 	public String pjnedit(HttpServletRequest request,
 			HttpServletResponse response,Model model,ProNodeVo vo) throws Exception {
 
@@ -118,7 +118,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/mail")
+	@RequestMapping(value = "/gr/mail")
 	public String mail(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
@@ -134,7 +134,7 @@ public class HomeController extends _BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sendmail",method = RequestMethod.POST)
+	@RequestMapping(value = "/gr/sendmail",method = RequestMethod.POST)
 	public String sendmail(HttpServletRequest request,
 			HttpServletResponse response,Model model) throws Exception {
 		Integer id=this.findIntegerParameterValue(request, "id");
