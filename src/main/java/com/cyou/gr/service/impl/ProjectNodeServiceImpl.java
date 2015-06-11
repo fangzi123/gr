@@ -74,7 +74,7 @@ public class ProjectNodeServiceImpl implements ProjectNodeService {
 			man.setCoreMan(vo.getCoreMan()[i]);
 			manpowerMapper.updateByPrimaryKeySelective(man);
 		}}
-		if(vo.getManpowerId()!=null){
+		if(vo.getTaskbookId()!=null){
 		for(int i=0;i<vo.getTaskbookId().length;i++){
 			TaskBook tb=new TaskBook();
 			tb.setId(vo.getTaskbookId()[i]);

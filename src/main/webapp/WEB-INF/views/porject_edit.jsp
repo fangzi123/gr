@@ -41,7 +41,7 @@
                 </ol>
             </div>
         	<div class="col-xs-2 text-right">
-        		<button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.href='<%=contextPath%>/gr/mail?id=${projNode.id}'">发送邮件</button>
+        		<button type="button" class="btn btn-danger btn-block" <c:if test="${'手动完结' eq projNode.processNode.endType}">disabled</c:if>  onclick="javascript:window.location.href='<%=contextPath%>/gr/mail?id=${projNode.id}'">发送邮件</button>
             </div>
         </div>
 		<!--路径导航-->
@@ -58,16 +58,16 @@
                     <select name="status" class="form-control" id="status">
                           <option value="未开启" <c:if test="${'未开启 ' eq projNode.status}">selected</c:if>>未开启</option>
                           <option value="进行中" <c:if test="${'进行中' eq projNode.status }">selected</c:if>>进行中</option>
-                          <option value="未通过" <c:if test="${'未通过 ' eq projNode.status}">selected</c:if>>未通过</option>
+                          <option value="未通过" <c:if test="${'未通过' eq projNode.status}">selected</c:if>>未通过</option>
                           <c:if test="${'手动完结' eq projNode.processNode.endType}">
-                          <option value="已完成" <c:if test="${'已完成 ' eq projNode.status}">selected</c:if>>已完成</option></c:if>
+                          <option value="已完成" <c:if test="${'已完成' eq projNode.status}">selected</c:if>>已完成</option></c:if>
                           <option value="跳过 " <c:if test="${'跳过' eq projNode.status}">selected</c:if>>跳过</option>
                     </select>
                   </div>
                 <hr>
                 </div>
                 <c:choose>
-	                <c:when test="${'时间点' eq projNode.processNode.timeType}">
+	                <c:when test="${'时间段' eq projNode.processNode.timeType}">
 		                <div class="form-inline pass">
 		                  <div class="form-group">
 		                    <label for="exampleInputName2">开始时间：</label>
