@@ -219,6 +219,7 @@ public class DateUtil {
 	 * @return Date
 	 */
 	public static Date dataPlusInterval(Date source, int interval) {
+		if(null==source){return null;}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(source);
 		int day = calendar.get(Calendar.DAY_OF_YEAR);

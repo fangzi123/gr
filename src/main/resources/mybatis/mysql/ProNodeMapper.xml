@@ -294,7 +294,7 @@
   <select id="selectPjnListForCalendar" resultMap="pjnListForCalendarMap">
   	select 
   		pjn.*
-  		,pcn.id pcn_id,pcn.name pcn_name
+  		,pcn.id pcn_id,pcn.name pcn_name,pcn.time_type pcn_time_type
   		,pj.id pj_id,pj.name pj_name
   	from 
   		pro_node pjn
