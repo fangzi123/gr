@@ -24,7 +24,7 @@ import com.cyou.gr.web.comm._BaseController;
 public class CalendarController extends _BaseController{
 	@Autowired
 	private ProjectNodeService projectNodeService;
-	private String URL="/gr/gr/projview?id=%s&pjnid=%s";
+	private String URL="%s/gr/projview?id=%s&pjnid=%s";
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, HttpServletResponse response,Model model) {
@@ -32,8 +32,7 @@ public class CalendarController extends _BaseController{
 		List<CalendarVo> list=new ArrayList<CalendarVo>();
 		for(ProNode pjn:pjnList){
 			String title=pjn.getProject().getName()+":"+pjn.getProcessNode().getName();
-			Object url[]={pjn.getProjectId(),pjn.getId()};
-			
+			Object url[]={request.getContextPath(),pjn.getProjectId(),pjn.getId()};
 			CalendarVo vo=new CalendarVo();
 			vo.setTitle(title);
 			vo.setUrl(String.format(URL, url));

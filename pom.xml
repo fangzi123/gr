@@ -33,6 +33,8 @@
 		<springdataredis.version>1.3.0.RELEASE</springdataredis.version>
 		<pool2.version>2.0</pool2.version>
 		<jcaptcha.version>1.0-RC6</jcaptcha.version>
+		<repo.public.url>http://repo1.maven.org/maven2/</repo.public.url>
+<!-- 		<repo.public.url>http://localhost:8081/nexus/content/groups/public/</repo.public.url> -->
 	</properties>
 	<dependencies>
 		<!-- servlet -->
@@ -321,5 +323,18 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<!-- 公共仓库地址 -->
+	    <repositories>
+	        <repository>
+	            <id>public</id>
+	            <name>Public Repositories</name>
+	            <url>${repo.public.url}</url>
+	            <releases>
+	                <enabled>true</enabled>
+	            </releases>
+	            <snapshots>
+	                <enabled>true</enabled>
+	            </snapshots>
+	        </repository>
+	    </repositories>
 </project>
