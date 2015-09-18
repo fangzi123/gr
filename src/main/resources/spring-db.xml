@@ -60,5 +60,28 @@
         <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
         <property name="basePackage" value="com.cyou.gr.dao" />
     </bean>
+    
+     <bean name="memcachedClient"
+                class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" destroy-method="shutdown">
+                <property name="servers">
+               		<value>127.0.0.1:11211 127.0.0.1:11212</value>
+                </property>
+                <property name="connectionPoolSize" value="1"></property>
+                <property name="weights">
+                        <list>
+                                <value>2</value>
+                                <value>1</value>
+                        </list>
+                </property>
+                <property name="sessionLocator"><!-- 使用一致性哈希算法 -->
+					<bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator"></bean>
+				</property>
+				 <property name="transcoder">
+                        <bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder" />
+                </property>
+                <property name="bufferAllocator">
+                        <bean class="net.rubyeye.xmemcached.buffer.SimpleBufferAllocator"></bean>
+                </property>
+     </bean>
 </beans>
 
