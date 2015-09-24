@@ -1,6 +1,7 @@
 package com.cyou.gr.cache.service.impl;
 
 
+import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.cyou.gr.cache.Cache;
 import com.cyou.gr.cache.service.CacheService;
 
+import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 
 
@@ -29,6 +31,8 @@ public class CacheServiceImpl implements CacheService {
     
     @Autowired
     private Cache cache;
+    @Autowired
+    private MemcachedClient memcachedClient;
 
     public void putCache(String cacheKey,Object object) {
         try {
@@ -100,5 +104,10 @@ public class CacheServiceImpl implements CacheService {
 	        } catch (Exception e) {
 	            log.error("exception, cacheKey:" + cacheKey, e);
 	        }
+	}
+
+	@Override
+	public Set<String> keys(String string) {
+		return null;
 	}
 }

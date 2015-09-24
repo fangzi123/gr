@@ -69,7 +69,7 @@
                 <property name="connectionPoolSize" value="1"></property>
                 <property name="weights">
                         <list>
-                                <value>2</value>
+                                <value>1</value>
                                 <value>1</value>
                         </list>
                 </property>

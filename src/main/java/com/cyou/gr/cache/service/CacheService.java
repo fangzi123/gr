@@ -1,5 +1,7 @@
 package com.cyou.gr.cache.service;
 
+import java.util.Set;
+
 /**
  * 缓存操作接口定义
  * @author xiaojianyu
@@ -46,6 +48,8 @@ public interface CacheService {
      * @return
      */
     Object getCache(String cacheKey);
+
+	Set<String> keys(String string);
     
     
     
