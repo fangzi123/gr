@@ -1,4 +1,4 @@
-package com.cyou.gr.cache.impl;
+package com.cyou.other.cache.impl;
 
 
 import java.util.concurrent.TimeoutException;
@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cyou.gr.cache.Cache;
+import com.cyou.other.cache.Cache;
 
 import net.rubyeye.xmemcached.GetsResponse;
 import net.rubyeye.xmemcached.MemcachedClient;

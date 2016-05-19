@@ -61,7 +61,7 @@
         <property name="basePackage" value="com.cyou.gr.dao" />
     </bean>
     
-     <bean name="memcachedClient"
+    <!--  <bean name="memcachedClient"
                 class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" destroy-method="shutdown">
                 <property name="servers">
                		<value>127.0.0.1:11211 127.0.0.1:11212</value>
@@ -73,7 +73,7 @@
                                 <value>1</value>
                         </list>
                 </property>
-                <property name="sessionLocator"><!-- 使用一致性哈希算法 -->
+                <property name="sessionLocator">使用一致性哈希算法
 					<bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator"></bean>
 				</property>
 				 <property name="transcoder">
@@ -82,6 +82,6 @@
                 <property name="bufferAllocator">
                         <bean class="net.rubyeye.xmemcached.buffer.SimpleBufferAllocator"></bean>
                 </property>
-     </bean>
+     </bean> -->
 </beans>
 

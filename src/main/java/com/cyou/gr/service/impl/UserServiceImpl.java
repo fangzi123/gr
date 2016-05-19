@@ -15,6 +15,7 @@ import com.cyou.gr.entity.User;
 import com.cyou.gr.entity.User2project;
 import com.cyou.gr.entity.vo.UserVo;
 import com.cyou.gr.service.UserService;
+import com.cyou.gr.util.PasswordHelper;
 
 @Transactional
 @Service
@@ -23,7 +24,8 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 	@Autowired
 	private User2projectMapper user2projectMapper;
-
+	@Autowired
+	private PasswordHelper passwordHelper;
 	@Override
 	public User selectUserByName(String name){
 		return userMapper.selectByName(name);
@@ -37,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveOrUpdateUser(UserVo uv) throws Exception {
+		passwordHelper.encryptPassword(uv);
 		if (uv.getId() == null) {//新增
 			User u = new User();
 			BeanUtils.copyProperties(uv, u);

@@ -9,6 +9,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cyou.gr.entity.User;
@@ -57,7 +58,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 				shiroUser.setUsername(u.getName());
 				shiroUser.setPassword(u.getPassword());
 				authenticationInfo = new SimpleAuthenticationInfo(
-						shiroUser, shiroUser.getPassword(), getName());
+						shiroUser, shiroUser.getPassword(), ByteSource.Util.bytes(u.getName()), getName());
 			}
 			return authenticationInfo;
 	}
