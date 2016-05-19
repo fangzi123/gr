@@ -1,4 +1,4 @@
-package com.cyou.gr.cache;
+package com.cyou.other.cache;
 
 import java.util.concurrent.TimeoutException;
 

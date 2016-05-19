@@ -1,4 +1,4 @@
-package com.cyou.gr.cache.service;
+package com.cyou.other.cache.service;
 
 /**
  * 缓存操作接口定义

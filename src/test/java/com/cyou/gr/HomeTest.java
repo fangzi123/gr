@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
+import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -18,6 +20,7 @@ import com.cyou.gr.dao.ProjectMapper;
 import com.cyou.gr.entity.Project;
 import com.cyou.gr.entity.User;
 import com.cyou.gr.entity.vo.ProjectVo;
+import com.cyou.gr.entity.vo.UserVo;
 import com.cyou.gr.service.UserService;
 import com.cyou.gr.util.Constants;
 import com.cyou.gr.util.FileUtils;
@@ -73,6 +76,21 @@ public class HomeTest extends AbstractSpringContextTestSupport{
     public void t() throws Exception {
     	int a=feeTemplateMapper.selectMaxSort(9);
     	System.out.println(a);
+    }
+    @Test
+    public void t1() throws Exception {
+    	    	UserVo user=new UserVo();
+    	    	user.setName("wff@cy");
+    	    	user.setPassword("123456");
+    	    	
+    	    	String newPassword = new SimpleHash(
+    	                "md5",
+    	                user.getPassword(),
+    	                ByteSource.Util.bytes(user.getName()),
+    	                2).toHex();
+
+    	    	
+    	    	System.out.println(newPassword);
     }
     @Test
     public void tttt() throws Exception {
