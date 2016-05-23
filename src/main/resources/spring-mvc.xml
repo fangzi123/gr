@@ -51,6 +51,17 @@
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="200000000"/>
      </bean>
+     <!-- 全局异常跳转页 -->
+     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                 <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    redirect:/unauthorized.jsp
+                </prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="error/genericView"/>
+     </bean>
      
      <import resource="spring-mvc-shiro.xml"/>
 </beans>	

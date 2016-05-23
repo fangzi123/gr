@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ public class ProcessController extends _BaseController {
 
 	@Autowired
 	private ProcessService processService;
-
+	@RequiresPermissions(value = { "process:list" })
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
@@ -32,6 +33,7 @@ public class ProcessController extends _BaseController {
 		return "admin_process";
 	}
 	
+	@RequiresPermissions(value = { "process:add" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpServletRequest request,
 			HttpServletResponse response, Model model,Process p) throws Exception {

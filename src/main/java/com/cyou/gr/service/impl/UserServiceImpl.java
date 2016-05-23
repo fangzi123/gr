@@ -93,6 +93,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Set<String> selectPermissions(Integer userid) {
 		Set<String> permissions = new HashSet<String>();
+		permissions.add("process:*");
 		List<User2project> u2pList =user2projectMapper.selectUser2projectsByUserid(userid);
 	        for(User2project u2p : u2pList) {
 	            if(u2p != null) {

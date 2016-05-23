@@ -2,6 +2,7 @@ package com.cyou.gr.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,9 @@ public class LoginController extends _BaseController{
 				   error = "用户名/密码错误";
 			   } else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
 				   error = "用户名/密码错误";
-			   } else if(exceptionClassName != null) {
+			   } else if(ExcessiveAttemptsException.class.getName().equals(exceptionClassName)) {
+				   error = "连续五次密码输入错误，锁定一小时";
+			   }else if(exceptionClassName != null) {
 				   error = "其他错误：" + exceptionClassName;
 			   }
 			   model.addAttribute("error", error);
