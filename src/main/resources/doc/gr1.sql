@@ -335,7 +335,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'wff@cy', '123456', '管理员', '1');
+INSERT INTO `user` VALUES ('1', 'wff@cy', 'b95c1fe28f928406bdf54235a8cdab51', '管理员', '1');
 INSERT INTO `user` VALUES ('2', 'a@cy', '123456', '普通用户', '0');
 INSERT INTO `user` VALUES ('3', 'lwj@cy', '123456', '普通用户', '0');
 
